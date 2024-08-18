@@ -84,3 +84,19 @@ void listaPublicaciones::agregarPub(string correo,string contenido,string fecha,
         ultimo = nuevoNodo;
     }
 }
+
+void listaPublicaciones::verMisPublicaciones(string correo){
+    NodoPub *temp = primero;
+
+    while(temp != nullptr ){
+        if(temp->getCorreo() == correo){
+            cout << temp->getCorreo() << endl;
+            cout << temp->getcontenido() << endl;
+            cout << temp->getfecha() << endl;
+            cout << temp->gethora() << endl;
+        }
+         temp = temp->getSigPub();
+    }
+
+    cout << endl;
+}

@@ -4,6 +4,8 @@
 #include "PilaSoli_R.h"
 #include "listaSoli_E.h"
 #include "nodoPublicacion.h"
+#include "listaAmistades.h"
+#include "nodoMatriz.h"
 
 class Nodo {
 private:
@@ -16,6 +18,9 @@ private:
     PilaSolicitudesRecibidas* pilaSolicitudesRecibidas; // Pila de solicitudes recibidas
     ListaSolicitudesEnviadas* listadeSolicitudesEnviadasUsuario; //lista de solicitudes enviadas
     listaPublicaciones* listaDePublicaciones; //lista de mis publicaciones
+    listaAmistad* listaDeAmigos;  // lista de amistades
+    matriz* miMatrizAmigos; //matriz dispersa
+
 
 
 public:
@@ -38,6 +43,8 @@ public:
     PilaSolicitudesRecibidas* getPilaSolicitudesRecibidas(); // Getter para la pila de solicitudes
     ListaSolicitudesEnviadas* getListaDeSolicitudesEnviadas(); // Getter para la lista de solicitudes que el usuario ha enviado
     listaPublicaciones* getlistaDepublicaciones();
+    listaAmistad* getListaAmigos();
+    matriz* getMimatrizAmigos();
 
 };
 

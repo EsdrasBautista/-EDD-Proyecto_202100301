@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 class NodoLisaE{
@@ -28,6 +30,7 @@ class ListaSolicitudesEnviadas{
 private:
     NodoLisaE *head;
     NodoLisaE *ultimo;
+    NodoLisaE *headGraficar;
 public:
     ListaSolicitudesEnviadas();
     ~ListaSolicitudesEnviadas();
@@ -38,6 +41,9 @@ public:
     bool estaVacia();
     void verListaSolEnviadas();
     string getEstadosolicitud(string correo);
+    void setGraficar(NodoLisaE* nodo);
+    void graficar(string micorreo);
+     
 
 };
 

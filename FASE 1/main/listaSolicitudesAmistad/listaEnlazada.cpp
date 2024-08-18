@@ -22,13 +22,16 @@ Nodo::Nodo(string nom,string ape,string corr,string contr,string fechaNac){
     this->pilaSolicitudesRecibidas = new PilaSolicitudesRecibidas(); // Inicializar la pila
     this->listadeSolicitudesEnviadasUsuario = new ListaSolicitudesEnviadas(); //Inicializar la lista
     this->listaDePublicaciones = new listaPublicaciones();
+    this->listaDeAmigos = new listaAmistad();
+    this->miMatrizAmigos = new matriz();
 }
 
 Nodo::~Nodo(){
-    delete this;
     delete this->pilaSolicitudesRecibidas;
     delete this->listadeSolicitudesEnviadasUsuario;
     delete this->listaDePublicaciones;
+    delete this->listaDeAmigos;
+    delete this->miMatrizAmigos;
 }
 
 //getters y setters
@@ -67,10 +70,14 @@ listaPublicaciones* Nodo::getlistaDepublicaciones(){
     return this->listaDePublicaciones;
 }
 
+listaAmistad* Nodo::getListaAmigos(){
+    return this->listaDeAmigos;
+}
 
 
-
-
+matriz* Nodo::getMimatrizAmigos(){
+    return this->miMatrizAmigos;
+}
 
 
 
@@ -194,28 +201,25 @@ Nodo* ListaEnlazada::buscarNodoPorCorreo(string correo) {
 }
 
 void ListaEnlazada::eliminarCuenta(string correo){
-    
-    try{
-        Nodo* nodoActual = head;
-        Nodo* anterior = nullptr;
 
-        while (nodoActual != nullptr && nodoActual->getCorreo() != correo) {
-            anterior = nodoActual;
-            nodoActual = nodoActual->getSig();
-        }
+    Nodo *nodoActual = head;
+    Nodo *anterior = nullptr;
 
-        if(nodoActual != nullptr){
-            if(anterior == nullptr){
-                head = nodoActual->getSig();
-            }else{
-                anterior->setSig(nodoActual->getSig());
-            }
-
-            delete nodoActual;
-        }
-    }catch(runtime_error& e){
-        std::cerr << "Se ha producido una excepción: " << e.what() << std::endl;
+    while (nodoActual != nullptr && nodoActual->getCorreo() != correo){
+        anterior = nodoActual;
+        nodoActual = nodoActual->getSig();
     }
 
+    if (nodoActual != nullptr && nodoActual->getCorreo() == correo){
+        if (anterior == nullptr){
+            head = nodoActual->getSig();
+        }
+        else{
+            anterior->setSig(nodoActual->getSig());
+        }
 
+        delete nodoActual;
+    }else{
+        cout << "No se encontró ninguna cuenta con el correo proporcionado." << endl;
+    }
 }

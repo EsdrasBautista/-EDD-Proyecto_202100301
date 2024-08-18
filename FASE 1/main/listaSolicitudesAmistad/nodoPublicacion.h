@@ -45,6 +45,7 @@ public:
     listaPublicaciones();
     ~listaPublicaciones();
 
+    void verMisPublicaciones(string correo);
     void agregarPub(string correo,string contenido, string fecha,string hora);
 
     

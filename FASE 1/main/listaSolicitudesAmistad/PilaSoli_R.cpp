@@ -12,7 +12,7 @@ void NodoPila::setSiguiente(NodoPila* sig){siguiente = sig;}
 
 
 //PilaSolicitudesRecibidas.h
-PilaSolicitudesRecibidas::PilaSolicitudesRecibidas(){head = nullptr;}
+PilaSolicitudesRecibidas::PilaSolicitudesRecibidas(){head = nullptr; headGraficar = nullptr;}
 
 PilaSolicitudesRecibidas::~PilaSolicitudesRecibidas() {
     while (!estaVacia()) {
@@ -29,7 +29,9 @@ void PilaSolicitudesRecibidas::push(string correoUsuario){
         nuevo_nodo->setSiguiente(head);
         head = nuevo_nodo;
     }
-  
+
+
+  setGraficar(nuevo_nodo);
 }
 
 
@@ -81,4 +83,57 @@ bool PilaSolicitudesRecibidas::existe(string correoEmisor){
     }
 
     return false; //No se ha enviado solicitud a ese usuario
+}
+
+void PilaSolicitudesRecibidas::setGraficar(NodoPila* nuevonodo){
+    
+
+    if (headGraficar == nullptr){
+        headGraficar = nuevonodo;
+    
+    }else{
+        nuevonodo->setSiguiente(headGraficar);
+        headGraficar = nuevonodo;
+    }
+    nuevonodo->setSiguiente(nullptr);
+}
+
+void PilaSolicitudesRecibidas::graficar(string micorreo){
+    ofstream archivo("PilaDesolicitudesRecibidas.dot");
+    if (!archivo.is_open()) {
+        cout << "No se pudo crear el archivo" << endl;
+        return;
+    }
+
+    archivo << "digraph G {" << endl;
+    archivo << "    rankdir=LR;" << endl;
+    archivo << "    node [shape=record];" << endl;
+
+    NodoPila *nodoactual = headGraficar;
+
+    while(nodoactual != nullptr){
+        archivo << "    \"" << nodoactual->getCorreoUsuario() << "\"";
+        if(nodoactual->getSiguiente() != nullptr){
+            archivo << " -> \"" << nodoactual->getSiguiente()->getCorreoUsuario() << "\"";
+        }
+        archivo << ";" << endl;
+        nodoactual = nodoactual->getSiguiente();
+    }
+    archivo << "}" << endl;
+    archivo.close();
+
+
+    stringstream nombreArchivo;
+    nombreArchivo << "solicitudesRecibidas_" << micorreo << ".png";
+
+
+    stringstream comando;
+    comando << "dot -Tpng PilaDesolicitudesRecibidas.dot -o " << nombreArchivo.str();
+
+
+    system(comando.str().c_str());
+
+    cout << "Las solicitudes enviadas han sido graficadas y guardadas en " << nombreArchivo.str() << endl;
+
+
 }

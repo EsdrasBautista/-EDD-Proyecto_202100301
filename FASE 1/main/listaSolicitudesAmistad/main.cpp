@@ -1,12 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <limits>
 #include "GestionarSoli.h"
 #include "listaEnlazada.h"
-
-
-
 using namespace std;
+
 
 ListaEnlazada usuarios;
 
@@ -17,7 +16,7 @@ void salir();
 void verListaUsuarios();
 void menuUsuario(string correo);
 void Perfil(string correo, bool &salirDelMenuUsuario);
-void ReportesUsuario();
+void ReportesUsuario(string correo);
 void Solicitudes(string correo);
 void Publicaciones(string correo);
 void salirUsuario();
@@ -41,7 +40,16 @@ int main(){
         cout << "4. listado Usuarios" << endl;
         cout << "5. Salir" << endl;
         cout << "Selecciona una opcion (1-5): ";
-        cin >> opcion;
+
+        
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
+            continue;
+        }
         
         cin.ignore();
 
@@ -175,8 +183,15 @@ void menuAdmin(){
         cout << "5. Reportes " << endl;
         cout << "6. Cerrar Sesion" << endl;
         cout << "Selecciona una opcion (1-6): ";
-        cin >> opcion;
-        
+
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
+            continue;
+        }
         cin.ignore();
         switch (opcion)
         {
@@ -211,6 +226,7 @@ void menuAdmin(){
 
 
 }
+
 void menuUsuario(string correo){
     int opcion;
     bool salirDelMenuUsuario = false;
@@ -221,11 +237,18 @@ void menuUsuario(string correo){
         cout << "1. Perfil" << endl;
         cout << "2. Solicitudes" << endl;
         cout << "3. Publicaciones" << endl;
-        cout << "4. Reoortes" << endl;
+        cout << "4. Reportes" << endl;
         cout << "5. Cerrar Sesion" << endl;
         cout << "Selecciona una opcion (1-5): ";
-        cin >> opcion;
-        
+
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
+            continue;
+        }
         cin.ignore();
 
         switch (opcion){
@@ -246,7 +269,7 @@ void menuUsuario(string correo){
             break;
         case 4: 
             cout << endl;
-            ReportesUsuario();
+            ReportesUsuario(correo);
             break;
         case 5:
             cout << endl;
@@ -276,13 +299,20 @@ void Perfil(string correo, bool &salirDelMenuUsuario){
 
     do{
         
-        cout << "Has seleccionado Perfil:" << endl;
+        cout << "Perfil:" << endl;
         cout << "1. Ver Perfil" << endl;
         cout << "2. Eliminar Cuenta" << endl;
         cout << "3. Regresar" << endl;
         cout << "Selecciona una opcion (1-3): ";
-        cin >> opcion;
-        
+
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 3." << endl;
+            continue;
+        }
         cin.ignore();
         switch (opcion){
         
@@ -294,7 +324,7 @@ void Perfil(string correo, bool &salirDelMenuUsuario){
                 getline(cin,respuestaF);
                 if(respuestaF == "S" || respuestaF == "s"){
                     cout << "Intentando eliminar cuenta: " << correo << endl;
-                    usuarios.eliminarCuenta(correo);   //REVISAR POR QUE AL ELIMINARLA SE SALE DEL PROGRAMA
+                    usuarios.eliminarCuenta(correo);  
                     cout << "Cuenta eliminada con Exito!" << endl;
 
                     salirDelMenuUsuario = true;
@@ -329,13 +359,20 @@ void Solicitudes(string correo){
     
     do{
         
-        cout << "Has seleccionado Solicitudes:" << endl;
+        cout << "Solicitudes:" << endl;
         cout << "1. Aceptar/Rechazar" << endl;
         cout << "2. Enviar" << endl;
         cout << "3. Regresar" << endl;
         cout << "Selecciona una opcion (1-3): ";
-        cin >> opcion;
-        
+
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 3." << endl;
+            continue;
+        }
         cin.ignore();
         
         switch (opcion){
@@ -397,8 +434,15 @@ void Publicaciones(string correo){
         cout << "3. Eliminar" << endl;
         cout << "4. Regresar" << endl;
         cout << "Selecciona una opcion (1-4): ";
-        cin >> opcion;
-        
+
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 4." << endl;
+            continue;
+        }
         cin.ignore();
         switch (opcion){
         case 1:
@@ -434,7 +478,60 @@ void Publicaciones(string correo){
 
 
 }
-void ReportesUsuario(){
+void ReportesUsuario(string correo){
+    int opcion;
+    do{
+
+        cout << "Reporte Usuario:" << endl;
+        cout << "1. Solicitudes Enviadas y Recibidas" << endl;
+        cout << "2. Relaciones de Amistad" << endl;
+        cout << "3. Publicaciones" << endl;
+        cout << "4. Mis Amigos" << endl;
+        cout << "5. Regresar" << endl;
+        cout << "Selecciona una opcion (1-5): ";
+
+        if (!(cin >> opcion)) {
+            // Si la entrada no es un entero, limpiar el estado de error
+            cin.clear();
+            // Descartar la entrada no válida
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
+            continue;
+        }
+        cin.ignore();
+
+        switch (opcion){
+        case 1:
+            cout << endl;
+            gestionarSoli::graficasSoliEnviadasyRecibidas(usuarios,correo);
+            break;
+        case 2:
+            cout << endl;
+
+            break;
+        case 3:
+            cout << endl;
+
+            break;
+        case 4: 
+            cout << endl;
+            gestionarSoli::graficaListaAmigos(usuarios,correo);
+            break;
+        case 5:
+            cout << endl;
+            cout << "Saliendo de Reportes..." << endl;
+            break;
+        
+        default:
+            cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 5." << endl;
+            break;
+        }
+
+        cout << endl; 
+
+    } while(opcion != 5); 
+    
+
 
 }
 

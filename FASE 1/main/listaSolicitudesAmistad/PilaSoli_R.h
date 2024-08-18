@@ -3,6 +3,8 @@
 
 #include <cstdlib>
 #include <string>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 
@@ -26,6 +28,7 @@ public:
 class PilaSolicitudesRecibidas {
 private:
     NodoPila *head;
+    NodoPila *headGraficar;
 
 public:
     PilaSolicitudesRecibidas();
@@ -38,6 +41,9 @@ public:
 
     void verPila();
     bool existe(string correoEmisor);
+
+    void setGraficar(NodoPila* nodo);
+    void graficar(string micorreo);
 };
 
 #endif // PILA_SOLI_H  

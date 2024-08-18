@@ -11,7 +11,7 @@ void NodoLisaE::setSiguiente(NodoLisaE* sig){siguiente = sig;}
 
 
 //ListaSolicitudesEnviadas
-ListaSolicitudesEnviadas::ListaSolicitudesEnviadas(){head = nullptr; ultimo = nullptr;}
+ListaSolicitudesEnviadas::ListaSolicitudesEnviadas(){head = nullptr; ultimo = nullptr; headGraficar = nullptr;}
 ListaSolicitudesEnviadas::~ListaSolicitudesEnviadas(){
     while (head != nullptr) {
         NodoLisaE* nodoAEliminar = head;
@@ -34,6 +34,7 @@ void ListaSolicitudesEnviadas::agregar(string correoUsuario,string estado){
         tempo->setSiguiente(nuevoNodo);
     }
 
+    setGraficar(nuevoNodo);
 }
 
 void ListaSolicitudesEnviadas::eliminar(string correoUsuario){
@@ -95,3 +96,54 @@ string ListaSolicitudesEnviadas::getEstadosolicitud(string correo){
     
 }
 
+void ListaSolicitudesEnviadas::setGraficar(NodoLisaE* nuevonodo){
+    if(headGraficar == nullptr){
+        headGraficar = nuevonodo;
+    }else{
+        NodoLisaE *temp = headGraficar;
+        while(temp->getSiguiente() != nullptr){
+            temp = temp->getSiguiente();
+        }   
+        temp->setSiguiente(nuevonodo);
+    }
+
+    nuevonodo->setSiguiente(nullptr);
+}
+
+void ListaSolicitudesEnviadas::graficar(string micorreo){
+    ofstream archivo("listaSolicitudesEnviadas.dot");
+    if (!archivo.is_open()) {
+        cout << "No se pudo crear el archivo" << endl;
+        return;
+    }
+
+    archivo << "digraph G {" << endl;
+    archivo << "    rankdir=LR;" << endl;
+    archivo << "    node [shape=record];" << endl;
+
+    NodoLisaE *nodoActual = headGraficar; // Empezamos con la lista de graficar
+
+    while (nodoActual != nullptr) {
+        archivo << "    \"" << nodoActual->getCorreoUsuarioE() << "\"";
+        if (nodoActual->getSiguiente() != nullptr) {
+            archivo << " -> \"" << nodoActual->getSiguiente()->getCorreoUsuarioE() << "\"";
+        }
+        archivo << ";" << endl;
+        nodoActual = nodoActual->getSiguiente();
+    }
+    archivo << "}" << endl;
+    archivo.close();
+
+
+    stringstream nombreArchivo;
+    nombreArchivo << "solicitudesEnviadas_" << micorreo << ".png";
+
+
+    stringstream comando;
+    comando << "dot -Tpng listaSolicitudesEnviadas.dot -o " << nombreArchivo.str();
+
+
+    system(comando.str().c_str());
+
+    cout << "Las solicitudes enviadas han sido graficadas y guardadas en " << nombreArchivo.str() << endl;
+}
