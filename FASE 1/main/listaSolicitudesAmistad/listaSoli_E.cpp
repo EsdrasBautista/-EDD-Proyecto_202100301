@@ -111,6 +111,7 @@ void ListaSolicitudesEnviadas::setGraficar(NodoLisaE* nuevonodo){
 }
 
 void ListaSolicitudesEnviadas::graficar(string micorreo){
+    
     ofstream archivo("listaSolicitudesEnviadas.dot");
     if (!archivo.is_open()) {
         cout << "No se pudo crear el archivo" << endl;

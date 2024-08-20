@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 class nodoMatriz{
@@ -56,5 +58,6 @@ public:
     bool existeNodo(nodoMatriz *nuevo);
     void verMatriz();
     bool verificarAmistad(string nombreU1, string nombreU2); 
+    void graficarMatriz(string micorreo);
 
 };

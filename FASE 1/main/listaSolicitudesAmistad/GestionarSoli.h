@@ -9,7 +9,8 @@ public:
     static void crearPublicacion(ListaEnlazada &usuarios, string correo, string contenido, string fecha, string hora);
     static void vermisPublicaciones(ListaEnlazada &usuarios, string correo);
     static void graficasSoliEnviadasyRecibidas(ListaEnlazada &usuarios, string micorreo); //graficos
-    static void graficaListaAmigos(ListaEnlazada &usuario, string micorreo);
+    static void graficaListaAmigos(ListaEnlazada &usuario, string micorreo); //graficos
+    static void graficarMatrizAmigos(ListaEnlazada &usuario, string micorreo); //graficos
 
 
 };

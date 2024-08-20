@@ -133,7 +133,7 @@ void PilaSolicitudesRecibidas::graficar(string micorreo){
 
     system(comando.str().c_str());
 
-    cout << "Las solicitudes enviadas han sido graficadas y guardadas en " << nombreArchivo.str() << endl;
+    cout << "La grafica de solicitudes recibidas se ha guardado como:  " << nombreArchivo.str() << endl;
 
 
 }

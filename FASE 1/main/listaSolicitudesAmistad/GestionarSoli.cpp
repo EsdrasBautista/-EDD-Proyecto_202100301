@@ -155,3 +155,9 @@ void gestionarSoli::graficaListaAmigos(ListaEnlazada &usuario, string micorreo){
 
     misamigos->graficar(micorreo);
 }
+
+void gestionarSoli::graficarMatrizAmigos(ListaEnlazada &usuario, string micorreo){
+    Nodo* miNodo = usuario.buscarNodoPorCorreo(micorreo);
+    matriz* mimatriz = miNodo->getMimatrizAmigos();
+    mimatriz->graficarMatriz(micorreo);
+}

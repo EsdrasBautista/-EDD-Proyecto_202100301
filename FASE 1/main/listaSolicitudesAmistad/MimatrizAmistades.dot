@@ -1,0 +1,13 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box];
+    "INICIO" [label="Inicio"];
+    "INICIO" -> "ee";
+    { rank=same; "ee" [label="ee"]; "ww" [label="ww"]; }
+    "ee" -> "ww";
+"ee" [label="ee"];
+"ee" -> "ww";
+"wwee" [label="ww,ee"];
+"ww" [label="ww"];
+"eeww" [label="ee,ww"];
+}

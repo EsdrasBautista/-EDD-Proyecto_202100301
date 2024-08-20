@@ -491,9 +491,7 @@ void ReportesUsuario(string correo){
         cout << "Selecciona una opcion (1-5): ";
 
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
             cin.clear();
-            // Descartar la entrada no válida
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
             continue;
@@ -507,11 +505,12 @@ void ReportesUsuario(string correo){
             break;
         case 2:
             cout << endl;
-
+            // graph de matriz dispersa
+            gestionarSoli::graficarMatrizAmigos(usuarios,correo);
             break;
         case 3:
             cout << endl;
-
+            // grap de publicaciones mias y de mis amigos
             break;
         case 4: 
             cout << endl;
