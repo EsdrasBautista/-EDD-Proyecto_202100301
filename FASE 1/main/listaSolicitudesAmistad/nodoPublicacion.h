@@ -4,6 +4,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <limits>
+#include <conio.h> 
+
 using namespace std;
 
 class NodoPub{
@@ -18,10 +21,11 @@ private:
     NodoPub *sig;
 public:
     NodoPub();
-    NodoPub(string correo,string contenido,string fecha,string hora);
+    NodoPub(string correo,string contenido,string fecha,string hora, int contador);
 
     void setSigPubl(NodoPub *sig);
     void setPrevPub(NodoPub *prev);
+    void setContador(int contador);
 
     string getCorreo();
     string getcontenido();
@@ -40,6 +44,7 @@ class listaPublicaciones{
 private:
     NodoPub *primero;
     NodoPub *ultimo;
+    int contPublica;
 
 public:
     listaPublicaciones();
@@ -47,7 +52,9 @@ public:
 
     void verMisPublicaciones(string correo);
     void agregarPub(string correo,string contenido, string fecha,string hora);
+    NodoPub* getPrimero();
 
+    int eliminarPublicacion(string correo);
     
 
 

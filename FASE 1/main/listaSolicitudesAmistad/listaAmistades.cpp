@@ -95,36 +95,61 @@ void listaAmistad::eliminarAmigo(string correo){
 }
 
 void listaAmistad::graficar(string micorreo){
-    ofstream archivo("listaDeAmistades.dot");
-    if(!archivo.is_open()){
-        cout << "No se pudo crear el archivo" << endl;
-    }
 
-    archivo << "digraph G {" << endl;
-    archivo << "    rankdir=LR;" << endl;
-    archivo << "    node [shape=record];" << endl;
-
-    nodoAmistad *nodoActual = head;
-    while(nodoActual != nullptr){
-        archivo << "    \"" << nodoActual->getCorreoA() << "\"";
-        if (nodoActual->getsiguiente() != nullptr) {
-            archivo << " -> \"" << nodoActual->getsiguiente()->getCorreoA() << "\"";
+    if(head == nullptr){
+        cout << "No tienes amigos aun!" << endl;
+    }else{
+        ofstream archivo("listaDeAmistades.dot");
+        if(!archivo.is_open()){
+            cout << "No se pudo crear el archivo" << endl;
         }
-        archivo << ";" << endl;
-        nodoActual = nodoActual->getsiguiente();
+
+        archivo << "digraph G {" << endl;
+        archivo << "    rankdir=LR;" << endl;
+        archivo << "    node [shape=record];" << endl;
+
+        nodoAmistad *nodoActual = head;
+        while(nodoActual != nullptr){
+            archivo << "    \"" << nodoActual->getCorreoA() << "\"";
+            if (nodoActual->getsiguiente() != nullptr) {
+                archivo << " -> \"" << nodoActual->getsiguiente()->getCorreoA() << "\"";
+            }
+            archivo << ";" << endl;
+            nodoActual = nodoActual->getsiguiente();
+        }
+        archivo << "}" << endl;
+        archivo.close();
+
+        stringstream nombreArchivo;
+        nombreArchivo << "listaAmistades_" << micorreo << ".png";
+
+        // Construir el comando Graphviz
+        stringstream comando;
+        comando << "dot -Tpng listaDeAmistades.dot -o " << nombreArchivo.str();
+
+        // Ejecutar el comando
+        system(comando.str().c_str());
+
+        cout << "La lista de amistades ha sido graficada y guardada en " << nombreArchivo.str() << endl;
     }
-    archivo << "}" << endl;
-    archivo.close();
+}
 
-    stringstream nombreArchivo;
-    nombreArchivo << "listaAmistades_" << micorreo << ".png";
+nodoAmistad* listaAmistad::buscarAmigoporCorreo(string correo){
+    nodoAmistad* actual = head;
+    while (actual != nullptr) {
+        if (actual->getCorreoA() == correo) {
+            return actual;
+        }
+        actual = actual->getsiguiente();
+    }
+    return nullptr; // Si no se encuentra, retornar nullptr
+}
 
-    // Construir el comando Graphviz
-    stringstream comando;
-    comando << "dot -Tpng listaDeAmistades.dot -o " << nombreArchivo.str();
-
-    // Ejecutar el comando
-    system(comando.str().c_str());
-
-    cout << "La lista de amistades ha sido graficada y guardada en " << nombreArchivo.str() << endl;
+nodoAmistad* listaAmistad::getprimero(){
+    nodoAmistad* actual = head;
+    if(head == nullptr){
+        return nullptr;
+    }else{
+        return actual;
+    }
 }

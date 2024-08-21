@@ -24,6 +24,7 @@ Nodo::Nodo(string nom,string ape,string corr,string contr,string fechaNac){
     this->listaDePublicaciones = new listaPublicaciones();
     this->listaDeAmigos = new listaAmistad();
     this->miMatrizAmigos = new matriz();
+    this->listaCircularAmigos = new listaCircular();
 }
 
 Nodo::~Nodo(){
@@ -32,6 +33,7 @@ Nodo::~Nodo(){
     delete this->listaDePublicaciones;
     delete this->listaDeAmigos;
     delete this->miMatrizAmigos;
+    delete this->listaCircularAmigos;
 }
 
 //getters y setters
@@ -79,6 +81,9 @@ matriz* Nodo::getMimatrizAmigos(){
     return this->miMatrizAmigos;
 }
 
+listaCircular* Nodo::getListaCircular(){
+    return this->listaCircularAmigos;
+}
 
 
 

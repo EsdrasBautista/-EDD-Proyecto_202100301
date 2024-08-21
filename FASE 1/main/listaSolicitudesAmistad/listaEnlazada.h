@@ -6,6 +6,7 @@
 #include "nodoPublicacion.h"
 #include "listaAmistades.h"
 #include "nodoMatriz.h"
+#include "nodoPublicacionCircular.h"
 
 class Nodo {
 private:
@@ -20,6 +21,7 @@ private:
     listaPublicaciones* listaDePublicaciones; //lista de mis publicaciones
     listaAmistad* listaDeAmigos;  // lista de amistades
     matriz* miMatrizAmigos; //matriz dispersa
+    listaCircular* listaCircularAmigos;
 
 
 
@@ -42,9 +44,11 @@ public:
     void setSig(Nodo* sig);
     PilaSolicitudesRecibidas* getPilaSolicitudesRecibidas(); // Getter para la pila de solicitudes
     ListaSolicitudesEnviadas* getListaDeSolicitudesEnviadas(); // Getter para la lista de solicitudes que el usuario ha enviado
-    listaPublicaciones* getlistaDepublicaciones();
+    listaPublicaciones* getlistaDepublicaciones(); //doblemente enlazada
     listaAmistad* getListaAmigos();
     matriz* getMimatrizAmigos();
+    listaCircular* getListaCircular();
+    
 
 };
 

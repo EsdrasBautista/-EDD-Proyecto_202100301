@@ -50,6 +50,7 @@ private:
     nodoMatriz* obtenerNodo(string correoEmisor, string correoReceptor);
 
 
+
 public:
     matriz();
     ~matriz();

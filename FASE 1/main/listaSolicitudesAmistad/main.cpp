@@ -296,6 +296,7 @@ void salirUsuario(){
 void Perfil(string correo, bool &salirDelMenuUsuario){
     int opcion;
     string respuestaF;
+    Nodo* info = usuarios.buscarNodoPorCorreo(correo);
 
     do{
         
@@ -317,6 +318,17 @@ void Perfil(string correo, bool &salirDelMenuUsuario){
         switch (opcion){
         
             case 1:
+                cout << endl;
+                cout << "Mi informacion:" << endl;
+                cout<< "Nombre: " << info->getNombres() << endl;
+                cout << "Apellido: " << info->getApellidos() << endl;
+                cout << "Correo Usuario: " << info->getCorreo() << endl;
+                cout << "Fecha Nacimiento: "<< info->getFechaNacimiento() << endl;
+                 
+                cout << "Mis publicaciones" << endl;
+                gestionarSoli::vermisPublicaciones(usuarios,correo);
+                
+                
             break;
 
             case 2:
@@ -436,9 +448,9 @@ void Publicaciones(string correo){
         cout << "Selecciona una opcion (1-4): ";
 
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
+
             cin.clear();
-            // Descartar la entrada no válida
+
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 4." << endl;
             continue;
@@ -446,8 +458,12 @@ void Publicaciones(string correo){
         cin.ignore();
         switch (opcion){
         case 1:
+            cout << endl;
+            cout << "Mi feed" << endl;
+            gestionarSoli::verPublicacionesAmigos(usuarios,correo);
             break;
         case 2:
+            cout << endl;
             cout << "Ingrese el contenido de la publicacion: " << endl;
             getline(cin,contenido);
             cout << "Ingrese la fecha: " << endl;
@@ -460,6 +476,8 @@ void Publicaciones(string correo){
             break;
 
         case 3:
+            cout << endl;
+            gestionarSoli::eliminarMiPublicacion(usuarios,correo);
             break;
         
         case 4:
@@ -511,6 +529,7 @@ void ReportesUsuario(string correo){
         case 3:
             cout << endl;
             // grap de publicaciones mias y de mis amigos
+            gestionarSoli::graficarListaCircularPublicaciones(usuarios,correo);
             break;
         case 4: 
             cout << endl;

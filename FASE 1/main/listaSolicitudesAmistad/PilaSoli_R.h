@@ -28,6 +28,7 @@ public:
 class PilaSolicitudesRecibidas {
 private:
     NodoPila *head;
+    NodoPila *ultimo;
     NodoPila *headGraficar;
 
 public:

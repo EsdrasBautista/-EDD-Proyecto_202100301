@@ -280,66 +280,114 @@ bool matriz::verificarAmistad(string emisor,string receptor){
     }
     return false;
 }
+
+
+
+
 void matriz::graficarMatriz(string micorreo) {
-    ofstream archivo("MimatrizAmistades.dot");
-    if (!archivo.is_open()) {
-        cout << "No se pudo crear el archivo" << endl;
-        return;
-    }
 
-    archivo << "digraph G {" << endl;
-    archivo << "    rankdir=TB;" << endl; // Top-Bottom para la alineación vertical
-    archivo << "    node [shape=box];" << endl;
+    if(this->raiz->getAbajo() == nullptr || this->raiz->getDcha() == nullptr){
+        cout << "No tienes amigos con cuales relacionarte aun!" << endl;
+    }else{
 
-    nodoMatriz* raiz = this->raiz;
-    string inicio = "INICIO";
-    archivo << "    \"" << inicio << "\" [label=\"Inicio\"];" << endl;
-
-    // Conexión desde el nodo de inicio al primer nodo columna
-    archivo << "    \"" << inicio << "\" -> \"" << raiz->getDcha()->getCorreoEmisor() << "\";" << endl;
-
-    // Encabezados de columna en la misma fila
-    archivo << "    { rank=same; ";
-    for (nodoMatriz* col = raiz->getDcha(); col != nullptr; col = col->getDcha()) {
-        archivo << "\"" << col->getCorreoEmisor() << "\" [label=\"" << col->getCorreoEmisor() << "\"]; ";
-    }
-    archivo << "}" << endl;
-
-    // Conexión horizontal entre los nodos de la primera fila (columnas)
-    for (nodoMatriz* col = raiz->getDcha(); col != nullptr; col = col->getDcha()) {
-        if (col->getDcha() != nullptr) {
-            archivo << "    \"" << col->getCorreoEmisor() << "\" -> \"" << col->getDcha()->getCorreoEmisor() << "\";" << endl;
-        }
-    }
-
-    // Nodos y conexiones verticales de cada fila
-    for (nodoMatriz* fila = raiz->getAbajo(); fila != nullptr; fila = fila->getAbajo()) {
-        archivo << "\"" << fila->getCorreoReceptor() << "\" [label=\"" << fila->getCorreoReceptor() << "\"];" << endl;
-        if (fila->getAbajo() != nullptr) {
-            archivo << "\"" << fila->getCorreoReceptor() << "\" -> \"" << fila->getAbajo()->getCorreoReceptor() << "\";" << endl;
+        ofstream archivo("MimatrizAmistades.dot");
+        if (!archivo.is_open()) {
+            cout << "No se pudo crear el archivo" << endl;
+            return;
         }
 
-        for (nodoMatriz* nodo = fila->getDcha(); nodo != nullptr; nodo = nodo->getDcha()) {
-            archivo << "\"" << nodo->getCorreoEmisor() << nodo->getCorreoReceptor() << "\" [label=\"" << nodo->getCorreoEmisor() << "," << nodo->getCorreoReceptor() << "\"];" << endl;
-            
-            if (nodo->getDcha() != nullptr) {
-                archivo << "\"" << nodo->getCorreoEmisor() << nodo->getCorreoReceptor() << "\" -> \"" << nodo->getDcha()->getCorreoEmisor() << nodo->getDcha()->getCorreoReceptor() << "\";" << endl;
+        archivo << "digraph G {" << endl;
+        archivo << "    rankdir=TB;" << endl; // Top-Bottom para la alineación vertical
+        archivo << "    node [shape=box];" << endl;
+
+        nodoMatriz* raiz = this->raiz;
+        string inicio = "INICIO";
+        archivo << "    \"" << inicio << "\" [label=\"Inicio\"];" << endl;
+
+
+        //-------------------------------------------------------------------------------------------------------------------------
+        // Encabezados de columna en la misma fila
+        //estos son lo encabezados que van horizontal    
+        archivo << "    { rank=same; ";
+        
+        int filaNodo = 1;
+        for (nodoMatriz* fila = raiz->getDcha(); fila != nullptr; fila = fila->getDcha()) {
+            archivo << "\"" << fila->getCorreoEmisor() << filaNodo << "\" [label=\"" << fila->getCorreoEmisor() << "\"]; ";
+            filaNodo ++;
+        }
+        archivo << endl;
+        int filaIndex = 1;
+        archivo << "    \"" << inicio << "\" -> \"" << raiz->getDcha()->getCorreoEmisor() << filaIndex <<"\";" << endl;
+        archivo << "    \"" << raiz->getDcha()->getCorreoEmisor() << filaIndex << "\" -> \"" << inicio <<"\";" << endl;
+        
+        // Conectar nodos de encabezado de columna horizontalmente
+        for (nodoMatriz* fila = raiz->getDcha(); fila != nullptr; fila = fila->getDcha()) {
+            if (fila->getDcha() != nullptr) {
+                archivo << "    \"" << fila->getCorreoEmisor() << filaIndex << "\" -> \"" << fila->getDcha()->getCorreoEmisor() << (filaIndex + 1) << "\";" << endl;
+                archivo << "    \"" << fila->getDcha()->getCorreoEmisor() << (filaIndex + 1) << "\" -> \"" << fila->getCorreoEmisor() << filaIndex << "\";" << endl;
             }
-            if (nodo->getAbajo() != nullptr) {
-                archivo << "\"" << nodo->getCorreoEmisor() << nodo->getCorreoReceptor() << "\" -> \"" << nodo->getAbajo()->getCorreoEmisor() << nodo->getAbajo()->getCorreoReceptor() << "\";" << endl;
-            }
+            filaIndex++;
         }
+        archivo << "}" << endl;
+        //-------------------------------------------------------------------------------------------------------------------------
+        //creacion de nodos verticales
+        int columnaNodo = 1;
+        for (nodoMatriz* col = raiz->getAbajo(); col != nullptr; col = col->getAbajo()) {
+            archivo << "\"" << col->getCorreoReceptor() << "C_"<< columnaNodo << "\" [label=\"" << col->getCorreoReceptor() << "\"]; ";
+            columnaNodo ++;
+        }
+        archivo << endl;
+
+        //Conexion entre los nodos que van vertical
+        int colIndex = 1;
+        archivo << "    \"" << inicio << "\" -> \"" << raiz->getAbajo()->getCorreoReceptor() <<"C_"<< colIndex <<"\";" << endl;
+        archivo << "    \"" << raiz->getAbajo()->getCorreoReceptor() <<"C_"<< colIndex << "\" -> \"" << inicio <<"\";" << endl;
+
+        for (nodoMatriz* col = raiz->getAbajo(); col != nullptr; col = col->getAbajo()) {
+            if (col->getAbajo() != nullptr) {
+                archivo << "    \"" << col->getCorreoReceptor() <<"C_"<< colIndex << "\" -> \"" << col->getAbajo()->getCorreoReceptor() <<"C_"<< (colIndex +1)<< "\";" << endl;
+                archivo << "    \"" << col->getAbajo()->getCorreoReceptor() <<"C_"<< (colIndex +1) << "\" -> \"" << col->getCorreoReceptor() <<"C_"<< colIndex << "\";" << endl;        
+                }
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------------
+        //aqui se deben de meter los nodos donde coincidan
+
+        // Posicionar nodos donde coincidan encabezados
+        int filaN = 1;
+        int colN = 1;
+        for (nodoMatriz* fila = raiz->getDcha(); fila != nullptr; fila = fila->getDcha()) {
+            int colN = 1; // Resetear colN para cada nueva fila
+            for (nodoMatriz* col = raiz->getAbajo(); col != nullptr; col = col->getAbajo()) {
+                nodoMatriz* nodoActual = obtenerNodo(fila->getCorreoEmisor(), col->getCorreoReceptor());
+                if (nodoActual != nullptr) {
+                    archivo << "\"" << fila->getCorreoEmisor() << "_" << col->getCorreoReceptor() << "\" [label=\"v\"];" << endl;
+                    archivo << "\"" << fila->getCorreoEmisor() << filaN << "\" -> \"" << fila->getCorreoEmisor() << "_" << col->getCorreoReceptor() << "\";" << endl;
+                    archivo << "\"" << col->getCorreoReceptor() << "C_" << colN << "\" -> \"" << fila->getCorreoEmisor() << "_" << col->getCorreoReceptor() << "\";" << endl;
+                    archivo << "\"" << fila->getCorreoEmisor() << "_" << col->getCorreoReceptor() << "\" -> \"" << fila->getCorreoEmisor() << filaN << "\";" << endl;
+                    archivo << "\"" << fila->getCorreoEmisor() << "_" << col->getCorreoReceptor() << "\" -> \"" << col->getCorreoReceptor() << "C_" << colN << "\";" << endl;
+                }
+                colN++;    
+            }
+            filaN++;
+        }
+
+
+
+
+        
+
+
+        archivo << "}" << endl;
+        archivo.close();
+
+        stringstream nombreArchivo;
+        nombreArchivo << "MimatrizAmigos_" << micorreo << ".png";
+
+        stringstream comando;
+        comando << "dot -Tpng MimatrizAmistades.dot -o " << nombreArchivo.str();
+        system(comando.str().c_str());
+
+        cout << "La grafica de matriz de amistad ha sido guardada como: " << nombreArchivo.str() << endl;
     }
-
-    archivo << "}" << endl;
-    archivo.close();
-
-    stringstream nombreArchivo;
-    nombreArchivo << "MimatrizAmigos_" << micorreo << ".png";
-
-    stringstream comando;
-    comando << "dot -Tpng MimatrizAmistades.dot -o " << nombreArchivo.str();
-    system(comando.str().c_str());
-
-    cout << "La grafica de matriz de amistad ha sido guardada como: " << nombreArchivo.str() << endl;
 }

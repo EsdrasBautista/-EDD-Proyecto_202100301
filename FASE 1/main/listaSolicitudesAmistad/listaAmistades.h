@@ -33,6 +33,8 @@ private:
     nodoAmistad *head;
     nodoAmistad *ultimo;
 
+    nodoAmistad* buscarAmigoporCorreo(string corre);
+
 public:
     listaAmistad();
     ~listaAmistad();
@@ -41,6 +43,7 @@ public:
     void eliminarAmigo(string correo);
     void verLista();
     void graficar(string micorreo);
+    nodoAmistad* getprimero();
 
 
 

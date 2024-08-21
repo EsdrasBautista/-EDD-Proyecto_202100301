@@ -22,15 +22,19 @@ void gestionarSoli::enviarSolicitud(ListaEnlazada &usuarios, string correoEmisor
             }else{
                 PilaSolicitudesRecibidas* pilaReceptor = receptor->getPilaSolicitudesRecibidas();
                 ListaSolicitudesEnviadas* listaEmisor = emisor->getListaDeSolicitudesEnviadas();
-                if(!pilaReceptor->existe(correoEmisor) && !listaEmisor->existe(correoReceptor)){
-                    cout << "Solicitud enviada con exito a: " << correoReceptor << " de parte de: " << correoEmisor << endl;
-                    
-                    pilaReceptor->push(correoEmisor);
-                    listaEmisor->agregar(correoReceptor,"PENDIENTE");
-                    
+                PilaSolicitudesRecibidas* pilaEmisor = emisor->getPilaSolicitudesRecibidas();
 
-                }else {
-                    cout << "No se pudo enviar la solicitud, ya existe una solicitud pendiente!" << endl;
+                if(pilaEmisor->existe(correoReceptor)){
+                    cout << "No se pudo enviar la solicitud, ya existe una solicitud pendiente de parte de: " << correoReceptor <<endl;
+                }else{
+                    if(!pilaReceptor->existe(correoEmisor) && !listaEmisor->existe(correoReceptor)){
+                        pilaReceptor->push(correoEmisor);
+                        listaEmisor->agregar(correoReceptor,"PENDIENTE");
+                        cout << "Solicitud enviada con exito a: " << correoReceptor << " de parte de: " << correoEmisor << endl;
+
+                    }else{
+                        cout << "No se pudo enviar la solicitud, ya existe una solicitud pendiente!" << endl;
+                    }
                 }
             }
         }
@@ -116,12 +120,14 @@ void gestionarSoli::crearPublicacion(ListaEnlazada &usuarios, string correo, str
     
     try{
         Nodo* correoYo = usuarios.buscarNodoPorCorreo(correo);
-        listaPublicaciones *milista = correoYo->getlistaDepublicaciones();
+        listaPublicaciones* milista = correoYo->getlistaDepublicaciones();
     
+        
         milista->agregarPub(correo,contenido,fecha,hora);
         cout << "Creando Publicacion..." << endl;
-        sleep(2);
+        sleep(1);
         cout << "Publicacion creada con Exito!" << endl;
+        
     }catch(runtime_error& e){
         std::cerr << "Se ha producido una excepción: " << e.what() << std::endl;
     }
@@ -130,7 +136,7 @@ void gestionarSoli::crearPublicacion(ListaEnlazada &usuarios, string correo, str
 void gestionarSoli::vermisPublicaciones(ListaEnlazada &usuarios,string correo){
     try{
         Nodo* micorreo = usuarios.buscarNodoPorCorreo(correo);
-        listaPublicaciones *milista = micorreo->getlistaDepublicaciones();
+        listaPublicaciones* milista = micorreo->getlistaDepublicaciones();
 
         milista->verMisPublicaciones(correo);
 
@@ -139,7 +145,76 @@ void gestionarSoli::vermisPublicaciones(ListaEnlazada &usuarios,string correo){
     }
 }
 
+
+
+void gestionarSoli::verPublicacionesAmigos(ListaEnlazada &usuarios, string micorreo) {
+    try {
+        Nodo* nodoUsuario = usuarios.buscarNodoPorCorreo(micorreo);
+
+        // Obtener lista de publicaciones del usuario
+        listaPublicaciones* publicacionesUsuario = nodoUsuario->getlistaDepublicaciones();
+        listaCircular* listac = nodoUsuario->getListaCircular();
+        
+
+        // Agregar publicaciones del usuario a la lista combinada
+        NodoPub* pubActual = publicacionesUsuario->getPrimero();
+        
+        while (pubActual != nullptr) {
+            if(!listac->verificarexiste(pubActual->getcontadorPublicaciones(),pubActual->getCorreo()) ){
+                listac->agregarListaPublicaciones(pubActual->getCorreo(), pubActual->getcontenido(), pubActual->getfecha(), pubActual->gethora(),pubActual->getcontadorPublicaciones());
+            }
+            pubActual = pubActual->getSigPub();
+        }
+
+        // Obtener lista de amigos del usuario
+        listaAmistad* listaAmigos = nodoUsuario->getListaAmigos();
+        nodoAmistad* amigoActual = listaAmigos->getprimero();
+
+        // Agregar publicaciones de cada amigo a la lista combinada
+        while (amigoActual != nullptr) {
+            Nodo* nodoAmigo = usuarios.buscarNodoPorCorreo(amigoActual->getCorreoA());
+
+            if (nodoAmigo != nullptr) {
+                listaPublicaciones* publicacionesAmigo = nodoAmigo->getlistaDepublicaciones();
+                NodoPub* pubAmigoActual = publicacionesAmigo->getPrimero();
+                
+                while (pubAmigoActual != nullptr) {
+
+                    if(!listac->verificarexiste(pubAmigoActual->getcontadorPublicaciones(),pubAmigoActual->getCorreo()) ){
+
+                        listac->agregarListaPublicaciones(pubAmigoActual->getCorreo(), pubAmigoActual->getcontenido(), pubAmigoActual->getfecha(), pubAmigoActual->gethora(),pubAmigoActual->getcontadorPublicaciones());
+                    }
+                    pubAmigoActual = pubAmigoActual->getSigPub();
+                }
+            }
+            amigoActual = amigoActual->getsiguiente();
+        }
+
+        listac->verListasPublicaciones();
+
+    } catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: " << e.what() << std::endl;
+    }
+}
+
+
+
+void gestionarSoli::eliminarMiPublicacion(ListaEnlazada &usuario,string micorreo){
+    Nodo* minodo = usuario.buscarNodoPorCorreo(micorreo);
+    listaPublicaciones* milista = minodo->getlistaDepublicaciones();
+    listaCircular* milistC = minodo->getListaCircular();
+    int pos = milista->eliminarPublicacion(micorreo);
+    if(pos >= 0){
+        milistC->actualizarLista(pos,micorreo);
+    }
+    
+}
+
+//-------------------------------GRAFICOS------------------------------------------------------------------------------------------------
+
+
 void gestionarSoli::graficasSoliEnviadasyRecibidas(ListaEnlazada &usuarios, string micorreo){
+    
     Nodo* miNodo = usuarios.buscarNodoPorCorreo(micorreo);
     ListaSolicitudesEnviadas* misEnvios = miNodo->getListaDeSolicitudesEnviadas();
     PilaSolicitudesRecibidas* misRecibidos = miNodo->getPilaSolicitudesRecibidas();
@@ -160,4 +235,22 @@ void gestionarSoli::graficarMatrizAmigos(ListaEnlazada &usuario, string micorreo
     Nodo* miNodo = usuario.buscarNodoPorCorreo(micorreo);
     matriz* mimatriz = miNodo->getMimatrizAmigos();
     mimatriz->graficarMatriz(micorreo);
+}
+
+
+void gestionarSoli::graficarListaCircularPublicaciones(ListaEnlazada &usuario, string micorreo){
+    Nodo* minodo = usuario.buscarNodoPorCorreo(micorreo);
+    listaCircular* milista = minodo->getListaCircular();
+
+    milista->graficarCircular(micorreo);
+}
+
+
+//-------------------------ELIMINACION DE CUENTA -- ELIMINAR TODO --------------------------------------
+
+void gestionarSoli::EliminarCuenta(ListaEnlazada &usuario,string micorreo){
+    Nodo* miCuenta = usuario.buscarNodoPorCorreo(micorreo);
+    usuario.eliminarCuenta(micorreo);
+
+    //eliminar listas de publicaciones, matriz de amistad y eliminar de lista de amigos
 }

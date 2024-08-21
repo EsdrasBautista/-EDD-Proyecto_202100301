@@ -8,9 +8,12 @@ public:
     static void rechazarSolicitud(ListaEnlazada &usuarios,string correoEmisor,string correoReceptor);
     static void crearPublicacion(ListaEnlazada &usuarios, string correo, string contenido, string fecha, string hora);
     static void vermisPublicaciones(ListaEnlazada &usuarios, string correo);
+    static void verPublicacionesAmigos(ListaEnlazada &usuarios, string correo);
     static void graficasSoliEnviadasyRecibidas(ListaEnlazada &usuarios, string micorreo); //graficos
     static void graficaListaAmigos(ListaEnlazada &usuario, string micorreo); //graficos
     static void graficarMatrizAmigos(ListaEnlazada &usuario, string micorreo); //graficos
-
+    static void graficarListaCircularPublicaciones(ListaEnlazada &usuario, string micorreo); //graficar lista circular publicaiones
+    static void eliminarMiPublicacion(ListaEnlazada &usuario, string correo); 
+    static void EliminarCuenta(ListaEnlazada &usuario, string correo);
 
 };
