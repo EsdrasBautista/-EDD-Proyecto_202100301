@@ -1,11 +1,12 @@
 #ifndef NODO_PUBLICACION_H
 #define NODO_PUBLICACION_H
-
 #include <iostream>
 #include <cstdlib>
 #include <string>
 #include <limits>
 #include <conio.h> 
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
     NodoPub *prev;
     NodoPub *sig;
 public:
+
     NodoPub();
     NodoPub(string correo,string contenido,string fecha,string hora, int contador);
 
@@ -56,7 +58,10 @@ public:
 
     int eliminarPublicacion(string correo);
     
-
+    void eliminarTodaslasPublicaciones();
+    void graficarListaP();
+    void graficartop5();
+    void eliminarP(int id,string correo);
 
 };
 #endif

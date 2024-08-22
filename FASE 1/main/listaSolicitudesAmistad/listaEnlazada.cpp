@@ -27,6 +27,7 @@ Nodo::Nodo(string nom,string ape,string corr,string contr,string fechaNac){
     this->listaCircularAmigos = new listaCircular();
 }
 
+/*
 Nodo::~Nodo(){
     delete this->pilaSolicitudesRecibidas;
     delete this->listadeSolicitudesEnviadasUsuario;
@@ -34,7 +35,10 @@ Nodo::~Nodo(){
     delete this->listaDeAmigos;
     delete this->miMatrizAmigos;
     delete this->listaCircularAmigos;
-}
+    delete sig;
+}*/
+
+
 
 //getters y setters
 string Nodo::getNombres(){
@@ -205,26 +209,96 @@ Nodo* ListaEnlazada::buscarNodoPorCorreo(string correo) {
     return nullptr; // Si no se encuentra, retornar nullptr
 }
 
-void ListaEnlazada::eliminarCuenta(string correo){
+void ListaEnlazada::eliminarCuenta(string correo) {
+    Nodo* nodoActual = head;
+    Nodo* anterior = nullptr;
 
-    Nodo *nodoActual = head;
-    Nodo *anterior = nullptr;
-
-    while (nodoActual != nullptr && nodoActual->getCorreo() != correo){
+    while (nodoActual != nullptr && nodoActual->getCorreo() != correo) {
         anterior = nodoActual;
         nodoActual = nodoActual->getSig();
     }
 
-    if (nodoActual != nullptr && nodoActual->getCorreo() == correo){
-        if (anterior == nullptr){
+    if (nodoActual != nullptr && nodoActual->getCorreo() == correo) {
+        if (anterior == nullptr) {
             head = nodoActual->getSig();
-        }
-        else{
+        } else {
             anterior->setSig(nodoActual->getSig());
         }
 
+        // Liberar los recursos de las listas internas
+        if (nodoActual->getPilaSolicitudesRecibidas() != nullptr) {
+            delete nodoActual->getPilaSolicitudesRecibidas();
+        }
+
+        if (nodoActual->getListaDeSolicitudesEnviadas() != nullptr) {
+            delete nodoActual->getListaDeSolicitudesEnviadas();
+        }
+
+        if (nodoActual->getlistaDepublicaciones() != nullptr) {
+            delete nodoActual->getlistaDepublicaciones();
+        }
+
+        if (nodoActual->getListaAmigos() != nullptr) {
+            delete nodoActual->getListaAmigos();
+        }
+
+        if (nodoActual->getListaCircular() != nullptr) {
+            delete nodoActual->getListaCircular();
+        }
+
+        if (nodoActual->getMimatrizAmigos() != nullptr) {
+            delete nodoActual->getMimatrizAmigos();
+        }
+
+        // Eliminar el nodo
         delete nodoActual;
-    }else{
+    } else {
         cout << "No se encontró ninguna cuenta con el correo proporcionado." << endl;
     }
+}
+
+
+
+void ListaEnlazada::graficar(){
+    if(head == nullptr){
+        cout << "No hay usuarios aun!" <<endl;
+    }else{
+        ofstream archivo("listaUsuarios.dot");
+        if(!archivo.is_open()){
+            cout << "No se pudo crear el archivo" << endl;
+        }
+
+        archivo << "digraph G {" << endl;
+        archivo << "    rankdir=LR;" << endl;
+        archivo << "    node [shape=record];" << endl;
+
+        Nodo *actual = head;
+
+        while(actual != nullptr){
+            archivo << "    \"" << actual->getCorreo() << "\"";
+            if (actual->getSig() != nullptr) {
+                archivo << " -> \"" << actual->getSig()->getCorreo() << "\"";
+            }
+            archivo << ";" << endl;
+            actual = actual->getSig();
+
+        }
+
+        archivo << "}" << endl;
+        archivo.close();
+
+        stringstream nombreArchivo;
+        nombreArchivo << "listaUsuariosGeneral" << ".png";
+
+        // Construir el comando Graphviz
+        stringstream comando;
+        comando << "dot -Tpng listaUsuarios.dot -o " << nombreArchivo.str();
+
+        // Ejecutar el comando
+        system(comando.str().c_str());
+
+        cout << "La lista de amistades ha sido graficada y guardada en " << nombreArchivo.str() << endl;
+    }
+
+
 }

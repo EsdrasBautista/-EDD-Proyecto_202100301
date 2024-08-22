@@ -20,6 +20,8 @@ NodoCircular::NodoCircular(string correo,string contenido,string fecha,string ho
     this->id = id;
 }
 
+
+
 void NodoCircular::setSigPubl(NodoCircular *sig){
     this->sig = sig;
 }
@@ -67,17 +69,22 @@ listaCircular::listaCircular(){
 
 }
 
-listaCircular::~listaCircular(){
-    NodoCircular *temp = primero->getSigPub();
-    NodoCircular *aux;
+listaCircular::~listaCircular() {
+    if (primero != nullptr) {
+        NodoCircular *temp = primero;
+        NodoCircular *aux;
 
-    while(temp != primero){
-        aux = temp->getSigPub();
-        delete temp;
-        temp = aux;
+
+        do {
+            aux = temp->getSigPub(); // Guarda el siguiente nodo
+            delete temp; // Libera el nodo actual
+            temp = aux; // Avanza al siguiente nodo
+        } while (temp != primero); 
+
+
+        primero = nullptr;
+        ultimo = nullptr;
     }
-
-    delete temp;
 }
 
 
@@ -276,4 +283,29 @@ void listaCircular::actualizarLista(int contador, string correo) {
 
         actual = actual->getSigPub();
     } while (actual != primero); 
+}
+
+void listaCircular::eliminarPublicacionesC(){
+    
+    if (primero == nullptr) {
+        return;
+    }
+
+    NodoCircular *actual = primero;
+    NodoCircular *temp;
+
+    // Bucle para eliminar todos los nodos
+    do {
+        temp = actual;
+        actual = actual->getSigPub();
+        delete temp;
+    } while (actual != primero);
+
+    primero = nullptr;
+    ultimo = nullptr;
+
+
+
+    cout << "Todas las publicaciones han sido eliminadas con exito!" << endl;
+
 }

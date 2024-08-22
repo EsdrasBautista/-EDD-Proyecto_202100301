@@ -1,5 +1,10 @@
 #ifndef LISTA_ENLAZADA_H
 #define LISTA_ENLAZADA_H
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <cstdlib>
+#include <string>
 
 #include "PilaSoli_R.h"
 #include "listaSoli_E.h"
@@ -28,7 +33,7 @@ private:
 public:
     Nodo(string n, string a, string c, string pwd, string fNac);
     Nodo();
-    ~Nodo();
+    //~Nodo();
 
     string getNombres();
 
@@ -70,6 +75,8 @@ public:
     int iniciodeSesion(string contra,string correo);
     string buscarNombre(string correo);
     bool verificarExistenciaUsuario(string correoUsuario); 
+
+    void graficar();
 };
 
 #endif // LISTA_ENLAZADA_H

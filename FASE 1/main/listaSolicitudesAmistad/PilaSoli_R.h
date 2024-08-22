@@ -15,6 +15,7 @@ private:
     NodoPila* siguiente;
 
 public:
+
     NodoPila(string correoUsuario);
     NodoPila();
 

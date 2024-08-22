@@ -6,6 +6,7 @@ nodoAmistad::nodoAmistad(){
     sig = nullptr;
 }
 
+
 nodoAmistad::nodoAmistad(string correo){
     this->correo = correo;
     this->contador = 0;
@@ -38,13 +39,20 @@ listaAmistad::listaAmistad(){
     ultimo = nullptr;
 }
 
-listaAmistad::~listaAmistad(){
-    while (head != nullptr) {
-        nodoAmistad* nodoAEliminar = head;
-        head = head->getsiguiente();
-        delete nodoAEliminar;
+listaAmistad::~listaAmistad() {
+    nodoAmistad *temp = head;
+    nodoAmistad *aux;
+
+    while (temp != nullptr) {
+        aux = temp->getsiguiente(); // Guarda el siguiente nodo
+        delete temp; // Libera el nodo actual
+        temp = aux; // Avanza al siguiente nodo
     }
+
+    head = nullptr;
+    ultimo = nullptr;
 }
+
 
 void listaAmistad::agregarAmigo(string correo){
 
@@ -152,4 +160,16 @@ nodoAmistad* listaAmistad::getprimero(){
     }else{
         return actual;
     }
+}
+
+void listaAmistad::eliminarLista() {
+    nodoAmistad* actual = head;
+
+    while (actual != nullptr) {
+        nodoAmistad* paraEliminar = actual; // Guardar el nodo actual para eliminarlo
+        actual = actual->getsiguiente();    
+        delete paraEliminar;              
+    }
+
+    head = nullptr; // Asegurarse de que la lista este vacia
 }

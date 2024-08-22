@@ -22,6 +22,7 @@ private:
     NodoCircular *sig;
 
 public:
+
     NodoCircular();
     NodoCircular(string correo,string contenido,string fecha,string hora,int id);
 
@@ -55,5 +56,6 @@ public:
     bool verificarexiste(int contador, string correo);
     void actualizarLista(int contador,string correo);
 
+    void eliminarPublicacionesC();
 };
 #endif

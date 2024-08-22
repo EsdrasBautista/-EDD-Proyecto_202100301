@@ -20,6 +20,8 @@ nodoMatriz::nodoMatriz(string correoEmisor, string correoReceptor, bool data) {
     this->der = nullptr;
 }
 
+
+
 void nodoMatriz::setCorreoEmisor(string correo) {
     this->correoEmisor = correo;
 }
@@ -82,16 +84,16 @@ matriz::matriz() {
 }
 
 matriz::~matriz() {
-    nodoMatriz *temp = this->raiz;
+    nodoMatriz *temp = raiz;
     nodoMatriz *aux;
 
-    while(temp != nullptr) {
+    while(temp != nullptr){
         nodoMatriz *tempFila = temp;
         nodoMatriz *auxFila;
 
         aux = temp->getAbajo();
 
-        while(tempFila != nullptr) {
+        while(tempFila != nullptr){
             auxFila = tempFila->getDcha();
             delete tempFila;
             tempFila = auxFila;
@@ -99,7 +101,9 @@ matriz::~matriz() {
 
         temp = aux;
     }
+    this->raiz = nullptr;
 }
+
 
 nodoMatriz* matriz::buscarCol(string correoEmisor) {
     nodoMatriz *temp = this->raiz;
@@ -390,4 +394,37 @@ void matriz::graficarMatriz(string micorreo) {
 
         cout << "La grafica de matriz de amistad ha sido guardada como: " << nombreArchivo.str() << endl;
     }
+}
+
+
+
+
+void matriz::eliminarMatriz() {
+
+    nodoMatriz *actualFila = this->raiz;
+    nodoMatriz *siguienteFila = nullptr;
+
+    if(this->raiz == nullptr){
+        return;
+    }
+
+    while (actualFila != nullptr) {
+        nodoMatriz *actualColumna = actualFila;
+        nodoMatriz *siguienteColumna = nullptr;
+
+        // Eliminar todos los nodos en la fila actual
+        while (actualColumna != nullptr) {
+            siguienteColumna = actualColumna->getDcha(); // Guardar el siguiente nodo en la fila
+            delete actualColumna; 
+            actualColumna = siguienteColumna; // Avanzar al siguiente nodo en la fila
+        }
+
+        // Avanzar a la siguiente fila
+        siguienteFila = actualFila->getAbajo();
+        delete actualFila; // Eliminar el nodo de encabezado de la fila
+        actualFila = siguienteFila; // Avanzar a la siguiente fila
+    }
+
+
+    this->raiz = nullptr;
 }

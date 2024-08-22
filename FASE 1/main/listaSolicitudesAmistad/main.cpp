@@ -1,13 +1,30 @@
+
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <fstream>
 #include <limits>
 #include "GestionarSoli.h"
+#include "GestionarAdmin.h"
 #include "listaEnlazada.h"
+#include "nodoPublicacion.h"
+#include "nodoMatriz.h"
+#include "json/json.h"
+
+/*
+admin@gmail.com  EDD2S2024
+C:\Users\bauti\Desktop\solicitudes.json
+C:\Users\bauti\Desktop\usuarios.json
+C:\Users\bauti\Desktop\publicaciones.json
+*/
+
+
 using namespace std;
 
 
 ListaEnlazada usuarios;
+listaPublicaciones listaPub;
+matriz matrizG;
 
 void iniciarSesion();
 void registrarse();
@@ -26,6 +43,7 @@ void cargaRelac();
 void cargaPubl();
 void gestionarUsrs();
 void ReportesAdmin();
+void top();
 
 
 int main(){
@@ -37,17 +55,15 @@ int main(){
         cout << "1. Iniciar sesion" << endl;
         cout << "2. Registrarse" << endl;
         cout << "3. Informacion" << endl;
-        cout << "4. listado Usuarios" << endl;
+        cout << "4. info" << endl;
         cout << "5. Salir" << endl;
         cout << "Selecciona una opcion (1-5): ";
 
         
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
             cin.clear();
-            // Descartar la entrada no válida
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 4." << endl;
             continue;
         }
         
@@ -69,7 +85,7 @@ int main(){
                 break;
             case 5:
                 salir();
-                continue;
+                break;
             default:
                 cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 5." << endl;
                 break;
@@ -78,8 +94,6 @@ int main(){
         cout << endl; 
 
     } while(opcion != 5); 
-
-    
 
 
     return 0;
@@ -167,7 +181,10 @@ void salir() {
 
 
 void verListaUsuarios(){
-    usuarios.verListadoUsuarios();
+    //gestionaradmin::gradicaListaUsuarios(usuarios);
+    //gestionaradmin::graficaPublicacionesTodas(listaPub);
+    gestionaradmin::top5conMasPublicaciones(listaPub);
+    
 }
 
 void menuAdmin(){
@@ -185,9 +202,7 @@ void menuAdmin(){
         cout << "Selecciona una opcion (1-6): ";
 
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
             cin.clear();
-            // Descartar la entrada no válida
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
             continue;
@@ -242,9 +257,7 @@ void menuUsuario(string correo){
         cout << "Selecciona una opcion (1-5): ";
 
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
             cin.clear();
-            // Descartar la entrada no válida
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
             continue;
@@ -307,9 +320,7 @@ void Perfil(string correo, bool &salirDelMenuUsuario){
         cout << "Selecciona una opcion (1-3): ";
 
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
             cin.clear();
-            // Descartar la entrada no válida
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 3." << endl;
             continue;
@@ -336,7 +347,7 @@ void Perfil(string correo, bool &salirDelMenuUsuario){
                 getline(cin,respuestaF);
                 if(respuestaF == "S" || respuestaF == "s"){
                     cout << "Intentando eliminar cuenta: " << correo << endl;
-                    usuarios.eliminarCuenta(correo);  
+                    gestionarSoli::EliminarCuenta(usuarios,correo); 
                     cout << "Cuenta eliminada con Exito!" << endl;
 
                     salirDelMenuUsuario = true;
@@ -344,9 +355,11 @@ void Perfil(string correo, bool &salirDelMenuUsuario){
                     
                 }
                 break;
+
             case 3:
             cout << "Regresando a menu Usuario..." << endl;
             break;
+
             default:
             cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 3." << endl;
             break;
@@ -378,9 +391,7 @@ void Solicitudes(string correo){
         cout << "Selecciona una opcion (1-3): ";
 
         if (!(cin >> opcion)) {
-            // Si la entrada no es un entero, limpiar el estado de error
             cin.clear();
-            // Descartar la entrada no válida
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 3." << endl;
             continue;
@@ -448,9 +459,7 @@ void Publicaciones(string correo){
         cout << "Selecciona una opcion (1-4): ";
 
         if (!(cin >> opcion)) {
-
             cin.clear();
-
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 4." << endl;
             continue;
@@ -471,13 +480,14 @@ void Publicaciones(string correo){
             cout << "Ingrese la Hora: "<<endl;
             getline(cin,hora);
 
-            gestionarSoli::crearPublicacion(usuarios,correo,contenido,fecha,hora);
+            gestionarSoli::crearPublicacion(usuarios,correo,contenido,fecha,hora,listaPub);
+
             
             break;
 
         case 3:
             cout << endl;
-            gestionarSoli::eliminarMiPublicacion(usuarios,correo);
+            gestionarSoli::eliminarMiPublicacion(usuarios,correo,listaPub);
             break;
         
         case 4:
@@ -554,23 +564,297 @@ void ReportesUsuario(string correo){
 }
 
 void cargaUsrs(){
+    //C:\Users\bauti\Desktop\usuarios.json
+    cout << "Carga Masiva de Usuarios" << endl;
+
+    // Solicitar al usuario que ingrese la ruta del archivo JSON
+    cout << "Ingrese la ruta del archivo JSON: ";
+    string rutaArchivo;
+    getline(std::cin, rutaArchivo);
+
+    Json::Value root;
+    ifstream ifs(rutaArchivo);
+
+    // Verificar si el archivo se abrio correctamente
+    if (!ifs.is_open()) {
+        cerr << "Error al abrir el archivo: " << rutaArchivo << endl;
+        return;
+    }
+
+    // Configurar el lector de JSON
+    Json::CharReaderBuilder builder;
+    builder["collectComments"] = true;
+    JSONCPP_STRING errs;
+
+    // Leer y parsear el archivo JSON
+    if (!parseFromStream(builder, ifs, &root, &errs)) {
+        cerr << "Error al parsear JSON: " << errs << endl;
+        return;
+    }
+
+    
+
+    // Iterar sobre cada usuario en el json
+    for (const auto& item : root) {
+        
+        string nombres = item["nombres"].asString();
+        string apellidos = item["apellidos"].asString();
+        string fechaNac = item["fecha_de_nacimiento"].asString();
+        string correo = item["correo"].asString();
+        string contra = item["contraseña"].asString();
+
+        if(nombres.empty() || apellidos.empty() || fechaNac.empty() || correo.empty() || contra.empty()){
+            cout << "No se pudo extraer la informacion del archivo" << endl;
+        }else{
+
+            usuarios.agregarUsuario(nombres,apellidos,correo,contra,fechaNac);
+        }
+    }
+
+    usuarios.verListadoUsuarios();
 
 
 }
 
 void cargaRelac(){
 
+    cout << "Carga Masiva de Relaciones de Usuarios" <<endl;
+    //C:\Users\bauti\Desktop\solicitudes.json
+    cout << "Ingrese la ruta del archivo JSON: ";
+    string rutaArchivo;
+    getline(std::cin, rutaArchivo);
+
+    // Crear un objeto para manejar el JSON
+    Json::Value root;
+    ifstream ifs(rutaArchivo);
+
+    // Verificar si el archivo se abrió correctamente
+    if (!ifs.is_open()) {
+        cerr << "Error al abrir el archivo: " << rutaArchivo << endl;
+        return;
+    }
+
+
+    Json::CharReaderBuilder builder;
+    builder["collectComments"] = true;
+    JSONCPP_STRING errs;
+
+
+    if (!parseFromStream(builder, ifs, &root, &errs)) {
+        cerr << "Error al parsear JSON: " << errs << endl;
+        return;
+    }
+
+    
+    // Iterar sobre cada solicitud del json
+    for (const auto& item : root) {
+        
+        string emisor = item["emisor"].asString();
+        string receptor = item["receptor"].asString();
+        string estado = item["estado"].asString();
+
+        if(emisor.empty() || receptor.empty() || estado.empty()){
+            cout << "No se pudo extraer la informacion del archivo" <<endl;
+        }else{
+            if(estado == "ACEPTADA"){
+                gestionarSoli::aceptarSolicitudD(usuarios,receptor,emisor);
+
+            }else if(estado == "PENDIENTE"){
+                gestionarSoli::enviarSolicitud(usuarios,emisor,receptor);
+            }else if(estado == "RECHAZADA"){
+                gestionarSoli::rechazarSolicitud(usuarios,receptor,emisor);
+            }
+        }
+
+    }
+
+
 }
 
 void cargaPubl(){
+    cout << "Carga Masiva de Publicaciones de Usuarios" << endl;
+
+    std::cout << "Ingrese la ruta del archivo JSON: ";
+    std::string rutaArchivo;
+    std::getline(std::cin, rutaArchivo);
+
+    // Crear un objeto para manejar el JSON
+    Json::Value root;
+    std::ifstream ifs(rutaArchivo);
+
+    // Verificar si el archivo se abrió correctamente
+    if (!ifs.is_open()) {
+        std::cerr << "Error al abrir el archivo: " << rutaArchivo << std::endl;
+        return;
+    }
+
+    // Configurar el lector de JSON
+    Json::CharReaderBuilder builder;
+    builder["collectComments"] = true;
+    JSONCPP_STRING errs;
+
+    // Leer y parsear el archivo JSON
+    if (!parseFromStream(builder, ifs, &root, &errs)) {
+        std::cerr << "Error al parsear JSON: " << errs << std::endl;
+        return;
+    }
+
+    
+
+    // Iterar sobre cada usuario en el array JSON
+    for (const auto& item : root) {
+        
+        string correo = item["correo"].asString();
+        string contenido = item["contenido"].asString();
+        string fecha = item["fecha"].asString();
+        string hora = item["hora"].asString();
+
+        if(correo.empty() || contenido.empty() || fecha.empty() || hora.empty()){
+            cout << "No se pudo extraer la informacion del archivo" << endl;
+        }else{
+
+            gestionarSoli::crearPublicacion(usuarios,correo,contenido,fecha,hora,listaPub);
+
+        }
+    }
+
 
 }
 
 void gestionarUsrs(){
+    int opcion;
+    do{
 
+        cout << "Gestionar Usuario:" << endl;
+        cout << "1. Eliminar Usuario" << endl;
+        cout << "2. Regresar" << endl;
+        cout << "Selecciona una opcion (1-2): ";
+
+        if (!(cin >> opcion)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 2." << endl;
+            continue;
+        }
+        cin.ignore();
+
+        switch (opcion){
+        case 1:
+            cout << endl;
+            
+            break;
+        case 2:
+            cout << endl;
+            cout << "Regresando a menu Admini..." << endl;
+            break;
+        default:
+            cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 2." << endl;
+                break;
+        }
+
+        cout << endl; 
+
+    } while(opcion != 2); 
+    
 }
 
 void ReportesAdmin(){
+    int opcion;
+    do{
+
+        cout << "Reportes:" << endl;
+        cout << "1. Grafico Usuarios" << endl;
+        cout << "2. Relaciones de Amistad" << endl;
+        cout << "3. Publicaciones" << endl;
+        cout << "4. Top" << endl;
+        cout << "5. Regresar" << endl;
+        cout << "Selecciona una opcion (1-5): ";
+
+        if (!(cin >> opcion)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 5." << endl;
+            continue;
+        }
+        cin.ignore();
+
+        switch (opcion){
+        case 1:
+            cout << endl;
+            cout << "Generando grafico..." << endl;
+            gestionaradmin::gradicaListaUsuarios(usuarios);
+            break;
+        case 2:
+            cout << endl;
+            cout << "Regresando a menu Admini..." << endl;
+            break;
+        case 3:
+            cout << endl;
+            cout << "Generando grafico..." << endl;
+            gestionaradmin::graficaPublicacionesTodas(listaPub);
+            break;
+        case 4:
+            cout << endl;
+            top();
+
+            break;
+        case 5: 
+            cout << "Regresando..." << endl;
+            break;
+
+        default:
+            cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 5." << endl;
+                break;
+        }
+
+        cout << endl; 
+
+    } while(opcion != 5);
+
 
 }
+
+void top(){
+    
+    int opcion;
+    do{
+        cout << "Top 5:" << endl;
+        cout << "1. Usuarios con más publicaciones" << endl;
+        cout << "2. Usuarios con menos amigos." << endl;
+        cout << "3. Regresar" << endl;
+        cout << "Selecciona una opcion (1-2): ";
+
+        if (!(cin >> opcion)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Entrada invalida. Por favor, selecciona un numero entre 1 y 2." << endl;
+            continue;
+        }
+        cin.ignore();
+
+        switch (opcion){
+        case 1:
+            cout << endl;
+            cout << "Generando grafico..." << endl;
+            gestionaradmin::top5conMasPublicaciones(listaPub);
+            break;
+        case 2:
+            cout << endl;
+            cout << "Generando grafico..." << endl;
+            //gestionaradmin::top5conMenosAmigos();
+            break;
+        
+        case 3:
+            cout << " Regresando..." << endl;
+        default:
+            cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 2." << endl;
+                break;
+        }
+
+        cout << endl; 
+
+    } while(opcion != 3); 
+    
+}
+
 

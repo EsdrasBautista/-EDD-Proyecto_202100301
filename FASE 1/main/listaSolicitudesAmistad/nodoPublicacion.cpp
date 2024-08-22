@@ -20,6 +20,7 @@ NodoPub::NodoPub(string correo,string contenido,string fecha,string hora, int co
     this->prev = nullptr;
 }
 
+
 void NodoPub::setSigPubl(NodoPub *sig){
     this->sig = sig;
 }
@@ -75,6 +76,9 @@ listaPublicaciones::~listaPublicaciones(){
         delete temp;
         temp = aux;
     }
+
+    primero = nullptr;
+    ultimo = nullptr;
 }
 
 void listaPublicaciones::agregarPub(string correo,string contenido,string fecha,string hora){
@@ -254,4 +258,222 @@ int listaPublicaciones::eliminarPublicacion(string correo) {
             }
         }
     }
+}
+
+void listaPublicaciones::eliminarTodaslasPublicaciones() {
+
+    NodoPub* actual = primero;
+    NodoPub* siguiente = nullptr;
+
+
+    while (actual != nullptr) {
+        siguiente = actual->getSigPub(); // Guardar el siguiente nodo
+        delete actual; 
+        actual = siguiente; 
+    }
+
+
+    primero = nullptr;
+    ultimo = nullptr;
+
+}
+
+void listaPublicaciones::graficarListaP(){
+    if(primero == nullptr){
+        cout << "No hay publicaciones aun!" << endl;
+    } else {
+        ofstream archivo("listaPublicacionesGeneral.dot");
+        if(!archivo.is_open()){
+            cout << "No se pudo crear el archivo" << endl;
+            return;
+        }
+
+        archivo << "digraph G {" << endl;
+        archivo << "    rankdir=LR;" << endl;
+        archivo << "    node [shape=record];" << endl;
+
+        NodoPub *nodoActual = primero;
+        int contador = 1;
+
+        while(nodoActual != nullptr) {
+            archivo << "    nodo_" << contador << " [label=\"";
+            archivo << "Correo: " << nodoActual->getCorreo() << "\\n";
+            archivo << "Contenido: " << nodoActual->getcontenido() << "\\n";
+            archivo << "Fecha: " << nodoActual->getfecha() << "\\n";
+            archivo << "Hora: " << nodoActual->gethora() << "\\n";
+            archivo << "\"];" << endl;
+
+            if (nodoActual->getSigPub() != nullptr) {
+                archivo << "    nodo_" << contador << " -> nodo_" << (contador + 1) << ";" << endl;
+                archivo << "    nodo_" << (contador + 1) << " -> nodo_" << contador << ";" << endl;
+            }
+
+            nodoActual = nodoActual->getSigPub();
+            contador++;
+        }
+
+        archivo << "}" << endl;
+        archivo.close();
+
+        stringstream nombreArchivo;
+        nombreArchivo << "listaPublicacionesGeneral_" << ".png";
+
+        // Construir el comando Graphviz
+        stringstream comando;
+        comando << "dot -Tpng listaPublicacionesGeneral.dot -o " << nombreArchivo.str();
+
+        // Ejecutar el comando
+        system(comando.str().c_str());
+
+        cout << "La lista de publicaciones ha sido graficada y guardada en " << nombreArchivo.str() << endl;
+    }
+}
+
+
+void listaPublicaciones::graficartop5() {
+    if (primero == nullptr) {
+        cout << "No hay publicaciones aún!" << endl;
+        return;
+    }
+
+    NodoPub *temp = primero;
+    NodoPub *top5 = nullptr;
+
+    // Contar publicaciones por usuario
+    while (temp != nullptr) {
+        NodoPub *aux = top5;
+        bool found = false;
+
+        // Buscar si el usuario ya está en la lista top5
+        while (aux != nullptr) {
+            if (aux->getCorreo() == temp->getCorreo()) {
+                aux->setContador(aux->getcontadorPublicaciones());
+                found = true;
+                break;
+            }
+            aux = aux->getSigPub();
+        }
+
+        // Si no se encontró el usuario en la lista top5, crear un nuevo nodo
+        if (!found) {
+            NodoPub *nuevo = new NodoPub(temp->getCorreo(), "", "", "", 1);
+
+            // Inserción en lista ordenada por número de publicaciones (descendente)
+            if (top5 == nullptr) {  // Lista vacía, insertar como primer nodo
+                top5 = nuevo;
+            } else {
+                NodoPub *anterior = nullptr;
+                aux = top5;
+
+                while (aux != nullptr && aux->getcontadorPublicaciones() >= nuevo->getcontadorPublicaciones()) {
+                    anterior = aux;
+                    aux = aux->getSigPub();
+                }
+
+                if (anterior == nullptr) {  // Insertar al principio
+                    nuevo->setSigPubl(top5);
+                    top5 = nuevo;
+                } else {  // Insertar en medio o al final
+                    nuevo->setSigPubl(anterior->getSigPub());
+                    anterior->setSigPubl(nuevo);
+                }
+            }
+        }
+
+        temp = temp->getSigPub();
+    }
+
+    // Graficar el top 5
+    ofstream archivo("top5Publicaciones.dot");
+    if (!archivo.is_open()) {
+        cout << "No se pudo crear el archivo" << endl;
+        return;
+    }
+
+    archivo << "digraph G {" << endl;
+    archivo << "    rankdir=LR;" << endl;
+    archivo << "    node [shape=record];" << endl;
+
+    temp = top5;
+    int contador = 1;
+
+    while (temp != nullptr && contador <= 5) {
+        archivo << "    nodo_" << contador << " [label=\"";
+        archivo << "Usuario: " << temp->getCorreo() << "\\n";
+        archivo << "Publicaciones: " << temp->getcontadorPublicaciones() << "\\n";
+        archivo << "Fecha: " << temp->getfecha() << " \\n";
+        archivo << "\"];" << endl;
+
+        if (temp->getSigPub() != nullptr && contador < 5) {
+            archivo << "    nodo_" << contador << " -> nodo_" << (contador + 1) << ";" << endl;
+        }
+
+        temp = temp->getSigPub();
+        contador++;
+    }
+
+    archivo << "}" << endl;
+    archivo.close();
+
+    stringstream nombreArchivo;
+    nombreArchivo << "top5Publicaciones.png";
+
+    // Construir el comando Graphviz
+    stringstream comando;
+    comando << "dot -Tpng top5Publicaciones.dot -o " << nombreArchivo.str();
+
+    // Ejecutar el comando
+    system(comando.str().c_str());
+
+    cout << "El top 5 de publicaciones ha sido graficado y guardado en " << nombreArchivo.str() << endl;
+
+    // Liberar la lista auxiliar
+    while (top5 != nullptr) {
+        NodoPub *toDelete = top5;
+        top5 = top5->getSigPub();
+        delete toDelete;
+    }
+}
+
+void listaPublicaciones::eliminarP(int id,string correo){
+    if(primero == nullptr){
+        cout << "No hay publicaciones aun!" << endl;
+        return;
+    }
+
+        NodoPub *actual = primero;
+
+        while(actual != nullptr){
+            if(actual->getcontadorPublicaciones() == id && actual->getCorreo() == correo){
+
+                if(actual == primero && actual == ultimo){
+                    delete actual;
+                    primero = nullptr;
+                    ultimo = nullptr;
+                }else if(actual == primero){
+                    primero = actual->getSigPub();
+                    primero->setPrevPub(nullptr);
+                    delete actual;
+                }else if(actual == ultimo){
+                    ultimo = actual->getPrevPub();
+                    ultimo->setSigPubl(nullptr);
+                    delete actual;
+                }else{
+                    NodoPub *prev = actual->getPrevPub();
+                    NodoPub *sig = actual->getSigPub();
+                    prev->setSigPubl(sig);
+                    sig->setPrevPub(prev);
+                    delete actual;
+                }
+
+                return;
+                
+            }
+
+            actual = actual->getSigPub();
+        }
+
+    
+
+    cout << "No se encontró una publicación con el ID " << id << "." << endl;
 }

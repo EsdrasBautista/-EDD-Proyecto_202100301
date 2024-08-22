@@ -15,6 +15,7 @@ private:
     NodoLisaE *siguiente;
 
 public:
+
     NodoLisaE(string correoUsuario, string estado);
     NodoLisaE();
 

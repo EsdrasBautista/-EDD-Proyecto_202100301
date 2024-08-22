@@ -18,6 +18,8 @@ ListaSolicitudesEnviadas::~ListaSolicitudesEnviadas(){
         head = head->getSiguiente();
         delete nodoAEliminar;
     }
+
+    head = nullptr;
 }
 
 void ListaSolicitudesEnviadas::agregar(string correoUsuario,string estado){

@@ -1,3 +1,6 @@
+#ifndef NODO_MATRIZ_H
+#define NODO_MATRIZ_H
+
 #include <iostream>
 #include <iostream>
 #include <cstdlib>
@@ -60,5 +63,9 @@ public:
     void verMatriz();
     bool verificarAmistad(string nombreU1, string nombreU2); 
     void graficarMatriz(string micorreo);
+    void eliminarMatriz();
+    void graficar();
 
 };
+
+#endif

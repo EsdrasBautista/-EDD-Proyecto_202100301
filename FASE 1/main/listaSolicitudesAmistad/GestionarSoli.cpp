@@ -90,6 +90,35 @@ void gestionarSoli::aceptarSolicitud(ListaEnlazada &usuarios,string correoEmisor
 
 }
 
+
+void gestionarSoli::aceptarSolicitudD(ListaEnlazada &usuarios, string correoEmisor,string correoReceptor){
+    Nodo* receptor = usuarios.buscarNodoPorCorreo(correoReceptor); //yo
+    Nodo* emisor = usuarios.buscarNodoPorCorreo(correoEmisor); //el que me envio la sol
+    if(receptor == nullptr){
+            cout << "Usuario no encontrado!" << endl;
+            return;
+    }
+    listaAmistad* listaAmigosEmisor = emisor->getListaAmigos();
+    listaAmistad* listaAmigosReceptor = receptor->getListaAmigos();
+
+    cout << "Solicitud de " << correoEmisor << " Aceptada." << endl;
+
+    listaAmigosEmisor->agregarAmigo(correoReceptor);
+    listaAmigosReceptor->agregarAmigo(correoEmisor);
+
+    // agregar la lógica para actualizar la matriz de amistad
+    matriz *matrizDreceptor = receptor->getMimatrizAmigos();
+    matriz *matrizDemisor = emisor->getMimatrizAmigos();
+
+    matrizDreceptor->agregar(correoEmisor, correoReceptor, true);
+    matrizDreceptor->agregar(correoReceptor, correoEmisor, true);
+
+    matrizDemisor->agregar(correoEmisor, correoReceptor, true);
+    matrizDemisor->agregar(correoReceptor, correoEmisor, true);
+    cout << "Matriz de amistad actualizada con exito!" << endl;
+}
+
+
 void gestionarSoli::rechazarSolicitud(ListaEnlazada &usuarios,string correoEmisor,string correoReceptor){
     try{
         Nodo *receptor = usuarios.buscarNodoPorCorreo(correoReceptor);
@@ -116,7 +145,7 @@ void gestionarSoli::rechazarSolicitud(ListaEnlazada &usuarios,string correoEmiso
 
 }
 
-void gestionarSoli::crearPublicacion(ListaEnlazada &usuarios, string correo, string contenido, string fecha, string hora){
+void gestionarSoli::crearPublicacion(ListaEnlazada &usuarios, string correo, string contenido, string fecha, string hora,listaPublicaciones &listapubli){
     
     try{
         Nodo* correoYo = usuarios.buscarNodoPorCorreo(correo);
@@ -124,6 +153,7 @@ void gestionarSoli::crearPublicacion(ListaEnlazada &usuarios, string correo, str
     
         
         milista->agregarPub(correo,contenido,fecha,hora);
+        listapubli.agregarPub(correo,contenido,fecha,hora);
         cout << "Creando Publicacion..." << endl;
         sleep(1);
         cout << "Publicacion creada con Exito!" << endl;
@@ -199,13 +229,14 @@ void gestionarSoli::verPublicacionesAmigos(ListaEnlazada &usuarios, string micor
 
 
 
-void gestionarSoli::eliminarMiPublicacion(ListaEnlazada &usuario,string micorreo){
+void gestionarSoli::eliminarMiPublicacion(ListaEnlazada &usuario,string micorreo,listaPublicaciones &listapubli){
     Nodo* minodo = usuario.buscarNodoPorCorreo(micorreo);
     listaPublicaciones* milista = minodo->getlistaDepublicaciones();
     listaCircular* milistC = minodo->getListaCircular();
     int pos = milista->eliminarPublicacion(micorreo);
     if(pos >= 0){
         milistC->actualizarLista(pos,micorreo);
+        listapubli.eliminarP(pos,micorreo);
     }
     
 }
@@ -249,8 +280,12 @@ void gestionarSoli::graficarListaCircularPublicaciones(ListaEnlazada &usuario, s
 //-------------------------ELIMINACION DE CUENTA -- ELIMINAR TODO --------------------------------------
 
 void gestionarSoli::EliminarCuenta(ListaEnlazada &usuario,string micorreo){
-    Nodo* miCuenta = usuario.buscarNodoPorCorreo(micorreo);
-    usuario.eliminarCuenta(micorreo);
+    
+    usuario.eliminarCuenta(micorreo); //eliminar de mi lista de usuarios
+    
+    cout << "Usuario: " << micorreo << " Eliminado con Exito!" << endl;
 
-    //eliminar listas de publicaciones, matriz de amistad y eliminar de lista de amigos
 }
+
+
+

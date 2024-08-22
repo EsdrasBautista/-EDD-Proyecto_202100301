@@ -16,6 +16,7 @@ private:
 
 
 public:
+
     nodoAmistad(string correo);
     nodoAmistad();
 
@@ -32,7 +33,6 @@ class listaAmistad{
 private:
     nodoAmistad *head;
     nodoAmistad *ultimo;
-
     nodoAmistad* buscarAmigoporCorreo(string corre);
 
 public:
@@ -45,6 +45,7 @@ public:
     void graficar(string micorreo);
     nodoAmistad* getprimero();
 
+    void eliminarLista();
 
 
 
