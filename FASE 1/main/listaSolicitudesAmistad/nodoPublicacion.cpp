@@ -477,3 +477,55 @@ void listaPublicaciones::eliminarP(int id,string correo){
 
     cout << "No se encontró una publicación con el ID " << id << "." << endl;
 }
+
+
+void listaPublicaciones::eliminarP_porCorreo(string correo){
+    if(primero == nullptr){
+
+        return;
+    }
+
+    NodoPub* actual = primero;
+    while(actual != nullptr){
+        if(actual->getCorreo() == correo){
+            NodoPub* nodoAEliminar = actual;
+            
+
+            actual = actual->getSigPub(); 
+            
+
+            if(nodoAEliminar == primero && nodoAEliminar == ultimo){
+
+                primero = nullptr;
+                ultimo = nullptr;
+            } else if(nodoAEliminar == primero){
+                // El nodo a eliminar es el primero
+                primero = nodoAEliminar->getSigPub();
+                if(primero != nullptr) {
+                    primero->setPrevPub(nullptr);
+                }
+            } else if(nodoAEliminar == ultimo){
+                // El nodo a eliminar es el último
+                ultimo = nodoAEliminar->getPrevPub();
+                if(ultimo != nullptr) {
+                    ultimo->setSigPubl(nullptr);
+                }
+            } else {
+
+                NodoPub* prev = nodoAEliminar->getPrevPub();
+                NodoPub* sig = nodoAEliminar->getSigPub();
+                prev->setSigPubl(sig);
+                if(sig != nullptr) {
+                    sig->setPrevPub(prev);
+                }
+            }
+            
+            delete nodoAEliminar;
+        } else {
+
+            actual = actual->getSigPub();
+        }
+    }
+
+
+}

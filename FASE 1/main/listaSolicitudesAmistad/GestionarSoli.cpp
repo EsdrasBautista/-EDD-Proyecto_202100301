@@ -47,7 +47,7 @@ void gestionarSoli::enviarSolicitud(ListaEnlazada &usuarios, string correoEmisor
     
 }
 
-void gestionarSoli::aceptarSolicitud(ListaEnlazada &usuarios,string correoEmisor,string correoReceptor){
+void gestionarSoli::aceptarSolicitud(ListaEnlazada &usuarios,string correoEmisor,string correoReceptor, matriz &matrizG){
     try{
         Nodo* receptor = usuarios.buscarNodoPorCorreo(correoReceptor); //yo
         Nodo* emisor = usuarios.buscarNodoPorCorreo(correoEmisor); //el que me envio la sol
@@ -75,11 +75,17 @@ void gestionarSoli::aceptarSolicitud(ListaEnlazada &usuarios,string correoEmisor
             matriz* matrizDreceptor = receptor->getMimatrizAmigos();
             matriz* matrizDemisor = emisor->getMimatrizAmigos();
 
-            matrizDreceptor->agregar(correoEmisor,correoReceptor,true);
+            matrizDreceptor->agregar(correoEmisor,correoReceptor,true); 
             matrizDreceptor->agregar(correoReceptor,correoEmisor,true);
+            
 
-            matrizDemisor->agregar(correoEmisor,correoReceptor,true);
             matrizDemisor->agregar(correoReceptor,correoEmisor,true);
+            matrizDemisor->agregar(correoEmisor,correoReceptor,true);
+
+            //matriz General
+            matrizG.agregar(correoEmisor,correoReceptor,true);
+            matrizG.agregar(correoReceptor,correoEmisor,true);
+
             cout << "Matriz de amistad actualizada con exito!" << endl; 
            
            
@@ -91,7 +97,7 @@ void gestionarSoli::aceptarSolicitud(ListaEnlazada &usuarios,string correoEmisor
 }
 
 
-void gestionarSoli::aceptarSolicitudD(ListaEnlazada &usuarios, string correoEmisor,string correoReceptor){
+void gestionarSoli::aceptarSolicitudD(ListaEnlazada &usuarios, string correoEmisor,string correoReceptor, matriz &matrizG){
     Nodo* receptor = usuarios.buscarNodoPorCorreo(correoReceptor); //yo
     Nodo* emisor = usuarios.buscarNodoPorCorreo(correoEmisor); //el que me envio la sol
     if(receptor == nullptr){
@@ -115,6 +121,11 @@ void gestionarSoli::aceptarSolicitudD(ListaEnlazada &usuarios, string correoEmis
 
     matrizDemisor->agregar(correoEmisor, correoReceptor, true);
     matrizDemisor->agregar(correoReceptor, correoEmisor, true);
+
+    //matriz General
+    matrizG.agregar(correoEmisor,correoReceptor,true);
+    matrizG.agregar(correoReceptor,correoEmisor,true);
+    
     cout << "Matriz de amistad actualizada con exito!" << endl;
 }
 
@@ -247,10 +258,12 @@ void gestionarSoli::eliminarMiPublicacion(ListaEnlazada &usuario,string micorreo
 void gestionarSoli::graficasSoliEnviadasyRecibidas(ListaEnlazada &usuarios, string micorreo){
     
     Nodo* miNodo = usuarios.buscarNodoPorCorreo(micorreo);
+    
     ListaSolicitudesEnviadas* misEnvios = miNodo->getListaDeSolicitudesEnviadas();
     PilaSolicitudesRecibidas* misRecibidos = miNodo->getPilaSolicitudesRecibidas();
+
     misEnvios->graficar(micorreo);
-    misRecibidos->graficar(micorreo);
+    misRecibidos->graficar(micorreo);    
     
 }
 
@@ -265,7 +278,12 @@ void gestionarSoli::graficaListaAmigos(ListaEnlazada &usuario, string micorreo){
 void gestionarSoli::graficarMatrizAmigos(ListaEnlazada &usuario, string micorreo){
     Nodo* miNodo = usuario.buscarNodoPorCorreo(micorreo);
     matriz* mimatriz = miNodo->getMimatrizAmigos();
-    mimatriz->graficarMatriz(micorreo);
+    if(mimatriz != nullptr){
+        mimatriz->graficarMatriz(micorreo);
+    }else{
+        cout << "No tienes amigos aun!" << endl;
+    }
+    
 }
 
 
@@ -279,13 +297,72 @@ void gestionarSoli::graficarListaCircularPublicaciones(ListaEnlazada &usuario, s
 
 //-------------------------ELIMINACION DE CUENTA -- ELIMINAR TODO --------------------------------------
 
-void gestionarSoli::EliminarCuenta(ListaEnlazada &usuario,string micorreo){
-    
-    usuario.eliminarCuenta(micorreo); //eliminar de mi lista de usuarios
-    
+void gestionarSoli::EliminarCuenta(ListaEnlazada &usuario, string micorreo) {
+    Nodo* minodo = usuario.buscarNodoPorCorreo(micorreo);
+    if (minodo == nullptr) {
+        cout << "Usuario no encontrado" << endl;
+        return;
+    }
+
+    matriz* mimatriz = minodo->getMimatrizAmigos();
+
+    listaCircular* milista;
+    listaAmistad* milistaA;
+    matriz* matrizA;
+    ListaSolicitudesEnviadas* enviadas;
+    PilaSolicitudesRecibidas* recibidas;
+    listaPublicaciones* listapub;
+
+    nodoMatriz* fila = mimatriz->buscarFila(micorreo);
+
+    if (fila == nullptr) {
+        cout << "No tienes amistades" << endl;
+        usuario.eliminarCuenta(micorreo);
+        cout << "Usuario: " << micorreo << " Eliminado con Exito!" << endl;
+        return;
+    }
+
+
+    nodoMatriz* nodoactual = fila;
+    while (nodoactual->getArriba() != nullptr) {
+        nodoactual = nodoactual->getArriba();
+    }
+
+    // Recorrer hacia adelante (hacia abajo)
+    while (nodoactual != nullptr) {
+        nodoMatriz* nodoDerecho = nodoactual->getDcha();
+        while (nodoDerecho != nullptr) {
+            string correoAmigo = nodoDerecho->getCorreoEmisor();
+            Nodo* nodoAmigo = usuario.buscarNodoPorCorreo(correoAmigo);
+
+            if (nodoAmigo != nullptr && nodoAmigo->getCorreo() != micorreo) {
+                milista = nodoAmigo->getListaCircular();
+                milistaA = nodoAmigo->getListaAmigos();
+                matrizA = nodoAmigo->getMimatrizAmigos();
+                enviadas = nodoAmigo->getListaDeSolicitudesEnviadas();
+                recibidas = nodoAmigo->getPilaSolicitudesRecibidas();
+                listapub = nodoAmigo->getlistaDepublicaciones();
+
+                milista->eliminarPublicacionA(micorreo);
+
+                milistaA->eliminarAmigo(micorreo);
+
+                matrizA->actualizarMatriz(micorreo);
+
+                enviadas->eliminar(micorreo);
+
+                recibidas->eliminarElemento(micorreo);
+
+                listapub->eliminarP_porCorreo(micorreo);
+
+            }
+
+            nodoDerecho = nodoDerecho->getDcha();
+        }
+        nodoactual = nodoactual->getAbajo();
+    }
+
+    // Eliminar la cuenta del usuario
+    usuario.eliminarCuenta(micorreo); // eliminar de mi lista de usuarios
     cout << "Usuario: " << micorreo << " Eliminado con Exito!" << endl;
-
 }
-
-
-

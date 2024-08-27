@@ -55,7 +55,7 @@ public:
     NodoCircular* getprimero();
     bool verificarexiste(int contador, string correo);
     void actualizarLista(int contador,string correo);
+    void eliminarPublicacionA(string correoAmigo);
 
-    void eliminarPublicacionesC();
 };
 #endif

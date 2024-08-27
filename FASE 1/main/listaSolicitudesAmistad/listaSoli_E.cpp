@@ -19,7 +19,14 @@ ListaSolicitudesEnviadas::~ListaSolicitudesEnviadas(){
         delete nodoAEliminar;
     }
 
+     while (headGraficar != nullptr) {
+        NodoLisaE* nodoAEliminar = headGraficar;
+        headGraficar = headGraficar->getSiguiente();
+        delete nodoAEliminar;
+    }
+
     head = nullptr;
+    headGraficar = nullptr;
 }
 
 void ListaSolicitudesEnviadas::agregar(string correoUsuario,string estado){
@@ -99,26 +106,28 @@ string ListaSolicitudesEnviadas::getEstadosolicitud(string correo){
 }
 
 void ListaSolicitudesEnviadas::setGraficar(NodoLisaE* nuevonodo){
+    NodoLisaE* nuevoNodoGraficar = new NodoLisaE(nuevonodo->getCorreoUsuarioE(), nuevonodo->getEstadoSolicitudE());
 
     if (headGraficar == nullptr) {
-        headGraficar = nuevonodo;
-        nuevonodo->setSiguiente(nullptr);
+        headGraficar = nuevoNodoGraficar;
+        nuevoNodoGraficar->setSiguiente(nullptr);
     } else {
         NodoLisaE* temp = headGraficar;
         while (temp->getSiguiente() != nullptr) {
             temp = temp->getSiguiente();
         }
-        temp->setSiguiente(nuevonodo);
-        nuevonodo->setSiguiente(nullptr);
+        temp->setSiguiente(nuevoNodoGraficar);
+        nuevoNodoGraficar->setSiguiente(nullptr);
     }
 }
+
 
 void ListaSolicitudesEnviadas::graficar(string micorreo){
     
     if(headGraficar == nullptr){
         cout << "No has enviado ni una solicitud aun!" << endl;
     }else{
-        ofstream archivo("listaSolicitudesEnviadas.dot");
+        ofstream archivo("SolicitudesE.dot");
         if (!archivo.is_open()) {
             cout << "No se pudo crear el archivo" << endl;
             return;
@@ -143,11 +152,11 @@ void ListaSolicitudesEnviadas::graficar(string micorreo){
 
 
         stringstream nombreArchivo;
-        nombreArchivo << "solicitudesEnviadas_" << micorreo << ".png";
+        nombreArchivo << "SolicitudesE_" << micorreo << ".png";
 
 
         stringstream comando;
-        comando << "dot -Tpng listaSolicitudesEnviadas.dot -o " << nombreArchivo.str();
+        comando << "dot -Tpng SolicitudesE.dot -o " << nombreArchivo.str();
 
 
         system(comando.str().c_str());

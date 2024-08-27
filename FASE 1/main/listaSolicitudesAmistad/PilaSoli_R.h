@@ -46,6 +46,8 @@ public:
 
     void setGraficar(NodoPila* nodo);
     void graficar(string micorreo);
+    void eliminarElemento(string correo);
+    
 };
 
 #endif // PILA_SOLI_H  

@@ -9,11 +9,11 @@ public:
     static void gradicaListaUsuarios(ListaEnlazada &usuario);
     static void graficaPublicacionesTodas(listaPublicaciones &publicaciones);
     static void top5conMasPublicaciones(listaPublicaciones &publicaciones);
+    static void eliminarUsuario(ListaEnlazada &usuario, string correoUser, listaPublicaciones &publicaciones, matriz &matrizG);
     static void graficaMatrizDispersaTodos(matriz &matrizT);
 
     
-    static void eliminarUsuario(ListaEnlazada &usuario, string correoUser);
-    static void top5conMenosAmigos(ListaEnlazada &usuario);
+
 
 
 

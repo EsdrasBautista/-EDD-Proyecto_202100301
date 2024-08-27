@@ -62,6 +62,7 @@ public:
     void graficarListaP();
     void graficartop5();
     void eliminarP(int id,string correo);
+    void eliminarP_porCorreo(string correo);
 
 };
 #endif

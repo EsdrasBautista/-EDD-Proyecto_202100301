@@ -18,6 +18,7 @@ PilaSolicitudesRecibidas::~PilaSolicitudesRecibidas() {
     while (!estaVacia()) {
         pop();
     }
+    
 }
 
 void PilaSolicitudesRecibidas::push(string correoUsuario){
@@ -87,6 +88,7 @@ bool PilaSolicitudesRecibidas::existe(string correoEmisor){
 
 void PilaSolicitudesRecibidas::setGraficar(NodoPila* nuevonodo){
     
+
     nuevonodo->setSiguiente(headGraficar);
     headGraficar = nuevonodo;
 }
@@ -96,7 +98,7 @@ void PilaSolicitudesRecibidas::graficar(string micorreo){
     if(headGraficar == nullptr){
         cout << "No has recibido ni una solicitud aun!" << endl;
     }else{
-        ofstream archivo("PilaDesolicitudesRecibidas.dot");
+        ofstream archivo("solicitudesR_.dot");
         if (!archivo.is_open()) {
             cout << "No se pudo crear el archivo" << endl;
             return;
@@ -121,11 +123,11 @@ void PilaSolicitudesRecibidas::graficar(string micorreo){
 
 
         stringstream nombreArchivo;
-        nombreArchivo << "solicitudesRecibidas_" << micorreo << ".png";
+        nombreArchivo << "solicitudesR_" << micorreo << ".png";
 
 
         stringstream comando;
-        comando << "dot -Tpng PilaDesolicitudesRecibidas.dot -o " << nombreArchivo.str();
+        comando << "dot -Tpng solicitudesR_.dot -o " << nombreArchivo.str();
 
 
         system(comando.str().c_str());
@@ -134,3 +136,32 @@ void PilaSolicitudesRecibidas::graficar(string micorreo){
     }
 
 }
+
+void PilaSolicitudesRecibidas::eliminarElemento(string correo){
+
+    if(estaVacia()){
+        return;
+    }
+    NodoPila* actual = head;
+    NodoPila* anterior = nullptr;
+
+    while(actual != nullptr && actual->getCorreoUsuario() != correo){
+        anterior = actual;
+        actual = actual->getSiguiente();
+    }
+
+    if(actual == nullptr) return;
+
+    if(anterior == head){
+        head = actual->getSiguiente();
+    }else{
+        anterior->setSiguiente(actual->getSiguiente());
+    }
+
+    if(actual == ultimo){
+        ultimo = anterior;
+    }
+
+    delete actual;
+}
+

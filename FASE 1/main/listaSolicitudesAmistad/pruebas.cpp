@@ -4,24 +4,41 @@
 
 int main() {
     ListaEnlazada usuarios;
+    matriz matrizG;
+    listaPublicaciones litap;
 
-    usuarios.agregarUsuario("ee","ee","ee","12","djssj");
-
-    usuarios.agregarUsuario("ww","ww","ww","12","kfdk");
+    usuarios.agregarUsuario("walter","walter","walter","12","kfdk");
+    usuarios.agregarUsuario("arebalo","arebalo","arebalo","12","djssj");
     usuarios.agregarUsuario("qq","qq","qq","12","kfdk");
+    
 
-    gestionarSoli::enviarSolicitud(usuarios,"ww","ee");
-    gestionarSoli::aceptarSolicitud(usuarios,"ww","ee");
+    gestionarSoli::enviarSolicitud(usuarios,"arebalo","walter");
+    gestionarSoli::enviarSolicitud(usuarios,"qq","arebalo");
 
-    gestionarSoli::enviarSolicitud(usuarios,"qq","ee");
-    gestionarSoli::aceptarSolicitud(usuarios,"qq","ee");
-    gestionarSoli::graficarMatrizAmigos(usuarios,"ee");
+    gestionarSoli::aceptarSolicitud(usuarios,"arebalo","walter",matrizG);
+    gestionarSoli::aceptarSolicitud(usuarios,"qq","arebalo",matrizG);
+
+    gestionarSoli::graficarMatrizAmigos(usuarios,"walter");
+    gestionarSoli::graficarMatrizAmigos(usuarios,"qq");
+    gestionarSoli::graficarMatrizAmigos(usuarios,"arebalo");
+
+
+    
+
+    
+    gestionarSoli::EliminarCuenta(usuarios,"arebalo");
+
+    gestionarSoli::graficarMatrizAmigos(usuarios,"walter");
+    gestionarSoli::graficarMatrizAmigos(usuarios,"qq");
 
     
     
     return 0;
 }*/
 /*
+gestionarSoli::enviarSolicitud(usuarios,"qq","ee");
+    gestionarSoli::aceptarSolicitud(usuarios,"qq","ee");
+    gestionarSoli::graficarMatrizAmigos(usuarios,"ee");
 
 gestionarSoli::crearPublicacion(usuarios,"ww","hola mundo","12/08", "12:59"); // 1 ww
     gestionarSoli::crearPublicacion(usuarios,"ee","adios mundo","11/08", "11:59"); // 1 ee

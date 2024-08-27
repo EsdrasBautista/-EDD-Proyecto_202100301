@@ -55,8 +55,7 @@ int main(){
         cout << "1. Iniciar sesion" << endl;
         cout << "2. Registrarse" << endl;
         cout << "3. Informacion" << endl;
-        cout << "4. info" << endl;
-        cout << "5. Salir" << endl;
+        cout << "4. Salir" << endl;
         cout << "Selecciona una opcion (1-5): ";
 
         
@@ -81,19 +80,16 @@ int main(){
                 informacion();
                 break;
             case 4:
-                verListaUsuarios();
-                break;
-            case 5:
                 salir();
                 break;
             default:
-                cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 5." << endl;
+                cout << "Opcion invalida. Por favor, selecciona una opcion entre 1 y 4." << endl;
                 break;
         }
 
         cout << endl; 
 
-    } while(opcion != 5); 
+    } while(opcion != 4); 
 
 
     return 0;
@@ -409,7 +405,7 @@ void Solicitudes(string correo){
                 getline(cin, respuesta);
 
                 if(respuesta == "s" || respuesta == "S"){
-                    gestionarSoli::aceptarSolicitud(usuarios,correoPeek,correoEmisor);
+                    gestionarSoli::aceptarSolicitud(usuarios,correoPeek,correoEmisor,matrizG);
                 }else{
                     gestionarSoli::rechazarSolicitud(usuarios,correoPeek,correoEmisor);
                 }
@@ -611,7 +607,7 @@ void cargaUsrs(){
         }
     }
 
-    usuarios.verListadoUsuarios();
+    //usuarios.verListadoUsuarios();
 
 
 }
@@ -657,7 +653,7 @@ void cargaRelac(){
             cout << "No se pudo extraer la informacion del archivo" <<endl;
         }else{
             if(estado == "ACEPTADA"){
-                gestionarSoli::aceptarSolicitudD(usuarios,receptor,emisor);
+                gestionarSoli::aceptarSolicitudD(usuarios,receptor,emisor,matrizG);
 
             }else if(estado == "PENDIENTE"){
                 gestionarSoli::enviarSolicitud(usuarios,emisor,receptor);
@@ -723,6 +719,8 @@ void cargaPubl(){
 
 void gestionarUsrs(){
     int opcion;
+    string usuarioE;
+    string  respuestaF;
     do{
 
         cout << "Gestionar Usuario:" << endl;
@@ -741,6 +739,17 @@ void gestionarUsrs(){
         switch (opcion){
         case 1:
             cout << endl;
+            cout << "Ingresa el correo del Usuario a elminar: ";
+            getline(cin,usuarioE);
+            cout << "Esta seguro de eliminar tu cuenta? (s/n): ";
+            getline(cin,respuestaF);
+            if(respuestaF == "S" || respuestaF == "s"){
+                cout << "Intentando eliminar cuenta: " << usuarioE << endl;
+                gestionaradmin::eliminarUsuario(usuarios,usuarioE,listaPub,matrizG); 
+                cout << "Cuenta eliminada con Exito!" << endl;
+            }else{
+                cout << "Gestion cancelada!" << endl;
+            }
             
             break;
         case 2:
@@ -786,7 +795,8 @@ void ReportesAdmin(){
             break;
         case 2:
             cout << endl;
-            cout << "Regresando a menu Admini..." << endl;
+            cout << "Generando grafico..." << endl;
+            gestionaradmin::graficaMatrizDispersaTodos(matrizG);
             break;
         case 3:
             cout << endl;
@@ -796,7 +806,6 @@ void ReportesAdmin(){
         case 4:
             cout << endl;
             top();
-
             break;
         case 5: 
             cout << "Regresando..." << endl;

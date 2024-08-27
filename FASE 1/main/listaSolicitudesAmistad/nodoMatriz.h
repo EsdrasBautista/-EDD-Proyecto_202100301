@@ -43,8 +43,7 @@ class matriz{
 private:
     nodoMatriz *raiz;
 
-    nodoMatriz* buscarFila(string correoReceptor);
-    nodoMatriz* buscarCol(string correoEmisor);
+    
     nodoMatriz* insertarEncabezadoF(string correoReceptor);
     nodoMatriz* insertarEncabezadoC(string correoEmisor);
     void insertarEnFila(nodoMatriz *nuevo, nodoMatriz *encabezadoC);
@@ -57,14 +56,19 @@ private:
 public:
     matriz();
     ~matriz();
+    nodoMatriz* buscarFila(string correoReceptor);
+    nodoMatriz* buscarCol(string correoEmisor);
 
     void agregar(string correoEmisor, string correoReceptor, bool data);
     bool existeNodo(nodoMatriz *nuevo);
     void verMatriz();
     bool verificarAmistad(string nombreU1, string nombreU2); 
     void graficarMatriz(string micorreo);
-    void eliminarMatriz();
+
     void graficar();
+    void actualizarMatriz(string correoAmigo);
+    void eliminarNodo(nodoMatriz* nodo);
+
 
 };
 

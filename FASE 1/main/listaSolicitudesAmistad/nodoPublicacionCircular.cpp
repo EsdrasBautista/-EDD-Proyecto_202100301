@@ -158,7 +158,7 @@ void listaCircular::graficarCircular(string correo) {
     
     }else{
 
-        ofstream archivo("listaPublicacionAmistadesC.dot");
+        ofstream archivo("AmistadesC.dot");
         if (!archivo.is_open()) {
             cout << "No se pudo crear el archivo" << endl;
             
@@ -201,11 +201,11 @@ void listaCircular::graficarCircular(string correo) {
             archivo.close();
 
             stringstream nombreArchivo;
-            nombreArchivo << "listaPublicacionAmistadesC_" << correo << ".png";
+            nombreArchivo << "AmistadesC_" << correo << ".png";
 
 
             stringstream comando;
-            comando << "dot -Tpng listaPublicacionAmistadesC.dot -o " << nombreArchivo.str();
+            comando << "dot -Tpng AmistadesC.dot -o " << nombreArchivo.str();
 
 
             system(comando.str().c_str());
@@ -285,27 +285,56 @@ void listaCircular::actualizarLista(int contador, string correo) {
     } while (actual != primero); 
 }
 
-void listaCircular::eliminarPublicacionesC(){
-    
+
+void listaCircular::eliminarPublicacionA(string correoAmigo) {
     if (primero == nullptr) {
-        return;
+        return; // Lista vacía
     }
 
-    NodoCircular *actual = primero;
-    NodoCircular *temp;
+    NodoCircular* actual = primero;
+    NodoCircular* temp = nullptr;
 
-    // Bucle para eliminar todos los nodos
     do {
-        temp = actual;
-        actual = actual->getSigPub();
-        delete temp;
+        if (actual->getCorreo() == correoAmigo) {
+            // Guardar el nodo a eliminar
+            temp = actual;
+            
+            // Si es el único nodo en la lista
+            if (primero == ultimo && actual == primero) {
+                primero = nullptr;
+                ultimo = nullptr;
+                delete temp;
+                return;
+            }
+
+            // Si el nodo a eliminar es el primero
+            if (actual == primero) {
+                primero = primero->getSigPub();
+                ultimo->setPrevPub(primero);
+                primero->setPrevPub(ultimo);
+            }
+            // Si el nodo a eliminar es el último
+            else if (actual == ultimo) {
+                ultimo = ultimo->getPrevPub();
+                ultimo->setSigPubl(primero);
+                primero->setSigPubl(ultimo);
+            } 
+            // Si el nodo a eliminar está en medio
+            else {
+                actual->getSigPub()->setSigPubl(actual->getSigPub());
+                actual->getSigPub()->setPrevPub(actual->getPrevPub());
+            }
+
+
+            actual = actual->getSigPub();
+            
+            // Eliminar el nodo
+            delete temp;
+        } else {
+
+            actual = actual->getSigPub();
+        }
     } while (actual != primero);
 
-    primero = nullptr;
-    ultimo = nullptr;
-
-
-
-    cout << "Todas las publicaciones han sido eliminadas con exito!" << endl;
 
 }
