@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Buscar</class>
+ <widget class="QMainWindow" name="Buscar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>824</width>
+    <height>562</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(216, 229, 158);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>160</y>
+      <width>751</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Sitka&quot;;</string>
+    </property>
+    <property name="title">
+     <string>DATOS USUARIO</string>
+    </property>
+    <widget class="QLabel" name="lblCorreo_2">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>40</y>
+       <width>121</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 14pt &quot;Segoe UI Semibold&quot;;</string>
+     </property>
+     <property name="text">
+      <string>NOMBRES:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="txtNombres">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>30</y>
+       <width>341</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 11pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>110</y>
+       <width>131</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 14pt &quot;Segoe UI Semibold&quot;;</string>
+     </property>
+     <property name="text">
+      <string>APELLIDOS:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="txtApellidos">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>100</y>
+       <width>341</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 11pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>240</y>
+       <width>231</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 14pt &quot;Segoe UI Semibold&quot;;</string>
+     </property>
+     <property name="text">
+      <string>FECHA NACIMIENTO:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblCorreo">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>170</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 14pt &quot;Segoe UI Semibold&quot;;</string>
+     </property>
+     <property name="text">
+      <string>CORREO:</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="txtFechaN">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>230</y>
+       <width>341</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 11pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="txtCorreoU">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>170</y>
+       <width>341</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 11pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>490</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+    </property>
+    <property name="text">
+     <string>REGRESAR</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtBuscar">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>90</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 600 11pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnBuscar">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>90</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+    </property>
+    <property name="text">
+     <string>BUSCAR</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCorreo_3">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>50</y>
+      <width>381</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 600 14pt &quot;Segoe UI Semibold&quot;;</string>
+    </property>
+    <property name="text">
+     <string>INGRESA EL CORREO DEL USUARIO</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,92 @@
+# ninja log v6
+27	102	7478271652527545	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f9277a731ac20c21
+449	5572	7478271656740991	CMakeFiles/Fase2.dir/mainwindow.cpp.obj	b835645dd27a64f4
+115	448	7478271653406355	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+5572	10412	7478271707979766	CMakeFiles/Fase2.dir/reportesadmin.cpp.obj	103c86057b601228
+5281	11101	7478271705059538	CMakeFiles/Fase2.dir/cargaradmin.cpp.obj	a37125a5e277e887
+115	448	7478271653406355	Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+525	8605	7478271657503177	CMakeFiles/Fase2.dir/crearpublicacion.cpp.obj	e4558e485f7c1835
+115	448	7478271653406355	Fase2_autogen/timestamp	bc7158e1f9a01bdd
+115	448	7478271653406355	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/timestamp	bc7158e1f9a01bdd
+1231	6087	7478270325836816	CMakeFiles/Fase2.dir/Fase2_autogen/mocs_compilation.cpp.obj	a685a6770361db03
+3088	9697	7478176701904315	CMakeFiles/Fase2.dir/main.cpp.obj	d8a6ccb387772837
+516	8430	7478271657413482	CMakeFiles/Fase2.dir/publicaciones.cpp.obj	bc6ef0aed7585e90
+11130	11915	7478271763549896	Fase2.exe	f2fe153934900475
+166	1619	7477288521995215	build.ninja	b056209d409878ba
+369	3456	7470915872000338	CMakeFiles/Fase2.dir/intuser.cpp.obj	44a9b4e70f603f46
+454	5280	7478271656787363	CMakeFiles/Fase2.dir/admin.cpp.obj	64b5158be72fafaf
+489	6568	7478271657144729	CMakeFiles/Fase2.dir/solicitudes.cpp.obj	66e6c815fa6adebf
+459	6834	7478271656846868	CMakeFiles/Fase2.dir/userint.cpp.obj	cc72be4500049e30
+465	7525	7478271656900304	CMakeFiles/Fase2.dir/crearuser.cpp.obj	11c02a510d6f36fb
+3123	7384	7478176702252038	CMakeFiles/Fase2.dir/listaEnlazadaArbol.cpp.obj	aa596ba07af2c22d
+1780	2656	7471315515527274	CMakeFiles/Fase2.dir/globales.cpp.obj	ea422a30eced20b
+5435	9318	7478267713974424	CMakeFiles/Fase2.dir/listaAmistades.cpp.obj	b61323a7de4d1b3e
+471	7026	7478271656974945	CMakeFiles/Fase2.dir/perfil.cpp.obj	2d1cfc56f98571ad
+479	7045	7478271657044728	CMakeFiles/Fase2.dir/buscar.cpp.obj	da990b7b77d63904
+1506	2909	7473961052222400	CMakeFiles/Fase2.dir/PilaSoli_R.cpp.obj	b689e884f963d213
+1513	2833	7473961052302281	CMakeFiles/Fase2.dir/listasoli_e.cpp.obj	dbe5f6311f3d2776
+9721	11166	7472718292666633	CMakeFiles/Fase2.dir/nodoMatriz.cpp.obj	325df4c35f9aad44
+498	5132	7478271657244046	CMakeFiles/Fase2.dir/GestionarSoli.cpp.obj	c1dafefff78f6019
+1656	3609	7473088697748411	CMakeFiles/Fase2.dir/listasoli_R.cpp.obj	1122a23330e1d899
+11586	14923	7475590523694993	CMakeFiles/Fase2.dir/listaPublicaciones.cpp.obj	4e9019607d427287
+10132	12138	7477233564055852	CMakeFiles/Fase2.dir/nodoPublicacion.cpp.obj	c0f66e74a05792f4
+5132	11129	7478271703574493	CMakeFiles/Fase2.dir/buscaradmin.cpp.obj	38948c0e7839975a
+31	109	7478274375021549	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f9277a731ac20c21
+123	476	7478274375935976	Fase2_autogen/timestamp	bc7158e1f9a01bdd
+123	476	7478274375935976	Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+123	476	7478274375935976	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/timestamp	bc7158e1f9a01bdd
+123	476	7478274375935976	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+523	5163	7478274379934597	CMakeFiles/Fase2.dir/GestionarSoli.cpp.obj	c1dafefff78f6019
+496	5486	7478274379663997	CMakeFiles/Fase2.dir/crearuser.cpp.obj	11c02a510d6f36fb
+483	5626	7478274379542558	CMakeFiles/Fase2.dir/admin.cpp.obj	64b5158be72fafaf
+478	6123	7478274379485049	CMakeFiles/Fase2.dir/mainwindow.cpp.obj	b835645dd27a64f4
+489	7140	7478274379591834	CMakeFiles/Fase2.dir/userint.cpp.obj	cc72be4500049e30
+509	7398	7478274379795065	CMakeFiles/Fase2.dir/buscar.cpp.obj	da990b7b77d63904
+502	7601	7478274379725298	CMakeFiles/Fase2.dir/perfil.cpp.obj	2d1cfc56f98571ad
+531	8188	7478274380014327	CMakeFiles/Fase2.dir/publicaciones.cpp.obj	bc6ef0aed7585e90
+537	8491	7478274380074144	CMakeFiles/Fase2.dir/crearpublicacion.cpp.obj	e4558e485f7c1835
+516	9304	7478274379864830	CMakeFiles/Fase2.dir/solicitudes.cpp.obj	66e6c815fa6adebf
+6124	10344	7478274435947271	CMakeFiles/Fase2.dir/listaAmistades.cpp.obj	b61323a7de4d1b3e
+5627	10361	7478274430973915	CMakeFiles/Fase2.dir/reportesadmin.cpp.obj	103c86057b601228
+5486	10912	7478274429568610	CMakeFiles/Fase2.dir/cargaradmin.cpp.obj	a37125a5e277e887
+5163	11189	7478274426339410	CMakeFiles/Fase2.dir/buscaradmin.cpp.obj	38948c0e7839975a
+11189	14265	7478274486597656	Fase2.exe	f2fe153934900475
+25	101	7478275064472941	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f9277a731ac20c21
+23	122	7478276414331121	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f9277a731ac20c21
+142	609	7478276415519851	Fase2_autogen/timestamp	bc7158e1f9a01bdd
+142	609	7478276415519851	Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+142	609	7478276415519851	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/timestamp	bc7158e1f9a01bdd
+142	609	7478276415519851	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+667	5214	7478276420772940	CMakeFiles/Fase2.dir/GestionarSoli.cpp.obj	c1dafefff78f6019
+617	5304	7478276420269631	CMakeFiles/Fase2.dir/admin.cpp.obj	64b5158be72fafaf
+631	5704	7478276420404124	CMakeFiles/Fase2.dir/crearuser.cpp.obj	11c02a510d6f36fb
+611	6911	7478276420201359	CMakeFiles/Fase2.dir/mainwindow.cpp.obj	b835645dd27a64f4
+623	7248	7478276420332176	CMakeFiles/Fase2.dir/userint.cpp.obj	cc72be4500049e30
+638	7339	7478276420483936	CMakeFiles/Fase2.dir/perfil.cpp.obj	2d1cfc56f98571ad
+649	8183	7478276420583904	CMakeFiles/Fase2.dir/buscar.cpp.obj	da990b7b77d63904
+657	8442	7478276420663308	CMakeFiles/Fase2.dir/solicitudes.cpp.obj	66e6c815fa6adebf
+694	8875	7478276421042036	CMakeFiles/Fase2.dir/crearpublicacion.cpp.obj	e4558e485f7c1835
+675	9083	7478276420842698	CMakeFiles/Fase2.dir/publicaciones.cpp.obj	bc6ef0aed7585e90
+5783	10946	7478276471921871	CMakeFiles/Fase2.dir/reportesadmin.cpp.obj	103c86057b601228
+6911	11199	7478276483204135	CMakeFiles/Fase2.dir/listaAmistades.cpp.obj	b61323a7de4d1b3e
+5214	11485	7478276466240875	CMakeFiles/Fase2.dir/buscaradmin.cpp.obj	38948c0e7839975a
+5304	11663	7478276467137872	CMakeFiles/Fase2.dir/cargaradmin.cpp.obj	a37125a5e277e887
+11663	12486	7478276530721075	Fase2.exe	f2fe153934900475
+43	129	7478704926737707	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f9277a731ac20c21
+154	547	7478704927848089	Fase2_autogen/timestamp	bc7158e1f9a01bdd
+154	547	7478704927848089	Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+154	547	7478704927848089	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/timestamp	bc7158e1f9a01bdd
+154	547	7478704927848089	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/mocs_compilation.cpp	bc7158e1f9a01bdd
+574	7773	7478704932036753	CMakeFiles/Fase2.dir/perfil.cpp.obj	2d1cfc56f98571ad
+549	7806	7478704931788474	CMakeFiles/Fase2.dir/mainwindow.cpp.obj	b835645dd27a64f4
+581	7822	7478704932116484	CMakeFiles/Fase2.dir/buscar.cpp.obj	da990b7b77d63904
+558	7847	7478704931888178	CMakeFiles/Fase2.dir/userint.cpp.obj	cc72be4500049e30
+597	7851	7478704932275953	CMakeFiles/Fase2.dir/publicaciones.cpp.obj	bc6ef0aed7585e90
+553	7859	7478704931838345	CMakeFiles/Fase2.dir/admin.cpp.obj	64b5158be72fafaf
+565	7864	7478704931957024	CMakeFiles/Fase2.dir/crearuser.cpp.obj	11c02a510d6f36fb
+590	7899	7478704932206184	CMakeFiles/Fase2.dir/solicitudes.cpp.obj	66e6c815fa6adebf
+614	7917	7478704932445397	CMakeFiles/Fase2.dir/buscaradmin.cpp.obj	38948c0e7839975a
+605	7972	7478704932355683	CMakeFiles/Fase2.dir/crearpublicacion.cpp.obj	e4558e485f7c1835
+7806	10448	7478705004368577	CMakeFiles/Fase2.dir/reportesadmin.cpp.obj	103c86057b601228
+7773	11084	7478705004029666	CMakeFiles/Fase2.dir/cargaradmin.cpp.obj	a37125a5e277e887
+11084	12209	7478705037139346	Fase2.exe	f2fe153934900475

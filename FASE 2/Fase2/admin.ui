@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Admin</class>
+ <widget class="QMainWindow" name="Admin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>743</width>
+    <height>375</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 241, 172)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>90</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 20pt &quot;Segoe UI Black&quot;;</string>
+    </property>
+    <property name="text">
+     <string>BIENVENIDO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblNombreU">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>170</y>
+      <width>651</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 18pt &quot;Segoe UI Black&quot;;</string>
+    </property>
+    <property name="text">
+     <string>ADMIN</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>280</y>
+      <width>161</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>CERRAR SESION</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>743</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOPCIONES">
+    <property name="title">
+     <string>OPCIONES</string>
+    </property>
+    <addaction name="actionBUSCAR"/>
+    <addaction name="actionCARGA_MASIVA"/>
+   </widget>
+   <widget class="QMenu" name="menuREPORTES">
+    <property name="title">
+     <string>REPORTES</string>
+    </property>
+    <addaction name="actionREPORTES"/>
+   </widget>
+   <addaction name="menuOPCIONES"/>
+   <addaction name="menuREPORTES"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionBUSCAR">
+   <property name="text">
+    <string>BUSCAR</string>
+   </property>
+  </action>
+  <action name="actionCARGA_MASIVA">
+   <property name="text">
+    <string>CARGA MASIVA</string>
+   </property>
+  </action>
+  <action name="actionREPORTES">
+   <property name="text">
+    <string>REPORTES</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
