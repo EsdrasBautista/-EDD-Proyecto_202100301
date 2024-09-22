@@ -81,6 +81,9 @@ void UserInt::on_actionPUBLICACIONES_triggered()
 {
     Publicaciones *pub = new Publicaciones(this,listaArbol,correoUsuario,listaPub);
     this->hide();
+    pub->llenarBST();
+    pub->llenarComboFecha();
+    pub->actualizarTodosPubs();
     pub->show();
 
 }

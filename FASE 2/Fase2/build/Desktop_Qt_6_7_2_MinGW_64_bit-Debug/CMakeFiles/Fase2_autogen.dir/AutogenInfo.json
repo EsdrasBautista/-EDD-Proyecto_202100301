@@ -280,9 +280,21 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/SimplePublicacion.h",
+			"MU",
+			"EWIEGA46WW/moc_SimplePublicacion.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/admin.h",
 			"MU",
 			"EWIEGA46WW/moc_admin.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/arbolB.h",
+			"MU",
+			"EWIEGA46WW/moc_arbolB.cpp",
 			null
 		],
 		[
@@ -301,6 +313,12 @@
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/cargaradmin.h",
 			"MU",
 			"EWIEGA46WW/moc_cargaradmin.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/comentaru.h",
+			"MU",
+			"EWIEGA46WW/moc_comentaru.cpp",
 			null
 		],
 		[
@@ -349,6 +367,12 @@
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/modificaradmin.h",
+			"MU",
+			"EWIEGA46WW/moc_modificaradmin.cpp",
 			null
 		],
 		[
@@ -476,7 +500,17 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/SimplePublicacion.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/admin.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/arbolB.cpp",
 			"MU",
 			null
 		],
@@ -492,6 +526,11 @@
 		],
 		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/cargaradmin.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/comentaru.cpp",
 			"MU",
 			null
 		],
@@ -537,6 +576,11 @@
 		],
 		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/modificaradmin.cpp",
 			"MU",
 			null
 		],

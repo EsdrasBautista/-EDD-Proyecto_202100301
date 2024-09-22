@@ -80,28 +80,6 @@ border-radius: 10px;</string>
      <string>CERRAR SESION</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>250</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
-border: 5px solid white;
-background-color: rgb(255, 255, 255);
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string>ver amigos</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

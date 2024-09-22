@@ -135,3 +135,75 @@ void CargarAdmin::on_btnSoli_clicked()
     }
 }
 
+
+void CargarAdmin::on_btnPub_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Seleccionar Archivo"), "", tr("Archivos (*.json)"));
+    if (fileName.isEmpty()) {
+        return;
+    }
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox::warning(this, tr("Error"), tr("No se pudo abrir el archivo JSON"));
+        return;
+    }
+
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    QJsonDocument jsonDoc(QJsonDocument::fromJson(jsonData));
+    if (jsonDoc.isNull() || !jsonDoc.isArray()) {
+        QMessageBox::warning(this, tr("Error"), tr("El archivo JSON no es válido o no está bien estructurado"));
+        return;
+    }
+
+    // Procesar el array de publicaciones
+    QJsonArray jsonArray = jsonDoc.array();
+    for (const QJsonValue &value : jsonArray) {
+        QJsonObject jsonObj = value.toObject();
+
+        QString correo = jsonObj["correo"].toString();
+        QString contenido = jsonObj["contenido"].toString();
+        QString fecha = jsonObj["fecha"].toString();
+        QString hora = jsonObj["hora"].toString();
+
+        // Verificar si los campos no están vacíos
+        if (correo.isEmpty() || contenido.isEmpty() || fecha.isEmpty() || hora.isEmpty()) {
+            QMessageBox::warning(this, tr("Error"), tr("Algunos datos de la publicación están vacíos"));
+            continue;
+        }
+
+        // Aquí agregaríamos la publicación a la estructura de datos correspondiente
+        // listaPublicaciones->agregarPublicacion(correo.toStdString(), contenido.toStdString(), fecha.toStdString(), hora.toStdString());
+
+        // Procesar los comentarios de la publicación
+        if (jsonObj.contains("comentarios")) {
+            QJsonArray comentariosArray = jsonObj["comentarios"].toArray();
+            for (const QJsonValue &comentarioValue : comentariosArray) {
+                QJsonObject comentarioObj = comentarioValue.toObject();
+
+                QString correoComentario = comentarioObj["correo"].toString();
+                QString comentarioTexto = comentarioObj["comentario"].toString();
+                QString fechaComentario = comentarioObj["fecha"].toString();
+                QString horaComentario = comentarioObj["hora"].toString();
+
+                if (correoComentario.isEmpty() || comentarioTexto.isEmpty() || fechaComentario.isEmpty() || horaComentario.isEmpty()) {
+                    QMessageBox::warning(this, tr("Error"), tr("Algunos datos del comentario están vacíos"));
+                    continue;
+                }
+
+                // Aquí agregaríamos los comentarios a la estructura correspondiente
+                // listaPublicaciones->agregarComentario(correoComentario.toStdString(), comentarioTexto.toStdString(), fechaComentario.toStdString(), horaComentario.toStdString());
+            }
+        }
+    }
+
+    QFileInfo fileInfo(fileName);
+    QString fileNameOnly = fileInfo.fileName();
+    ui->txtPub->setText(fileNameOnly);
+
+    QMessageBox::information(this, tr("Carga Exitosa"), tr("Publicaciones agregadas con éxito"));
+}
+
+

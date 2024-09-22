@@ -1,214 +1,289 @@
 #include "listaPublicaciones.h"
 #include <QDebug>
 
-nodoBST::nodoBST(string nom,string ape,string corr,string contr,string fechaNac){
-    this->nombres = nom;
-    this->apellidos = ape;
-    this->correo = corr;
-    this->contrasena = contr;
-    this->fechaNacimiento = fechaNac;
-    this->izquierda = nullptr;
-    this->derecha = nullptr;
-    this->miMatrizAmigos = new matriz();
-    this->pilaSolicitudesRecibidas = new PilaSolicitudesRecibidas(); // Inicializar la pila
-    this->listadeSolicitudesEnviadasUsuario = new ListaSolicitudesEnviadas(); //Inicializar la lista
-    this->listadeSolicitudesRecibidasUsuario = new ListaSolicitudesRecibidas();
+nodoBST::nodoBST(string fecha){
+    this->fecha = fecha;
+    this->izq = nullptr;
+    this->drcha = nullptr;
+    this->publicacionesBST = new listaNodoPub();
 }
 
 nodoBST::nodoBST(){
-    nombres = "";
-    apellidos = "";
-    correo = "";
-    contrasena = "";
-    fechaNacimiento = "";
-    derecha = nullptr;
-    izquierda = nullptr;
-}
-
-string nodoBST::getNombres(){
-    return nombres;
-}
-string nodoBST::getApellidos(){
-    return apellidos;
-}
-string nodoBST::getContrasena(){
-    return contrasena;
-}
-string nodoBST::getCorreo(){
-    return correo;
-}
-string nodoBST::getFechaNacimiento(){
-    return fechaNacimiento;
-}
-nodoBST* nodoBST::getDerecha(){
-    return derecha;
-}
-nodoBST* nodoBST::getIzquierda(){
-    return izquierda;
-}
-void nodoBST::setDerecha(nodoBST* der){
-    this->derecha = der;
-}
-void nodoBST::setIzquierda(nodoBST* izq){
-    this->izquierda = izq;
-}
-
-PilaSolicitudesRecibidas* nodoBST::getPilaSolicitudesRecibidas() {
-    return this->pilaSolicitudesRecibidas;
-}
-ListaSolicitudesEnviadas* nodoBST::getListaDeSolicitudesEnviadas(){
-    return this->listadeSolicitudesEnviadasUsuario;
-}
-
-matriz* nodoBST::getMimatrizAmigos(){
-    return this->miMatrizAmigos;
-}
-ListaSolicitudesRecibidas* nodoBST::getListaSolicitudesRecibidas(){
-    return this->listadeSolicitudesRecibidasUsuario;
+    fecha = "";
+    izq = nullptr;
+    drcha = nullptr;
 }
 
 
-//----------------------------------------------------------------------------------------------
 
-listaEnlazadaBST::listaEnlazadaBST(){
+void nodoBST::setDrcha(nodoBST *der){
+    this->drcha = der;
+}
+void nodoBST::setgetIzq(nodoBST *izq){
+    this->izq = izq;
+}
+
+nodoBST* nodoBST::getDrcha(){
+    return drcha;
+}
+
+nodoBST* nodoBST::getIzq(){
+    return izq;
+}
+
+string nodoBST::getfecha(){
+    return fecha;
+}
+
+listaNodoPub* nodoBST::getPublicacionesBST(){
+    return this->publicacionesBST;
+}
+
+//------------------------------------------------------------------------------------------
+
+
+
+ArbolBST::ArbolBST(){
     this->raiz = nullptr;
 }
 
-listaEnlazadaBST::~listaEnlazadaBST(){
+
+ArbolBST::~ArbolBST(){
     postOrden(this->raiz,1);
 }
 
 
-void listaEnlazadaBST::agregarUsuario(string n, string a, string c, string pwd, string fNac){
-    this->raiz = agregarUsuario(this->raiz,n,a,c,pwd,fNac);
+void ArbolBST::agregarPublicacionBST(string correo,string contenido,string fecha,string hora,string imagen,int id){
+    this->raiz = agregarPublicacionBST(this->raiz,correo,contenido,fecha,hora,imagen,id);
 }
 
-nodoBST* listaEnlazadaBST::agregarUsuario(nodoBST* raiz,string n, string a, string c, string pwd, string fNac){
-    if(raiz == nullptr){raiz = new nodoBST(n,a,c,pwd,fNac);}
-    else if(c < raiz->getCorreo()){raiz->setIzquierda(agregarUsuario(raiz->getIzquierda(),n,a,c,pwd,fNac));}
-    else if(c > raiz->getCorreo()){raiz->setDerecha(agregarUsuario(raiz->getDerecha(),n,a,c,pwd,fNac));}
+nodoBST* ArbolBST::agregarPublicacionBST(nodoBST* raiz,string correo,string contenido,string fecha,string hora,string imagen,int id){
+
+    if(raiz == nullptr){
+        raiz = new nodoBST(fecha);
+        raiz->getPublicacionesBST()->agregarPublicacionL(fecha,correo, contenido, hora,imagen,id);
+        raiz->getPublicacionesBST()->mostrarPublicacionesL();
+    }
+    else if(compararFechas(fecha, raiz->getfecha())){
+        raiz->setgetIzq(agregarPublicacionBST(raiz->getIzq(),correo,contenido,fecha,hora,imagen,id));
+    }
+    else if(compararFechas(raiz->getfecha(), fecha)){
+        raiz->setDrcha(agregarPublicacionBST(raiz->getDrcha(),correo,contenido,fecha,hora,imagen,id));
+    }else{
+        // Si la fecha es igual, agregar la publicación en la lista del nodo existente
+        raiz->getPublicacionesBST()->agregarPublicacionL(fecha,correo, contenido, hora,imagen,id);
+        raiz->getPublicacionesBST()->mostrarPublicacionesL();
+    }
     return raiz;
 }
 
-void listaEnlazadaBST::postOrden(){
-    postOrden(this->raiz,0);
+
+
+void ArbolBST::postOrden(){
+    return postOrden(this->raiz,0);
 }
 
-void listaEnlazadaBST::postOrden(nodoBST *raiz, bool estado){
+void ArbolBST::postOrden(nodoBST *raiz, bool estado){
     if(raiz != nullptr){
-        postOrden(raiz->getIzquierda(), estado);
-        postOrden(raiz->getDerecha(), estado);
+        postOrden(raiz->getIzq(), estado);
+        postOrden(raiz->getDrcha(), estado);
         if(!estado){
-            qDebug() << QString::fromStdString(raiz->getCorreo());
-
-        }else{delete raiz;}
-    }
-}
-
-bool listaEnlazadaBST::verificarCorreoArb(string correo){
-    return verificarCorreoArb(this->raiz,correo);
-}
-bool listaEnlazadaBST::verificarCorreoArb(nodoBST* raiz, string correo){
-    if(raiz == nullptr){
-        return true; //no existe el correo
-    }
-
-    if(raiz->getCorreo() == correo){
-        return false; // si existe el correo y esta en la raiz
-    }
-
-    if(correo < raiz->getCorreo()){
-        return verificarCorreoArb(raiz->getIzquierda(),correo);
-    }
-
-    if(correo > raiz->getCorreo()){
-        return verificarCorreoArb(raiz->getDerecha(), correo);
-    }
-
-    return true;
-}
-
-int listaEnlazadaBST::iniciodeSesionArb(string contra,string correo){
-    if (contra == "EDD2S2024" && correo == "admin@gmail.com") {
-        cout << "Inicio de Sesion Exitosa! " << endl;
-        cout << "Bienvenido: Admin" << endl;
-        return 1;
-    }
-    return iniciodeSesionArb(this->raiz, contra,correo); //buscamos en nuestro arbol
-}
-int listaEnlazadaBST::iniciodeSesionArb(nodoBST* raiz,string contra,string correo){
-
-    if(raiz == nullptr){
-        return 0;
-    }
-
-    if(raiz->getCorreo() == correo){
-        if(raiz->getContrasena() == contra){
-            //aqui se pone en el label el nombre
-            return 2;
+            qDebug() << QString::fromStdString(raiz->getfecha());
         }else{
-            return 0;
+            delete raiz;
         }
     }
-
-    if(correo < raiz->getCorreo()){
-        return iniciodeSesionArb(raiz->getIzquierda(),contra,correo);
-    }
-
-    if(correo > raiz->getCorreo()){
-        return iniciodeSesionArb(raiz->getDerecha(),contra,correo);
-    }
-
-    return 0;
-
 }
 
-nodoBST* listaEnlazadaBST::buscarNodoPorCorreoArb(string correo){
-    return buscarNodoPorCorreoArb(this->raiz,correo);
+
+
+void ArbolBST::preOrden(){
+    preOrden(this->raiz);
 }
 
-nodoBST* listaEnlazadaBST::buscarNodoPorCorreoArb(nodoBST* raiz,string correo){
+void ArbolBST::inOrden(){
+    inOrden(this->raiz);
+}
+
+void ArbolBST::preOrden(nodoBST *raiz){
+    if(raiz != nullptr){
+        std::cout << raiz->getfecha() << ", ";
+        preOrden(raiz->getIzq());
+        preOrden(raiz->getDrcha());
+    }
+}
+
+void ArbolBST::inOrden(nodoBST *raiz){
+    if(raiz != nullptr){
+        preOrden(raiz->getIzq());
+        std::cout << raiz->getfecha() << ", ";
+        preOrden(raiz->getDrcha());
+    }
+}
+
+nodoBST* ArbolBST::getRaiz() {
+    return raiz;
+}
+
+bool ArbolBST::verificarexisteFecha(int contador, string fecha, string correo){
+    return verificarexisteFecha(this->raiz,contador,fecha,correo);
+}
+bool ArbolBST::verificarexisteFecha(nodoBST *raiz, int contador, string fecha, string correo){
+    if (raiz == nullptr) {
+        return false;
+    }
+
+    // Verifica en la lista de publicaciones del nodo actual
+    nodoSimplePub* actual = raiz->getPublicacionesBST()->getCabeza();
+    while (actual != nullptr) {
+        if (actual->getIdL() == contador && actual->getFechaL() == fecha && actual->getCorreoL() == correo) {
+            return true;
+        }
+        actual = actual->getSiguiente();  // Avanza en la lista de publicaciones
+    }
+
+    if (verificarexisteFecha(raiz->getIzq(), contador, fecha, correo)) {
+        return true;
+    }
+    if (verificarexisteFecha(raiz->getDrcha(), contador, fecha, correo)) {
+        return true;
+    }
+
+    return false;
+}
+
+
+nodoBST* ArbolBST::buscarNodoporFecha(string fecha){
+    return buscarNodoporFecha(this->raiz,fecha);
+}
+
+nodoBST* ArbolBST::buscarNodoporFecha(nodoBST* raiz,string fecha){
     if (raiz == nullptr) {
         return nullptr;
     }
-    if (raiz->getCorreo() == correo) {
+    if (raiz->getfecha() == fecha) {
         return raiz;
     }
-    if (correo < raiz->getCorreo()) {
-        return buscarNodoPorCorreoArb(raiz->getIzquierda(), correo);
+    if (compararFechas(fecha, raiz->getfecha())) {
+        return buscarNodoporFecha(raiz->getIzq(), fecha);
     }
-    if(correo > raiz->getCorreo()){
-        return buscarNodoPorCorreoArb(raiz->getDerecha(),correo);
+    if(compararFechas(raiz->getfecha(), fecha)){
+        return buscarNodoporFecha(raiz->getDrcha(),fecha);
     }
 
     return nullptr;
 
 }
 
-string listaEnlazadaBST::buscarNombreArb(string correo){
-    return buscarNombreArb(this->raiz,correo);
+
+
+nodoSimplePub* ArbolBST::Ordeninorden(int cantidadMaxima) {
+    nodoSimplePub* cabeza = nullptr;
+    nodoSimplePub* actual = nullptr;
+    int contador = 0;
+    Ordeninorden(this->raiz, cabeza, actual, contador, cantidadMaxima);
+    return cabeza;
 }
 
-string listaEnlazadaBST::buscarNombreArb(nodoBST* raiz,string correo){
-    if(raiz == nullptr){
-        return "";
-    }
-    if(raiz->getCorreo() == correo){
-        return raiz->getNombres() +" "+raiz->getApellidos();
-    }
+void ArbolBST::Ordeninorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimplePub* &actual, int &contador, int cantidadMaxima) {
+    if (raiz != nullptr && contador < cantidadMaxima) {
 
-    if (correo < raiz->getCorreo()) {
-        return buscarNombreArb(raiz->getIzquierda(), correo);
-    }
-    if(correo > raiz->getCorreo()){
-        return buscarNombreArb(raiz->getDerecha(),correo);
-    }
+        Ordeninorden(raiz->getIzq(), cabeza, actual, contador, cantidadMaxima);
 
-    return "";
+        if(contador == cantidadMaxima){return;}
 
+        listaNodoPub* publicaciones = raiz->getPublicacionesBST();  // Obtén la lista de publicaciones de la fecha
+        if (publicaciones != nullptr) {
+            nodoSimplePub* nodoPub = publicaciones->getCabeza();  // Empieza desde la cabeza de la lista de publicaciones
+            while (nodoPub != nullptr && contador < cantidadMaxima) {
+
+                nodoSimplePub* nuevoNodo = new nodoSimplePub(nodoPub->getFechaL(), nodoPub->getCorreoL(), nodoPub->getContenidoL(), nodoPub->getHoraL(), nodoPub->getImagen(), nodoPub->getIdL());
+
+                if (cabeza == nullptr) {
+                    cabeza = nuevoNodo;
+                    actual = cabeza;
+                } else {
+                    actual->setSiguiente(nuevoNodo);
+                    actual = nuevoNodo;
+                }
+
+                contador++;
+                nodoPub = nodoPub->getSiguiente();
+            }
+        }
+
+        Ordeninorden(raiz->getDrcha(), cabeza, actual, contador, cantidadMaxima);
+    }
 }
 
-nodoBST* listaEnlazadaBST::getRaiz() {
-    return raiz;
+
+
+nodoSimplePub* ArbolBST::OrdenPreorden(int cantidadMaxima) {
+    nodoSimplePub* cabeza = nullptr;
+    nodoSimplePub* actual = nullptr;
+    int contador = 0;
+    OrdenPreorden(this->raiz, cabeza, actual, contador, cantidadMaxima);
+    return cabeza;
+}
+
+void ArbolBST::OrdenPreorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimplePub* &actual, int &contador, int cantidadMaxima) {
+    if (raiz != nullptr && contador < cantidadMaxima) {
+
+        listaNodoPub* publicaciones = raiz->getPublicacionesBST();
+        if (publicaciones != nullptr) {
+            nodoSimplePub* nodoPub = publicaciones->getCabeza();
+            while (nodoPub != nullptr && contador < cantidadMaxima) {
+                nodoSimplePub* nuevoNodo = new nodoSimplePub(nodoPub->getFechaL(), nodoPub->getCorreoL(), nodoPub->getContenidoL(), nodoPub->getHoraL(), nodoPub->getImagen(), nodoPub->getIdL());
+
+                if (cabeza == nullptr) {
+                    cabeza = nuevoNodo;
+                    actual = cabeza;
+                } else {
+                    actual->setSiguiente(nuevoNodo);
+                    actual = nuevoNodo;
+                }
+                contador++;
+                nodoPub = nodoPub->getSiguiente();
+            }
+        }
+
+        OrdenPreorden(raiz->getIzq(), cabeza, actual, contador, cantidadMaxima);
+        OrdenPreorden(raiz->getDrcha(), cabeza, actual, contador, cantidadMaxima);
+    }
+}
+
+nodoSimplePub* ArbolBST::OrdenPostorden(int cantidadMaxima) {
+    nodoSimplePub* cabeza = nullptr;
+    nodoSimplePub* actual = nullptr;
+    int contador = 0;
+    OrdenPostorden(this->raiz, cabeza, actual, contador, cantidadMaxima);
+    return cabeza;
+}
+
+void ArbolBST::OrdenPostorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimplePub* &actual, int &contador, int cantidadMaxima) {
+    if (raiz != nullptr && contador < cantidadMaxima) {
+
+        OrdenPostorden(raiz->getIzq(), cabeza, actual, contador, cantidadMaxima);
+        OrdenPostorden(raiz->getDrcha(), cabeza, actual, contador, cantidadMaxima);
+
+
+        listaNodoPub* publicaciones = raiz->getPublicacionesBST();
+        if (publicaciones != nullptr) {
+            nodoSimplePub* nodoPub = publicaciones->getCabeza();
+            while (nodoPub != nullptr && contador < cantidadMaxima) {
+                nodoSimplePub* nuevoNodo = new nodoSimplePub(nodoPub->getFechaL(), nodoPub->getCorreoL(), nodoPub->getContenidoL(), nodoPub->getHoraL(), nodoPub->getImagen(), nodoPub->getIdL());
+
+                if (cabeza == nullptr) {
+                    cabeza = nuevoNodo;
+                    actual = cabeza;
+                } else {
+                    actual->setSiguiente(nuevoNodo);
+                    actual = nuevoNodo;
+                }
+                contador++;
+                nodoPub = nodoPub->getSiguiente();
+            }
+        }
+    }
 }
 

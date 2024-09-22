@@ -113,12 +113,7 @@ text-align: center;
       </property>
       <item>
        <property name="text">
-        <string/>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>TODOS</string>
+        <string>TODO</string>
        </property>
       </item>
      </widget>
@@ -333,7 +328,7 @@ border-radius: 10px;
     <widget class="QPushButton" name="btnCrearPub">
      <property name="geometry">
       <rect>
-       <x>490</x>
+       <x>510</x>
        <y>20</y>
        <width>261</width>
        <height>41</height>
@@ -353,16 +348,16 @@ border-radius: 10px;
       <string>CREAR UNA PUBLICACION</string>
      </property>
     </widget>
-    <widget class="QPlainTextEdit" name="plainTextEdit">
+    <widget class="QPlainTextEdit" name="plnText">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>220</y>
+       <y>180</y>
        <width>711</width>
-       <height>281</height>
+       <height>161</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -379,7 +374,7 @@ border-radius: 10px;</string>
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>110</y>
+       <y>70</y>
        <width>321</width>
        <height>26</height>
       </rect>
@@ -395,7 +390,7 @@ border-radius: 10px;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>190</y>
+       <y>150</y>
        <width>271</width>
        <height>20</height>
       </rect>
@@ -411,8 +406,8 @@ border-radius: 10px;</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>110</y>
-       <width>101</width>
+       <y>70</y>
+       <width>91</width>
        <height>20</height>
       </rect>
      </property>
@@ -430,7 +425,7 @@ border-radius: 10px;</string>
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>150</y>
+       <y>110</y>
        <width>321</width>
        <height>26</height>
       </rect>
@@ -446,8 +441,8 @@ border-radius: 10px;</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>150</y>
-       <width>81</width>
+       <y>110</y>
+       <width>71</width>
        <height>20</height>
       </rect>
      </property>
@@ -456,6 +451,74 @@ border-radius: 10px;</string>
      </property>
      <property name="text">
       <string>FECHA: </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblImagen">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>350</y>
+       <width>391</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 20pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnSiguiente">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>410</y>
+       <width>141</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+     </property>
+     <property name="text">
+      <string>SIGUIENTE</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnAnterior">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>410</y>
+       <width>141</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+     </property>
+     <property name="text">
+      <string>ANTERIOR</string>
      </property>
     </widget>
    </widget>

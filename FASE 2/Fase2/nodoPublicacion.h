@@ -60,7 +60,7 @@ public:
     void agregarPub(string correo, string contenido, string fecha, string hora);
     void agregarPubConImagen(string correo, string contenido, string fecha, string hora, string imagen);  // Sobrecarga para agregar publicación con imagen
     NodoPub* getPrimero();
-
+    int getContPublica();
     int eliminarPublicacion(string correo);
 
     void eliminarTodaslasPublicaciones();

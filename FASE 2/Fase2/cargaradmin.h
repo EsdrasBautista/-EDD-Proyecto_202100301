@@ -23,6 +23,8 @@ private slots:
 
     void on_btnSoli_clicked();
 
+    void on_btnPub_clicked();
+
 private:
     Ui::CargarAdmin *ui;
     listaEnlazadaArb* listaArbol;

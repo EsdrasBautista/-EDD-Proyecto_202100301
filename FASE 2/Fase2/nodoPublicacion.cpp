@@ -103,6 +103,10 @@ listaPublicaciones::~listaPublicaciones(){
     ultimo = nullptr;
 }
 
+int listaPublicaciones::getContPublica(){
+    return contPublica;
+}
+
 void listaPublicaciones::agregarPub(string correo,string contenido,string fecha,string hora){
     contPublica ++;
 

@@ -34,7 +34,6 @@ public:
     QLabel *label;
     QLabel *lblNombreU;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QMenu *menuPERFIL;
     QMenu *menuREPORTES;
@@ -77,14 +76,6 @@ public:
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(40, 250, 111, 41));
-        pushButton_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_2->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
-"border: 5px solid white;\n"
-"background-color: rgb(255, 255, 255);\n"
-"border-radius: 10px;"));
         UserInt->setCentralWidget(centralwidget);
         menubar = new QMenuBar(UserInt);
         menubar->setObjectName("menubar");
@@ -124,7 +115,6 @@ public:
         label->setText(QCoreApplication::translate("UserInt", "BIENVENIDO", nullptr));
         lblNombreU->setText(QCoreApplication::translate("UserInt", ".", nullptr));
         pushButton->setText(QCoreApplication::translate("UserInt", "CERRAR SESION", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("UserInt", "ver amigos", nullptr));
         menuPERFIL->setTitle(QCoreApplication::translate("UserInt", "MENU OPCIONES", nullptr));
         menuREPORTES->setTitle(QCoreApplication::translate("UserInt", "REPORTES", nullptr));
     } // retranslateUi

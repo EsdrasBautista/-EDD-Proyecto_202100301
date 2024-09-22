@@ -42,12 +42,15 @@ public:
     QPushButton *btnVercoment;
     QPushButton *btnVerArbol;
     QPushButton *btnCrearPub;
-    QPlainTextEdit *plainTextEdit;
+    QPlainTextEdit *plnText;
     QLineEdit *txtUsuario;
     QLabel *label_7;
     QLabel *lblUsuario;
     QLineEdit *txtFecha;
     QLabel *lblFecha;
+    QLabel *lblImagen;
+    QPushButton *btnSiguiente;
+    QPushButton *btnAnterior;
 
     void setupUi(QMainWindow *Publicaciones)
     {
@@ -83,7 +86,6 @@ public:
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
         cmbFecha = new QComboBox(groupBox);
-        cmbFecha->addItem(QString());
         cmbFecha->addItem(QString());
         cmbFecha->setObjectName("cmbFecha");
         cmbFecha->setGeometry(QRect(30, 50, 281, 41));
@@ -168,49 +170,75 @@ public:
 ""));
         btnCrearPub = new QPushButton(groupBox_4);
         btnCrearPub->setObjectName("btnCrearPub");
-        btnCrearPub->setGeometry(QRect(490, 20, 261, 41));
+        btnCrearPub->setGeometry(QRect(510, 20, 261, 41));
         btnCrearPub->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnCrearPub->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;\n"
 ""));
-        plainTextEdit = new QPlainTextEdit(groupBox_4);
-        plainTextEdit->setObjectName("plainTextEdit");
-        plainTextEdit->setEnabled(false);
-        plainTextEdit->setGeometry(QRect(40, 220, 711, 281));
-        plainTextEdit->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
+        plnText = new QPlainTextEdit(groupBox_4);
+        plnText->setObjectName("plnText");
+        plnText->setEnabled(false);
+        plnText->setGeometry(QRect(40, 180, 711, 161));
+        plnText->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
         txtUsuario = new QLineEdit(groupBox_4);
         txtUsuario->setObjectName("txtUsuario");
         txtUsuario->setEnabled(false);
-        txtUsuario->setGeometry(QRect(150, 110, 321, 26));
+        txtUsuario->setGeometry(QRect(150, 70, 321, 26));
         txtUsuario->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
         label_7 = new QLabel(groupBox_4);
         label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(40, 190, 271, 20));
+        label_7->setGeometry(QRect(40, 150, 271, 20));
         label_7->setStyleSheet(QString::fromUtf8("font: 600 12pt \"Segoe UI Semibold\";"));
         lblUsuario = new QLabel(groupBox_4);
         lblUsuario->setObjectName("lblUsuario");
-        lblUsuario->setGeometry(QRect(40, 110, 101, 20));
+        lblUsuario->setGeometry(QRect(40, 70, 91, 20));
         lblUsuario->setStyleSheet(QString::fromUtf8("font: 600 12pt \"Segoe UI Semibold\";"));
         txtFecha = new QLineEdit(groupBox_4);
         txtFecha->setObjectName("txtFecha");
         txtFecha->setEnabled(false);
-        txtFecha->setGeometry(QRect(150, 150, 321, 26));
+        txtFecha->setGeometry(QRect(150, 110, 321, 26));
         txtFecha->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
         lblFecha = new QLabel(groupBox_4);
         lblFecha->setObjectName("lblFecha");
-        lblFecha->setGeometry(QRect(70, 150, 81, 20));
+        lblFecha->setGeometry(QRect(70, 110, 71, 20));
         lblFecha->setStyleSheet(QString::fromUtf8("font: 600 12pt \"Segoe UI Semibold\";"));
+        lblImagen = new QLabel(groupBox_4);
+        lblImagen->setObjectName("lblImagen");
+        lblImagen->setEnabled(false);
+        lblImagen->setGeometry(QRect(40, 350, 391, 151));
+        lblImagen->setStyleSheet(QString::fromUtf8("font: 600 20pt \"Segoe UI Variable Display Semib\";\n"
+"border: 5px solid white;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;"));
+        btnSiguiente = new QPushButton(groupBox_4);
+        btnSiguiente->setObjectName("btnSiguiente");
+        btnSiguiente->setGeometry(QRect(610, 410, 141, 41));
+        btnSiguiente->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnSiguiente->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
+"border: 5px solid white;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+""));
+        btnAnterior = new QPushButton(groupBox_4);
+        btnAnterior->setObjectName("btnAnterior");
+        btnAnterior->setGeometry(QRect(450, 410, 141, 41));
+        btnAnterior->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnAnterior->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
+"border: 5px solid white;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+""));
         Publicaciones->setCentralWidget(centralwidget);
 
         retranslateUi(Publicaciones);
@@ -225,8 +253,7 @@ public:
         groupBox_3->setTitle(QString());
         groupBox->setTitle(QCoreApplication::translate("Publicaciones", "FECHA", nullptr));
         pushButton->setText(QCoreApplication::translate("Publicaciones", "APLICAR", nullptr));
-        cmbFecha->setItemText(0, QString());
-        cmbFecha->setItemText(1, QCoreApplication::translate("Publicaciones", "TODOS", nullptr));
+        cmbFecha->setItemText(0, QCoreApplication::translate("Publicaciones", "TODO", nullptr));
 
         groupBox_2->setTitle(QCoreApplication::translate("Publicaciones", "RECORRIDO LIMITADO", nullptr));
         pushButton_2->setText(QCoreApplication::translate("Publicaciones", "APLICAR", nullptr));
@@ -245,6 +272,9 @@ public:
         label_7->setText(QCoreApplication::translate("Publicaciones", "TEXTO PUBLICACION: ", nullptr));
         lblUsuario->setText(QCoreApplication::translate("Publicaciones", "USUARIO: ", nullptr));
         lblFecha->setText(QCoreApplication::translate("Publicaciones", "FECHA: ", nullptr));
+        lblImagen->setText(QString());
+        btnSiguiente->setText(QCoreApplication::translate("Publicaciones", "SIGUIENTE", nullptr));
+        btnAnterior->setText(QCoreApplication::translate("Publicaciones", "ANTERIOR", nullptr));
     } // retranslateUi
 
 };

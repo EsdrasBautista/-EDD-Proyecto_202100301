@@ -116,7 +116,7 @@ public:
         label_5->setText(QCoreApplication::translate("BuscarAdmin", "CORREO:", nullptr));
         cmbOrden->setItemText(0, QString());
         cmbOrden->setItemText(1, QCoreApplication::translate("BuscarAdmin", "PreOrden", nullptr));
-        cmbOrden->setItemText(2, QCoreApplication::translate("BuscarAdmin", "PosOrden", nullptr));
+        cmbOrden->setItemText(2, QCoreApplication::translate("BuscarAdmin", "PostOrden", nullptr));
         cmbOrden->setItemText(3, QCoreApplication::translate("BuscarAdmin", "InOrden", nullptr));
 
         btnAplicar->setText(QCoreApplication::translate("BuscarAdmin", "APLICAR", nullptr));

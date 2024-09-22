@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     listaPub = new listaPublicaciones();
 
     listaArbol->agregarUsuario("esdras","eliab","ee","123","23/08/2000");
-    listaArbol->agregarUsuario("maria","gomez","aa","456","15/06/1995");
+    listaArbol->agregarUsuario("gabriel","garcia","aa","456","15/06/1995");
     listaArbol->agregarUsuario("juan","perez","bb","789","22/11/1988");
     listaArbol->agregarUsuario("maria","gomez","cc","123","15/06/1995");
 

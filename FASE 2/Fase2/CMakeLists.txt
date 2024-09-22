@@ -55,6 +55,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         reportesadmin.h reportesadmin.cpp reportesadmin.ui
         listaAmistades.h
         listaAmistades.cpp
+        SimplePublicacion.h
+        SimplePublicacion.cpp
+        modificaradmin.h modificaradmin.cpp modificaradmin.ui
+        arbolB.h
+        arbolB.cpp
+        comentaru.h comentaru.cpp comentaru.ui
+
 
 
 

@@ -17,6 +17,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,7 +28,6 @@ public:
     QWidget *centralwidget;
     QPushButton *pushButton_3;
     QPushButton *btnCrear;
-    QLineEdit *txtHora;
     QLabel *lblCorreo;
     QLabel *label_4;
     QLabel *lblCorreo_2;
@@ -37,6 +37,7 @@ public:
     QLabel *label_5;
     QLineEdit *txtImagen;
     QLabel *lblImg;
+    QTimeEdit *txtHora;
 
     void setupUi(QMainWindow *CrearPublicacion)
     {
@@ -61,13 +62,6 @@ public:
         btnCrear->setGeometry(QRect(360, 500, 161, 51));
         btnCrear->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnCrear->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
-"border: 5px solid white;\n"
-"background-color: rgb(255, 255, 255);\n"
-"border-radius: 10px;"));
-        txtHora = new QLineEdit(centralwidget);
-        txtHora->setObjectName("txtHora");
-        txtHora->setGeometry(QRect(280, 440, 341, 31));
-        txtHora->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
@@ -121,6 +115,13 @@ public:
         lblImg->setObjectName("lblImg");
         lblImg->setGeometry(QRect(640, 320, 201, 161));
         lblImg->setStyleSheet(QString::fromUtf8("font: 600 20pt \"Segoe UI Variable Display Semib\";\n"
+"border: 5px solid white;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;"));
+        txtHora = new QTimeEdit(centralwidget);
+        txtHora->setObjectName("txtHora");
+        txtHora->setGeometry(QRect(280, 435, 341, 31));
+        txtHora->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));

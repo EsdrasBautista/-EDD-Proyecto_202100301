@@ -1,11 +1,14 @@
 #ifndef LISTAPUBLICACIONES_H
 #define LISTAPUBLICACIONES_H
 
+#include "SimplePublicacion.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <cstdlib>
 #include <string>
+#include <ctime>
+#include <iomanip>
 #include "nodoMatriz.h"
 #include "PilaSoli_R.h"
 #include "listaSoli_E.h"
@@ -18,68 +21,74 @@ using namespace std;
 class nodoBST{
 
 private:
-    string nombres;
-    string apellidos;
-    string correo;
-    string contrasena;
-    string fechaNacimiento;
-    nodoBST *derecha, *izquierda;
-    PilaSolicitudesRecibidas* pilaSolicitudesRecibidas; // Pila de solicitudes recibidas
-    ListaSolicitudesEnviadas* listadeSolicitudesEnviadasUsuario; //lista de solicitudes enviadas
-    ListaSolicitudesRecibidas* listadeSolicitudesRecibidasUsuario;
-
-
-    matriz* miMatrizAmigos; //matriz dispersa
-
+    string fecha;
+    nodoBST *drcha, *izq;
+    listaNodoPub *publicacionesBST;
 
 
 public:
-    nodoBST(string n, string a, string c, string pwd, string fNac);
     nodoBST();
-
-
-    string getNombres();
-    string getApellidos();
-    string getCorreo();
-    string getContrasena();
-    string getFechaNacimiento();
-
-    void setDerecha(nodoBST *derecha);
-    void setIzquierda(nodoBST *izquierda);
-    nodoBST* getDerecha();
-    nodoBST* getIzquierda();
-    PilaSolicitudesRecibidas* getPilaSolicitudesRecibidas(); // Getter para la pila de solicitudes
-    ListaSolicitudesEnviadas* getListaDeSolicitudesEnviadas(); // Getter para la lista de solicitudes que el usuario ha enviado
-    ListaSolicitudesRecibidas* getListaSolicitudesRecibidas();
-    matriz* getMimatrizAmigos();
+    nodoBST(string fecha);
+    void setDrcha(nodoBST *der);
+    void setgetIzq(nodoBST *izq);
+    string getfecha();
+    listaNodoPub* getPublicacionesBST();
+    nodoBST* getDrcha();
+    nodoBST* getIzq();
 };
 
 
-class listaEnlazadaBST{
+class ArbolBST{
 
 private:
     nodoBST* raiz;
-    nodoBST* agregarUsuario(nodoBST* raiz,string n, string a, string c, string pwd, string fNac);
-    bool verificarCorreoArb(nodoBST* raiz, string correo);
-    void postOrden(nodoBST* raiz, bool estado);
-    int iniciodeSesionArb(nodoBST* raiz,string contra,string correo);
-    nodoBST* buscarNodoPorCorreoArb(nodoBST* raiz,string correo);
-    string buscarNombreArb(nodoBST* raiz,string correo);
+    nodoBST* agregarPublicacionBST(nodoBST* raiz,string correo,string contenido,string fecha,string hora,string imagen,int contador);
+    bool verificarexisteFecha(nodoBST* raiz,int contador, string fecha,string correo);
+    void eliminarPublicacionA(nodoBST* raiz,int contador, string fecha,string correo);
+    nodoBST* buscarNodoporFecha(nodoBST* raiz,string fecha);
 
+    void postOrden(nodoBST *raiz, bool accion);
+    void preOrden(nodoBST *raiz);
+    void inOrden(nodoBST *raiz);
+    void graph(nodoBST *raiz, std::ofstream &f);
+
+    std::tm convertirFecha(string fecha) {
+        std::tm tm = {};
+        std::istringstream ss(fecha);
+        ss >> std::get_time(&tm, "%d/%m/%Y"); // Formato d/m/y
+        if (ss.fail()) {
+            throw std::runtime_error("Error al convertir la fecha");
+        }
+        return tm;
+    }
+
+    void Ordeninorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimplePub* &actual, int &contador, int cantidadMaxima);
+    void OrdenPostorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimplePub* &actual, int &contador, int cantidadMaxima);
+    void OrdenPreorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimplePub* &actual, int &contador, int cantidadMaxima);
 public:
-    listaEnlazadaBST();
-    ~listaEnlazadaBST();
+    ArbolBST();
+    ~ArbolBST();
+    void agregarPublicacionBST(string correo,string contenido,string fecha,string hora,string imagen,int contador);
+    bool verificarexisteFecha(int contador, string fecha,string correo);
+    void eliminarPublicacionA(int contador, string fecha,string correo);
 
-    void agregarUsuario(string n, string a, string c, string pwd, string fNac);
+
+    void preOrden();
+    void inOrden();
     void postOrden();
-    //void inOrder();
-    //void postOrden();
-    //void graph();
+    void graph();
     nodoBST* getRaiz();
-    bool verificarCorreoArb(string correo);
-    int iniciodeSesionArb(string contra,string correo);
-    nodoBST* buscarNodoPorCorreoArb(string correo);
-    string buscarNombreArb(string correo);
+    nodoBST* buscarNodoporFecha(string fecha);
+
+    nodoSimplePub* Ordeninorden(int cantidadMax);
+    nodoSimplePub* OrdenPostorden(int cantidadMax);
+    nodoSimplePub* OrdenPreorden(int cantidadMax);
+
+    bool compararFechas(const std::string& f1, const std::string& f2) {
+        std::tm tm1 = convertirFecha(f1);
+        std::tm tm2 = convertirFecha(f2);
+        return std::difftime(std::mktime(&tm1), std::mktime(&tm2)) < 0;
+    }
 
 };
 

@@ -32,7 +32,6 @@ public:
     QPushButton *btnCrear;
     QPushButton *btnSalir;
     QPushButton *btnInfo;
-    QPushButton *btnVerU;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -105,9 +104,6 @@ public:
 "font: 900 10pt \"Segoe UI Black\";\n"
 "\n"
 ""));
-        btnVerU = new QPushButton(centralwidget);
-        btnVerU->setObjectName("btnVerU");
-        btnVerU->setGeometry(QRect(20, 30, 93, 29));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -126,7 +122,6 @@ public:
         btnCrear->setText(QCoreApplication::translate("MainWindow", "CREAR USUARIO", nullptr));
         btnSalir->setText(QCoreApplication::translate("MainWindow", "SALIR", nullptr));
         btnInfo->setText(QCoreApplication::translate("MainWindow", "INFORMACION", nullptr));
-        btnVerU->setText(QCoreApplication::translate("MainWindow", "ver usuarios", nullptr));
     } // retranslateUi
 
 };

@@ -233,6 +233,38 @@ build CMakeFiles/Fase2.dir/listaAmistades.cpp.obj: CXX_COMPILER__Fase2_unscanned
   OBJECT_DIR = CMakeFiles\Fase2.dir
   OBJECT_FILE_DIR = CMakeFiles\Fase2.dir
 
+build CMakeFiles/Fase2.dir/SimplePublicacion.cpp.obj: CXX_COMPILER__Fase2_unscanned_Debug C$:/Users/bauti/Desktop/USAC/2024/SEMESTRE$ 2/EDD/LAB/PROYECTO/FASE$ 2/Fase2/SimplePublicacion.cpp || cmake_object_order_depends_target_Fase2
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Fase2.dir\SimplePublicacion.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/include" -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Fase2.dir
+  OBJECT_FILE_DIR = CMakeFiles\Fase2.dir
+
+build CMakeFiles/Fase2.dir/modificaradmin.cpp.obj: CXX_COMPILER__Fase2_unscanned_Debug C$:/Users/bauti/Desktop/USAC/2024/SEMESTRE$ 2/EDD/LAB/PROYECTO/FASE$ 2/Fase2/modificaradmin.cpp || cmake_object_order_depends_target_Fase2
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Fase2.dir\modificaradmin.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/include" -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Fase2.dir
+  OBJECT_FILE_DIR = CMakeFiles\Fase2.dir
+
+build CMakeFiles/Fase2.dir/arbolB.cpp.obj: CXX_COMPILER__Fase2_unscanned_Debug C$:/Users/bauti/Desktop/USAC/2024/SEMESTRE$ 2/EDD/LAB/PROYECTO/FASE$ 2/Fase2/arbolB.cpp || cmake_object_order_depends_target_Fase2
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Fase2.dir\arbolB.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/include" -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Fase2.dir
+  OBJECT_FILE_DIR = CMakeFiles\Fase2.dir
+
+build CMakeFiles/Fase2.dir/comentaru.cpp.obj: CXX_COMPILER__Fase2_unscanned_Debug C$:/Users/bauti/Desktop/USAC/2024/SEMESTRE$ 2/EDD/LAB/PROYECTO/FASE$ 2/Fase2/comentaru.cpp || cmake_object_order_depends_target_Fase2
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\Fase2.dir\comentaru.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/Fase2_autogen/include" -isystem C:/Qt/6.7.2/mingw_64/include/QtCore -isystem C:/Qt/6.7.2/mingw_64/include -isystem C:/Qt/6.7.2/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.2/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.2/mingw_64/include/QtGui
+  OBJECT_DIR = CMakeFiles\Fase2.dir
+  OBJECT_FILE_DIR = CMakeFiles\Fase2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Fase2
@@ -241,7 +273,7 @@ build CMakeFiles/Fase2.dir/listaAmistades.cpp.obj: CXX_COMPILER__Fase2_unscanned
 #############################################
 # Link the executable Fase2.exe
 
-build Fase2.exe: CXX_EXECUTABLE_LINKER__Fase2_Debug CMakeFiles/Fase2.dir/Fase2_autogen/mocs_compilation.cpp.obj CMakeFiles/Fase2.dir/main.cpp.obj CMakeFiles/Fase2.dir/mainwindow.cpp.obj CMakeFiles/Fase2.dir/admin.cpp.obj CMakeFiles/Fase2.dir/userint.cpp.obj CMakeFiles/Fase2.dir/crearuser.cpp.obj CMakeFiles/Fase2.dir/listaEnlazadaArbol.cpp.obj CMakeFiles/Fase2.dir/perfil.cpp.obj CMakeFiles/Fase2.dir/buscar.cpp.obj CMakeFiles/Fase2.dir/solicitudes.cpp.obj CMakeFiles/Fase2.dir/GestionarSoli.cpp.obj CMakeFiles/Fase2.dir/nodoMatriz.cpp.obj CMakeFiles/Fase2.dir/PilaSoli_R.cpp.obj CMakeFiles/Fase2.dir/listasoli_e.cpp.obj CMakeFiles/Fase2.dir/listasoli_R.cpp.obj CMakeFiles/Fase2.dir/listaPublicaciones.cpp.obj CMakeFiles/Fase2.dir/publicaciones.cpp.obj CMakeFiles/Fase2.dir/crearpublicacion.cpp.obj CMakeFiles/Fase2.dir/nodoPublicacion.cpp.obj CMakeFiles/Fase2.dir/buscaradmin.cpp.obj CMakeFiles/Fase2.dir/cargaradmin.cpp.obj CMakeFiles/Fase2.dir/reportesadmin.cpp.obj CMakeFiles/Fase2.dir/listaAmistades.cpp.obj | C$:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a || Fase2_autogen Fase2_autogen_timestamp_deps
+build Fase2.exe: CXX_EXECUTABLE_LINKER__Fase2_Debug CMakeFiles/Fase2.dir/Fase2_autogen/mocs_compilation.cpp.obj CMakeFiles/Fase2.dir/main.cpp.obj CMakeFiles/Fase2.dir/mainwindow.cpp.obj CMakeFiles/Fase2.dir/admin.cpp.obj CMakeFiles/Fase2.dir/userint.cpp.obj CMakeFiles/Fase2.dir/crearuser.cpp.obj CMakeFiles/Fase2.dir/listaEnlazadaArbol.cpp.obj CMakeFiles/Fase2.dir/perfil.cpp.obj CMakeFiles/Fase2.dir/buscar.cpp.obj CMakeFiles/Fase2.dir/solicitudes.cpp.obj CMakeFiles/Fase2.dir/GestionarSoli.cpp.obj CMakeFiles/Fase2.dir/nodoMatriz.cpp.obj CMakeFiles/Fase2.dir/PilaSoli_R.cpp.obj CMakeFiles/Fase2.dir/listasoli_e.cpp.obj CMakeFiles/Fase2.dir/listasoli_R.cpp.obj CMakeFiles/Fase2.dir/listaPublicaciones.cpp.obj CMakeFiles/Fase2.dir/publicaciones.cpp.obj CMakeFiles/Fase2.dir/crearpublicacion.cpp.obj CMakeFiles/Fase2.dir/nodoPublicacion.cpp.obj CMakeFiles/Fase2.dir/buscaradmin.cpp.obj CMakeFiles/Fase2.dir/cargaradmin.cpp.obj CMakeFiles/Fase2.dir/reportesadmin.cpp.obj CMakeFiles/Fase2.dir/listaAmistades.cpp.obj CMakeFiles/Fase2.dir/SimplePublicacion.cpp.obj CMakeFiles/Fase2.dir/modificaradmin.cpp.obj CMakeFiles/Fase2.dir/arbolB.cpp.obj CMakeFiles/Fase2.dir/comentaru.cpp.obj | C$:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.2/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a || Fase2_autogen Fase2_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.7.2/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.7.2/mingw_64/lib/libQt6Gui.a  C:/Qt/6.7.2/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.7.2/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -328,7 +360,7 @@ build Fase2_autogen_timestamp_deps: phony
 #############################################
 # Utility command for Fase2_autogen
 
-build Fase2_autogen: phony CMakeFiles/Fase2_autogen Fase2_autogen/include/ui_mainwindow.h Fase2_autogen/include/ui_admin.h Fase2_autogen/include/ui_userint.h Fase2_autogen/include/ui_crearuser.h Fase2_autogen/include/ui_perfil.h Fase2_autogen/include/ui_buscar.h Fase2_autogen/include/ui_solicitudes.h Fase2_autogen/include/ui_publicaciones.h Fase2_autogen/include/ui_crearpublicacion.h Fase2_autogen/include/ui_buscaradmin.h Fase2_autogen/include/ui_cargaradmin.h Fase2_autogen/include/ui_reportesadmin.h Fase2_autogen/timestamp Fase2_autogen/mocs_compilation.cpp Fase2_autogen_timestamp_deps
+build Fase2_autogen: phony CMakeFiles/Fase2_autogen Fase2_autogen/include/ui_mainwindow.h Fase2_autogen/include/ui_admin.h Fase2_autogen/include/ui_userint.h Fase2_autogen/include/ui_crearuser.h Fase2_autogen/include/ui_perfil.h Fase2_autogen/include/ui_buscar.h Fase2_autogen/include/ui_solicitudes.h Fase2_autogen/include/ui_publicaciones.h Fase2_autogen/include/ui_crearpublicacion.h Fase2_autogen/include/ui_buscaradmin.h Fase2_autogen/include/ui_cargaradmin.h Fase2_autogen/include/ui_reportesadmin.h Fase2_autogen/include/ui_modificaradmin.h Fase2_autogen/include/ui_comentaru.h Fase2_autogen/timestamp Fase2_autogen/mocs_compilation.cpp Fase2_autogen_timestamp_deps
 
 
 #############################################
@@ -345,7 +377,7 @@ build Fase2_autogen/timestamp Fase2_autogen/mocs_compilation.cpp | ${cmake_ninja
 #############################################
 # Phony custom command for CMakeFiles\Fase2_autogen
 
-build CMakeFiles/Fase2_autogen Fase2_autogen/include/ui_mainwindow.h Fase2_autogen/include/ui_admin.h Fase2_autogen/include/ui_userint.h Fase2_autogen/include/ui_crearuser.h Fase2_autogen/include/ui_perfil.h Fase2_autogen/include/ui_buscar.h Fase2_autogen/include/ui_solicitudes.h Fase2_autogen/include/ui_publicaciones.h Fase2_autogen/include/ui_crearpublicacion.h Fase2_autogen/include/ui_buscaradmin.h Fase2_autogen/include/ui_cargaradmin.h Fase2_autogen/include/ui_reportesadmin.h | ${cmake_ninja_workdir}CMakeFiles/Fase2_autogen ${cmake_ninja_workdir}Fase2_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_admin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_userint.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_crearuser.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_perfil.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_buscar.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_solicitudes.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_publicaciones.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_crearpublicacion.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_buscaradmin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_cargaradmin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_reportesadmin.h: phony Fase2_autogen/timestamp || Fase2_autogen_timestamp_deps
+build CMakeFiles/Fase2_autogen Fase2_autogen/include/ui_mainwindow.h Fase2_autogen/include/ui_admin.h Fase2_autogen/include/ui_userint.h Fase2_autogen/include/ui_crearuser.h Fase2_autogen/include/ui_perfil.h Fase2_autogen/include/ui_buscar.h Fase2_autogen/include/ui_solicitudes.h Fase2_autogen/include/ui_publicaciones.h Fase2_autogen/include/ui_crearpublicacion.h Fase2_autogen/include/ui_buscaradmin.h Fase2_autogen/include/ui_cargaradmin.h Fase2_autogen/include/ui_reportesadmin.h Fase2_autogen/include/ui_modificaradmin.h Fase2_autogen/include/ui_comentaru.h | ${cmake_ninja_workdir}CMakeFiles/Fase2_autogen ${cmake_ninja_workdir}Fase2_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_admin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_userint.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_crearuser.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_perfil.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_buscar.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_solicitudes.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_publicaciones.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_crearpublicacion.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_buscaradmin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_cargaradmin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_reportesadmin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_modificaradmin.h ${cmake_ninja_workdir}Fase2_autogen/include/ui_comentaru.h: phony Fase2_autogen/timestamp || Fase2_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.

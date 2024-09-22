@@ -11,6 +11,8 @@
 #include "listasoli_R.h"
 #include "nodoPublicacion.h"
 #include "listaAmistades.h"
+#include "listaPublicaciones.h"
+#include "SimplePublicacion.h"
 
 
 using namespace std;
@@ -30,7 +32,9 @@ private:
     ListaSolicitudesEnviadas* listadeSolicitudesEnviadasUsuario; //lista de solicitudes enviadas
     listaPublicaciones* listaPublicacionesU;
     listaAmistad* listaAmigos;
+    ArbolBST* ArbolPublicacionesBST;
 
+    listaNodoPub* listaTodasPubs;
     int altura;
 
 
@@ -61,8 +65,9 @@ public:
     ListaSolicitudesEnviadas* getListaDeSolicitudesEnviadas(); // Getter para la lista de solicitudes que el usuario ha enviado
     listaPublicaciones* getListapublicaionesU();
     listaAmistad* getListaAmigos();
+    ArbolBST* getArbolPublicacionesBST();
 
-
+    listaNodoPub* getListaTodasPubs();
 };
 
 
@@ -88,7 +93,6 @@ private:
     void postOrden(nodoArbol* raiz, bool estado);
     void inOrden(nodoArbol *raiz);
     void graph(nodoArbol *raiz, std::ofstream &f);
-
 
 
 

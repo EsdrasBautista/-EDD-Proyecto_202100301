@@ -65,6 +65,9 @@
      </property>
     </widget>
     <widget class="QLineEdit" name="txtNombres">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>290</x>
@@ -180,6 +183,9 @@ border-radius: 10px;</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="txtCorreoU">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>290</x>

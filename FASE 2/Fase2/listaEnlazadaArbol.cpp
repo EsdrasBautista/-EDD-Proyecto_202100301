@@ -17,6 +17,9 @@ nodoArbol::nodoArbol(string nom,string ape,string corr,string contr,string fecha
     this->listadeSolicitudesEnviadasUsuario = new ListaSolicitudesEnviadas(); //Inicializar la lista
     this->listaPublicacionesU = new listaPublicaciones();
     this->listaAmigos = new listaAmistad();
+    this->ArbolPublicacionesBST = new ArbolBST();
+
+    this->listaTodasPubs = new listaNodoPub();
 }
 
 
@@ -31,7 +34,9 @@ nodoArbol::nodoArbol(){
     izquierda = nullptr;
 }
 
-
+listaNodoPub* nodoArbol::getListaTodasPubs(){
+    return this->listaTodasPubs;
+}
 int nodoArbol::getAltura(){
     return altura;
 }
@@ -75,6 +80,10 @@ ListaSolicitudesEnviadas* nodoArbol::getListaDeSolicitudesEnviadas(){
     return this->listadeSolicitudesEnviadasUsuario;
 }
 
+ArbolBST* nodoArbol::getArbolPublicacionesBST(){
+    return this->ArbolPublicacionesBST;
+}
+
 
 
 listaAmistad* nodoArbol::getListaAmigos(){
@@ -111,6 +120,8 @@ nodoArbol::~nodoArbol() {
     delete listadeSolicitudesEnviadasUsuario;  // Libera la lista de solicitudes enviadas
     delete listaPublicacionesU;  // Libera la lista de publicaciones
     delete listaAmigos;  // Libera la lista de amigos
+    delete ArbolPublicacionesBST;
+    delete listaTodasPubs;
 }
 
 
@@ -476,6 +487,3 @@ nodoArbol* listaEnlazadaArb::obtenerMinimo(nodoArbol *raiz) {
     }
     return raiz;
 }
-
-
-

@@ -192,19 +192,6 @@ font: 900 10pt &quot;Segoe UI Black&quot;;
      <string>INFORMACION</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVerU">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>93</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>ver usuarios</string>
-    </property>
-   </widget>
   </widget>
  </widget>
  <resources/>

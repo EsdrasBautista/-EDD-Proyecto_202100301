@@ -193,8 +193,11 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.tcc \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_conv.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.tcc \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets_nonio.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets_nonio.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/localefwd.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/memoryfwd.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/move.h \
@@ -206,6 +209,7 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/postypes.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/predefined_ops.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ptr_traits.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/quoted_string.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/range_access.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/refwrap.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/shared_ptr.h \
@@ -273,6 +277,7 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/fstream \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/functional \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iomanip \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iosfwd \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
@@ -280,6 +285,7 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iterator \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/limits \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/list \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/locale \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/map \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/memory \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/new \
@@ -329,7 +335,9 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/time_members.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdarg.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdbool.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stddef.h \
@@ -373,8 +381,11 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/PilaSoli_R.h \
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/SimplePublicacion.h \
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/arbolB.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaAmistades.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaEnlazadaArbol.h \
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaPublicaciones.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaSoli_E.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listasoli_R.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoMatriz.h \

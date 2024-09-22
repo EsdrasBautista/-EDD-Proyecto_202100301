@@ -1,5 +1,6 @@
 #include "crearpublicacion.h"
 #include "ui_crearpublicacion.h"
+#include "./publicaciones.h"
 #include <QFileDialog>
 #include <QPixmap>
 #include <QDate>
@@ -16,6 +17,7 @@ CrearPublicacion::CrearPublicacion(QWidget *parent,listaEnlazadaArb* lista, cons
     ui->setupUi(this);
     this->setWindowTitle("CrearPublicacion");
     ui->txtFecha->setDate(QDate::currentDate());
+    ui->txtHora->setTime(QTime::currentTime());
 }
 
 CrearPublicacion::~CrearPublicacion()
@@ -26,10 +28,15 @@ CrearPublicacion::~CrearPublicacion()
 void CrearPublicacion::on_pushButton_3_clicked()
 {
     this->close();  // Cerrar la ventana actual CrearUser
-    QWidget *parent = this->parentWidget();  // Obtener la ventana principal
+    Publicaciones* parent = qobject_cast<Publicaciones*>(this->parentWidget());
     if (parent) {
+        parent->llenarComboFecha();
+        parent->llenarBST();
+        parent->limpiarInfo();
+        parent->actualizarTodosPubs();
         parent->show();  // Mostrar la ventana principal si existe
     }
+
 }
 
 
@@ -59,17 +66,24 @@ void CrearPublicacion::on_btnCrear_clicked(){
 
     nodoArbol *minodo = listaArbol->buscarNodoPorCorreoArb(correoUsuario);
     listaPublicaciones* milistapub = minodo->getListapublicaionesU();
+    ArbolBST* arbolPub = minodo->getArbolPublicacionesBST();
+    listaNodoPub *todosPubs = minodo->getListaTodasPubs();
+
+    QTime horaSeleccionada = ui->txtHora->time();
+    QString horaString = horaSeleccionada.toString("HH:mm");
 
     QString qFecha = ui->txtFecha->text();
-    QString qHora = ui->txtHora->text();
+    //QString qHora = ui->txtHora->text();
     QString qCont = ui->txtContenido->toPlainText();
     QString qImagen = ui->txtImagen->text();
 
     string fecha = qFecha.toStdString();
-    string hora = qHora.toStdString();
+    //string hora = qHora.toStdString();
     string contenido = qCont.toStdString();
     string correo = minodo->getCorreo();
     string imagen = qImagen.toStdString();
+    string hora = horaString.toStdString();
+
 
     if(fecha == "" || hora == "" || contenido == ""){
         QMessageBox::warning(this, "Error al crear Publicacion", "Llena todos los campos Obligatorios!");
@@ -77,19 +91,23 @@ void CrearPublicacion::on_btnCrear_clicked(){
         if(imagen == ""){
             milistapub->agregarPub(correo,contenido,fecha,hora);
             listaPub->agregarPub(correo,contenido,fecha,hora);
+            arbolPub->agregarPublicacionBST(correo,contenido,fecha,hora,"",milistapub->getContPublica());
+            todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,"",milistapub->getContPublica());
             QMessageBox::information(this,"Creada","Publicacion creada con Exito!");
             ui->txtContenido->clear();
             ui->txtFecha->setDate(QDate::currentDate());
-            ui->txtHora->clear();
+            ui->txtHora->setTime(QTime::currentTime());
             ui->txtImagen->clear();
             ui->lblImg->clear();
         }else{
             milistapub->agregarPubConImagen(correo,contenido,fecha,hora,imagen);
             listaPub->agregarPubConImagen(correo,contenido,fecha,hora,imagen);
+            arbolPub->agregarPublicacionBST(correo,contenido,fecha,hora,imagen,milistapub->getContPublica());
+            todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,imagen,milistapub->getContPublica());
             QMessageBox::information(this,"Creada","Publicacion creada con Exito!!");
             ui->txtContenido->clear();
             ui->txtFecha->setDate(QDate::currentDate());
-            ui->txtHora->clear();
+            ui->txtHora->setTime(QTime::currentTime());
             ui->txtImagen->clear();
             ui->lblImg->clear();
         }

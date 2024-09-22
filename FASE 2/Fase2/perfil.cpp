@@ -91,41 +91,29 @@ void Perfil::on_pushButton_clicked()
 
     QString qnombre = ui->txtNombres->text();
     QString qapellidos = ui->txtApellidos->text();
-    QString qcorreo = ui->txtCorreoU->text();
     QString qcontra = ui->txtContraU->text();
     QString qfechaN = ui->txtFechaN->text();
 
-    if(qnombre.isEmpty() || qapellidos.isEmpty() || qcorreo.isEmpty() || qcontra.isEmpty() || qfechaN.isEmpty()){
+    if(qnombre.isEmpty() || qapellidos.isEmpty() || qcontra.isEmpty() || qfechaN.isEmpty()){
         QMessageBox::warning(this, "Error al crear Usuario", "Llena todos los campos!");
 
     }else{
 
         string nombre = qnombre.toStdString();
         string apellidos = qapellidos.toStdString();
-        string nuevoCorreo = qcorreo.toStdString();
         string contra = qcontra.toStdString();
         string fechaN = qfechaN.toStdString();
 
-        if(nombre == minodo->getNombres() || apellidos == minodo->getApellidos() || nuevoCorreo == minodo->getCorreo() || contra == minodo->getContrasena() || fechaN == minodo->getFechaNacimiento()){
+        if(nombre == minodo->getNombres() && apellidos == minodo->getApellidos() &&  contra == minodo->getContrasena() && fechaN == minodo->getFechaNacimiento()){
             QMessageBox::information(this, "Actualizacion", "No se actualizo ningun dato, los datos siguen igual!");
         }else{
-            if (nuevoCorreo != correoUsuario) {
-                minodo->setCorreo(nuevoCorreo);
-                minodo->setNombres(nombre);
-                minodo->setApellidos(apellidos);
-                minodo->setContrasena(contra);
-                minodo->setFechaNacimiento(fechaN);
-                correoUsuario = nuevoCorreo;
-                listaArbol->actualizarArbol(nuevoCorreo,true);
-                QMessageBox::information(this, "Actualizacion", "Datos Actualizados con Exito!");
 
-            }else{
-                minodo->setNombres(nombre);
-                minodo->setApellidos(apellidos);
-                minodo->setContrasena(contra);
-                minodo->setFechaNacimiento(fechaN);
-                QMessageBox::information(this, "Actualizacion", "Datos Actualizados con Exito!!");
-            }
+            minodo->setNombres(nombre);
+            minodo->setApellidos(apellidos);
+            minodo->setContrasena(contra);
+            minodo->setFechaNacimiento(fechaN);
+            QMessageBox::information(this, "Actualizacion", "Datos Actualizados con Exito!!");
+
         }
     }
 }

@@ -61,6 +61,7 @@ public:
         lblCorreo_2->setStyleSheet(QString::fromUtf8("font: 600 14pt \"Segoe UI Semibold\";"));
         txtNombres = new QLineEdit(groupBox);
         txtNombres->setObjectName("txtNombres");
+        txtNombres->setEnabled(true);
         txtNombres->setGeometry(QRect(290, 30, 341, 31));
         txtNombres->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
@@ -102,6 +103,7 @@ public:
 "border-radius: 10px;"));
         txtCorreoU = new QLineEdit(groupBox);
         txtCorreoU->setObjectName("txtCorreoU");
+        txtCorreoU->setEnabled(false);
         txtCorreoU->setGeometry(QRect(290, 170, 341, 31));
         txtCorreoU->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"

@@ -20,7 +20,8 @@ public:
     void tablaUser();
     void buscar();
     void limpiarTabla();
-    void OpcionesOrden();
+    void llenarTablaPre();
+    void llenarTablaPost();
 
 private slots:
     void on_btnBuscar_clicked();
@@ -30,6 +31,8 @@ private slots:
     void on_btnAplicar_clicked();
 
 private:
+    void llenarTablaPre(nodoArbol* raiz, int &fila);
+    void llenarTablaPost(nodoArbol* raiz, int &fila);
     Ui::BuscarAdmin *ui;
     listaEnlazadaArb* listaArbol;
 

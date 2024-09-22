@@ -187,13 +187,58 @@ void gestionarSoli::EliminarCuenta(listaEnlazadaArb &usuario, string correo){
         while(amigos != nullptr){
 
             nodoArbol *nodoamigos = usuario.buscarNodoPorCorreoArb(amigos->getCorreoA());
+            //falta eliminar las publicacaiones mias en listas de mis amigos
             if(nodoamigos != nullptr){
                 listaAmistad *amigosnodo = nodoamigos->getListaAmigos();
+                ArbolBST *BSTamigo = nodoamigos->getArbolPublicacionesBST();
+                listaNodoPub *todasPubs = nodoamigos->getListaTodasPubs();
+
                 if(amigosnodo != nullptr){
-                    std::cout << "Eliminando a " << correo << " de la lista de amigos de " << nodoamigos->getCorreo() << std::endl;
                     amigosnodo->eliminarAmigo(correo);
-                    std::cout << "Amigo eliminado." << std::endl;
                 }
+
+                if(todasPubs != nullptr){
+                    nodoSimplePub *actual = todasPubs->getCabeza();
+                    nodoSimplePub* anterior = nullptr;
+                    if(actual != nullptr){
+                        while(actual != nullptr){
+                            string fecha="";
+
+                            if (actual->getCorreoL() == correo) {
+                                if (anterior == nullptr) {
+                                    todasPubs->setCabeza(actual->getSiguiente());
+                                } else {
+                                    anterior->setSiguiente(actual->getSiguiente());
+                                }
+
+                                // Eliminar el nodo actual
+                                nodoSimplePub* nodoAEliminar = actual;
+                                actual = actual->getSiguiente();
+                                fecha = actual->getFechaL();
+
+                                delete nodoAEliminar;
+
+                                if(BSTamigo != nullptr && BSTamigo->buscarNodoporFecha(fecha) != nullptr){
+                                    nodoBST *nodo = BSTamigo->buscarNodoporFecha(fecha);
+                                    listaNodoPub *nodop = nodo->getPublicacionesBST();
+                                    if(nodop != nullptr){
+                                        //aqui se debe de eliminar los comentarios
+                                        //nodop->eliminarComent(correo,fecha);
+                                        nodop->eliminarPub(correo);
+
+                                    }
+                                }
+
+                            } else {
+                                anterior = actual;
+                                actual = actual->getSiguiente();
+                            }
+
+                        }
+                    }
+
+                }
+
             }
             amigos = amigos->getsiguiente();
 
@@ -213,6 +258,252 @@ void gestionarSoli::verAmigos(listaEnlazadaArb &usuario, string correo){
     listaAmistad *misamigos = minodo->getListaAmigos();
     misamigos->verLista();
 
-
-
 }
+
+void gestionarSoli::agregarPublicacionesArbol(listaEnlazadaArb &usuarios, string correo){
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correo);
+        listaPublicaciones *misPubs = minodo->getListapublicaionesU();
+        ArbolBST *arbolBST = minodo->getArbolPublicacionesBST();
+
+        NodoPub* pubActual = misPubs->getPrimero();
+
+        //llenar mi arbolBST con mis publicaciones
+        while(pubActual != nullptr){
+            if(!arbolBST->verificarexisteFecha(pubActual->getcontadorPublicaciones(),pubActual->getfecha(),pubActual->getCorreo())){
+                arbolBST->agregarPublicacionBST(pubActual->getCorreo(), pubActual->getcontenido(), pubActual->getfecha(), pubActual->gethora(),pubActual->getImagen(),pubActual->getcontadorPublicaciones());
+            }
+            pubActual = pubActual->getSigPub();
+        }
+
+
+        //llenar el arbolBST con publicaciones de mis amigos
+        listaAmistad *misamigos = minodo->getListaAmigos();
+        nodoAmistad* amigoActual = misamigos->getprimero();
+
+        while(amigoActual != nullptr){
+            nodoArbol *nodoAmigo = usuarios.buscarNodoPorCorreoArb(amigoActual->getCorreoA());
+            if(nodoAmigo != nullptr){
+                listaPublicaciones *publicacionesAmigo = nodoAmigo->getListapublicaionesU();
+                NodoPub* pubAmigoActual = publicacionesAmigo->getPrimero();
+                while(pubAmigoActual != nullptr){
+                    if(!arbolBST->verificarexisteFecha(pubAmigoActual->getcontadorPublicaciones(),pubAmigoActual->getfecha(),pubAmigoActual->getCorreo())){
+                        arbolBST->agregarPublicacionBST(pubAmigoActual->getCorreo(), pubAmigoActual->getcontenido(), pubAmigoActual->getfecha(), pubAmigoActual->gethora(),pubAmigoActual->getImagen(),pubAmigoActual->getcontadorPublicaciones());
+                    }
+                    pubAmigoActual = pubAmigoActual->getSigPub();
+                }
+            }
+            amigoActual = amigoActual->getsiguiente();
+        }
+
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: " << e.what() << std::endl;
+    }
+}
+
+
+void gestionarSoli::agregarPublicacionesAmigos(listaEnlazadaArb &usuarios, string correo){
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correo);
+        listaNodoPub *milista = minodo->getListaTodasPubs();
+        listaAmistad *misamigos = minodo->getListaAmigos();
+        if(misamigos != nullptr){
+            nodoAmistad *amigos = misamigos->getprimero();
+            while(amigos != nullptr){
+                nodoArbol *nodoAmigo = usuarios.buscarNodoPorCorreoArb(amigos->getCorreoA());
+                if(nodoAmigo != nullptr){
+                    listaNodoPub *pubAmigos = nodoAmigo->getListaTodasPubs();
+                    if(pubAmigos != nullptr){
+                        nodoSimplePub* nodo = pubAmigos->getCabeza();
+                        while(nodo != nullptr){
+                            if(!milista->verificarExistencia(nodo->getCorreoL(),nodo->getIdL())){
+                                milista->agregarPublicacionL(nodo->getFechaL(),nodo->getCorreoL(),nodo->getContenidoL(),nodo->getHoraL(),nodo->getImagen(),nodo->getIdL());
+                            }
+                            nodo = nodo->getSiguiente();
+                        }
+
+                    }
+                }
+                amigos = amigos->getsiguiente();
+            }
+        }
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+    }
+}
+
+
+nodoSimplePub* gestionarSoli::mostrarPublicacionesArbol(listaEnlazadaArb &usuarios, string correo, QLineEdit *txtUsuario, QLineEdit *txtFecha, QPlainTextEdit *textoPub, QLabel *lblImagen, string fecha){
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correo);
+        if(minodo != nullptr){
+            ArbolBST *miarbolBST = minodo->getArbolPublicacionesBST();
+            if(miarbolBST != nullptr){
+                if(fecha == "TODO"){
+                    listaNodoPub *listaPubs = minodo->getListaTodasPubs();
+                    if(listaPubs != nullptr){
+                        nodoSimplePub *actual = listaPubs->getCabeza();
+                        if(actual != nullptr){
+                            txtUsuario->setText(QString::fromStdString(actual->getCorreoL()));
+                            txtFecha->setText(QString::fromStdString(actual->getFechaL()));
+                            textoPub->setPlainText(QString::fromStdString(actual->getContenidoL()));
+
+                            if (actual->getImagen() != "") {
+                                QPixmap pixmap(QString::fromStdString(actual->getImagen()));
+                                lblImagen->setPixmap(pixmap.scaled(lblImagen->width(), lblImagen->height(), Qt::KeepAspectRatio));
+                            } else {
+                                lblImagen->clear();
+                            }
+                            return actual;
+                        }else{
+                            return nullptr;
+                        }
+
+                    }
+
+                }else{
+                    nodoBST *minodoBST = miarbolBST->buscarNodoporFecha(fecha);
+                    if(minodoBST != nullptr){
+                        listaNodoPub *listaPub = minodoBST->getPublicacionesBST();
+                        if(listaPub != nullptr){
+                            nodoSimplePub *pub = listaPub->getCabeza();
+                            txtUsuario->setText(QString::fromStdString(pub->getCorreoL()));
+                            txtFecha->setText(QString::fromStdString(pub->getFechaL()));
+                            textoPub->setPlainText(QString::fromStdString(pub->getContenidoL()));
+
+                            if (pub->getImagen() != "") {
+                                QPixmap pixmap(QString::fromStdString(pub->getImagen()));
+                                lblImagen->setPixmap(pixmap.scaled(lblImagen->width(), lblImagen->height(), Qt::KeepAspectRatio));
+                            } else {
+                                lblImagen->clear();
+                            }
+                            return pub;
+                        }else{
+                            return nullptr;
+                        }
+                    }
+                }
+            }
+        }else{
+            return nullptr;
+        }
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+    }
+    return nullptr;
+}
+
+nodoSimplePub* gestionarSoli::OrdenarPublicacionespor(listaEnlazadaArb &usuarios, string correo, QLineEdit *txtUsuario, QLineEdit *txtFecha, QPlainTextEdit *textoPub, QLabel *lblImagen, int cantidad, string tipoOrden){
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correo);
+        ArbolBST *miBST = minodo->getArbolPublicacionesBST();
+        if(miBST != nullptr){
+            nodoSimplePub *pub = nullptr;
+
+            if(tipoOrden == "PreOrden"){
+                pub = miBST->OrdenPreorden(cantidad);
+
+                if(pub != nullptr){
+                    txtUsuario->setText(QString::fromStdString(pub->getCorreoL()));
+                    txtFecha->setText(QString::fromStdString(pub->getFechaL()));
+                    textoPub->setPlainText(QString::fromStdString(pub->getContenidoL()));
+
+                    if (pub->getImagen() != "") {
+                        QPixmap pixmap(QString::fromStdString(pub->getImagen()));
+                        lblImagen->setPixmap(pixmap.scaled(lblImagen->width(), lblImagen->height(), Qt::KeepAspectRatio));
+                    } else {
+                        lblImagen->clear();
+                    }
+                    return pub;
+                }else{
+                    return nullptr;
+                }
+
+            }else if(tipoOrden == "PosOrden"){
+                pub = miBST->OrdenPostorden(cantidad);
+
+                if(pub != nullptr){
+                    txtUsuario->setText(QString::fromStdString(pub->getCorreoL()));
+                    txtFecha->setText(QString::fromStdString(pub->getFechaL()));
+                    textoPub->setPlainText(QString::fromStdString(pub->getContenidoL()));
+
+                    if (pub->getImagen() != "") {
+                        QPixmap pixmap(QString::fromStdString(pub->getImagen()));
+                        lblImagen->setPixmap(pixmap.scaled(lblImagen->width(), lblImagen->height(), Qt::KeepAspectRatio));
+                    } else {
+                        lblImagen->clear();
+                    }
+                    return pub;
+                }else{
+                    return nullptr;
+                }
+
+            }else if(tipoOrden == "InOrden"){
+                pub = miBST->Ordeninorden(cantidad);
+
+                if(pub != nullptr){
+                    txtUsuario->setText(QString::fromStdString(pub->getCorreoL()));
+                    txtFecha->setText(QString::fromStdString(pub->getFechaL()));
+                    textoPub->setPlainText(QString::fromStdString(pub->getContenidoL()));
+
+                    if (pub->getImagen() != "") {
+                        QPixmap pixmap(QString::fromStdString(pub->getImagen()));
+                        lblImagen->setPixmap(pixmap.scaled(lblImagen->width(), lblImagen->height(), Qt::KeepAspectRatio));
+                    } else {
+                        lblImagen->clear();
+                    }
+                    return pub;
+                }else{
+                    return nullptr;
+                }
+
+            }
+        }else{
+            return nullptr;
+        }
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+    }
+    return nullptr;
+}
+
+
+void gestionarSoli::agregarComentario(nodoSimplePub &publicaciones, string fecha, string hora, string contenido, string correoComento,QWidget *ventana){
+    try{
+        ArbolB* nodoC = publicaciones.getArbolComentarios();
+        nodoC->insert(fecha,hora,correoComento,contenido);
+        QMessageBox::information(ventana,"Comentario","Se ha comentado la publicacion con exito!");
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+    }
+}
+
+
+void gestionarSoli::agregarPubDesdeAdmin(listaEnlazadaArb &usuarios,string correoU,listaPublicaciones &listaPubs,string contenido,string fecha,string hora){
+
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+        if(minodo != nullptr){
+            listaPublicaciones* milistapub = minodo->getListapublicaionesU();
+            ArbolBST* arbolPub = minodo->getArbolPublicacionesBST();
+            listaNodoPub *todosPubs = minodo->getListaTodasPubs();
+
+            string correo = minodo->getCorreo();
+
+            milistapub->agregarPub(correo,contenido,fecha,hora);
+            listaPubs.agregarPub(correo,contenido,fecha,hora);
+            arbolPub->agregarPublicacionBST(correo,contenido,fecha,hora,"",milistapub->getContPublica());
+            todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,"",milistapub->getContPublica());
+        }
+
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+    }
+}
+
