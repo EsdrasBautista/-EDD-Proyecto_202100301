@@ -6,6 +6,7 @@
 #include "./solicitudes.h"
 #include "./publicaciones.h"
 #include "./GestionarSoli.h"
+#include "./reportesuser.h"
 
 
 UserInt::UserInt(QWidget *parent,listaEnlazadaArb* lista, const std::string& correo,listaPublicaciones* listap)
@@ -92,5 +93,15 @@ void UserInt::on_actionPUBLICACIONES_triggered()
 void UserInt::on_pushButton_2_clicked()
 {
     gestionarSoli::verAmigos(*listaArbol,correoUsuario);
+}
+
+
+void UserInt::on_actionGENERAR_REPORTES_triggered()
+{
+    reportesUser *repo = new reportesUser(this,listaArbol,correoUsuario,listaPub);
+    this->hide();
+    repo->show();
+    repo->llenarComboFecha();
+
 }
 

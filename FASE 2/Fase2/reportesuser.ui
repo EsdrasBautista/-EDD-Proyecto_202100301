@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>reportesUser</class>
+ <widget class="QMainWindow" name="reportesUser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>990</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(216, 229, 158);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="grbRec_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>461</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Sitka&quot;;</string>
+    </property>
+    <property name="title">
+     <string>FECHAS CON MAS PUBLICACIONES</string>
+    </property>
+    <widget class="QTableWidget" name="tlbPubs">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>441</width>
+       <height>211</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="grbRec_4">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>30</y>
+      <width>471</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Sitka&quot;;</string>
+    </property>
+    <property name="title">
+     <string>PUBLICACIONES CON MAS COMENTARIOS</string>
+    </property>
+    <widget class="QTableWidget" name="tlbCom">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>451</width>
+       <height>211</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="grbRec_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>961</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Sitka&quot;;</string>
+    </property>
+    <property name="title">
+     <string>BST</string>
+    </property>
+    <widget class="QComboBox" name="cmbFecha">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>120</y>
+       <width>281</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding: 5px;
+font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+text-align: center;
+</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnBst">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>180</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+     <property name="text">
+      <string>GENERAR</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblImagen">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>20</y>
+       <width>601</width>
+       <height>281</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 600 20pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="btnTops">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>300</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string>GENERAR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>690</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+    </property>
+    <property name="text">
+     <string>REGRESAR</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

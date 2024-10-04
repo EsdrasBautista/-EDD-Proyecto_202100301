@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "arbolB.h"
+
 using namespace std;
 
 
@@ -24,6 +25,7 @@ private:
 public:
     nodoSimplePub(string fecha,string correo,string contenido,string hora,string imagen,int id);
     nodoSimplePub();
+    ~nodoSimplePub();
 
     string getFechaL();
     string getCorreoL();
@@ -58,6 +60,9 @@ public:
     bool verificarExistencia(string correo,int id);
     nodoSimplePub* getCabeza();
     void eliminarPub(string correo);
+    nodoSimplePub* buscarNodoporCorreoId(string correo,int id);
+    void graph();
+
 };
 
 

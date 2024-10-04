@@ -216,18 +216,22 @@ void gestionarSoli::EliminarCuenta(listaEnlazadaArb &usuario, string correo){
                                 actual = actual->getSiguiente();
                                 fecha = actual->getFechaL();
 
-                                delete nodoAEliminar;
-
                                 if(BSTamigo != nullptr && BSTamigo->buscarNodoporFecha(fecha) != nullptr){
                                     nodoBST *nodo = BSTamigo->buscarNodoporFecha(fecha);
                                     listaNodoPub *nodop = nodo->getPublicacionesBST();
                                     if(nodop != nullptr){
-                                        //aqui se debe de eliminar los comentarios
-                                        //nodop->eliminarComent(correo,fecha);
-                                        nodop->eliminarPub(correo);
+                                        nodoSimplePub *nodoSpub = nodop->buscarNodoporCorreoId(actual->getCorreoL(),actual->getIdL());
+                                        if(nodoSpub != nullptr){
+                                            ArbolB *arbolP = nodoSpub->getArbolComentarios();
+                                            if(arbolP != nullptr){
+                                                arbolP->eliminarComentarios(fecha,correo);
+                                            }
 
+                                        }
+                                        nodop->eliminarPub(correo);
                                     }
                                 }
+                                delete nodoAEliminar;
 
                             } else {
                                 anterior = actual;
@@ -472,38 +476,162 @@ nodoSimplePub* gestionarSoli::OrdenarPublicacionespor(listaEnlazadaArb &usuarios
 }
 
 
-void gestionarSoli::agregarComentario(nodoSimplePub &publicaciones, string fecha, string hora, string contenido, string correoComento,QWidget *ventana){
+void gestionarSoli::agregarComentario(listaEnlazadaArb &usuarios, string correoU,string fechaU ,int id,string fecha, string hora, string contenido, string correoComento,QWidget *ventana){
     try{
-        ArbolB* nodoC = publicaciones.getArbolComentarios();
-        nodoC->insert(fecha,hora,correoComento,contenido);
-        QMessageBox::information(ventana,"Comentario","Se ha comentado la publicacion con exito!");
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
 
+        if(minodo != nullptr){
+            ArbolBST *miarbolBst = minodo->getArbolPublicacionesBST();
+            if(miarbolBst != nullptr){
+                nodoBST* nodo = miarbolBst->buscarNodoporFecha(fechaU);
+                if(nodo != nullptr){
+                    listaNodoPub* lista = nodo->getPublicacionesBST();
+                    if(lista != nullptr){
+                        nodoSimplePub* nodoS = lista->buscarNodoporCorreoId(correoU,id);
+                        if(nodoS != nullptr){
+                            ArbolB* arbolB = nodoS->getArbolComentarios();
+                            if(arbolB != nullptr){
+                                arbolB->insert(fecha,hora,correoComento,contenido);
+                                QMessageBox::information(ventana,"Comentario","Se ha comentado la publicacion con exito!");
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }catch (runtime_error& e) {
         std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+        QMessageBox::information(ventana,"Advertencia","Error al agregar comentario!");
     }
 }
 
 
-void gestionarSoli::agregarPubDesdeAdmin(listaEnlazadaArb &usuarios,string correoU,listaPublicaciones &listaPubs,string contenido,string fecha,string hora){
+int gestionarSoli::agregarPubDesdeAdmin(listaEnlazadaArb &usuarios,string correoU,string contenido,string fecha,string hora,QWidget *ventana){
 
     try{
         nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+
         if(minodo != nullptr){
             listaPublicaciones* milistapub = minodo->getListapublicaionesU();
             ArbolBST* arbolPub = minodo->getArbolPublicacionesBST();
             listaNodoPub *todosPubs = minodo->getListaTodasPubs();
-
             string correo = minodo->getCorreo();
+            if(milistapub != nullptr || arbolPub != nullptr || todosPubs != nullptr){
 
-            milistapub->agregarPub(correo,contenido,fecha,hora);
-            listaPubs.agregarPub(correo,contenido,fecha,hora);
-            arbolPub->agregarPublicacionBST(correo,contenido,fecha,hora,"",milistapub->getContPublica());
-            todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,"",milistapub->getContPublica());
+                milistapub->agregarPub(correo,contenido,fecha,hora);
+                int cont = milistapub->getContPublica();
+                arbolPub->agregarPublicacionBST(correo,contenido,fecha,hora,"",cont);
+                todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,"",cont);
+
+                QMessageBox::information(ventana,"Exito","Publicacion creada!");
+                std::cout << cont << " cont" <<std::endl;
+                return cont;
+            }
         }
+
+        QMessageBox::information(ventana,"Advertencia","Error al crear publicacion!");
+        return -1;
 
 
     }catch (runtime_error& e) {
         std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+        QMessageBox::information(ventana,"Advertencia","Error al crear publicacion!");
     }
 }
 
+void gestionarSoli::verComentarios(listaEnlazadaArb &usuarios, string correoU,string fechaU ,int id, QPlainTextEdit *txtarea){
+
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+        ArbolBST *miarbolBst = minodo->getArbolPublicacionesBST();
+        if(miarbolBst != nullptr){
+            nodoBST* nodo = miarbolBst->buscarNodoporFecha(fechaU);
+            if(nodo != nullptr){
+                listaNodoPub* lista = nodo->getPublicacionesBST();
+                if(lista != nullptr){
+                    nodoSimplePub* nodoS = lista->buscarNodoporCorreoId(correoU,id);
+                    if(nodoS != nullptr){
+                        ArbolB* arbolB = nodoS->getArbolComentarios();
+                        if(arbolB != nullptr){
+                            arbolB->recorrer(txtarea);
+                        }
+                    }
+                }
+            }
+        }
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: recorrerArbolB " << e.what() << std::endl;
+    }
+
+}
+
+void gestionarSoli::mostrarArbolB(listaEnlazadaArb &usuarios, string correoU, string fechaU, int id, QLabel *img,QWidget *ventana){
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+        ArbolBST *miarbolBst = minodo->getArbolPublicacionesBST();
+        if(miarbolBst != nullptr){
+            nodoBST* nodo = miarbolBst->buscarNodoporFecha(fechaU);
+            if(nodo != nullptr){
+                listaNodoPub* lista = nodo->getPublicacionesBST();
+                if(lista != nullptr){
+                    nodoSimplePub* nodoS = lista->buscarNodoporCorreoId(correoU,id);
+                    if(nodoS != nullptr){
+                        ArbolB* arbolB = nodoS->getArbolComentarios();
+                        if(arbolB != nullptr){
+                            string ruta = "C:\\Users\\bauti\\Desktop\\USAC\\2024\\SEMESTRE 2\\EDD\\LAB\\PROYECTO\\FASE 2\\Fase2\\build\\Desktop_Qt_6_7_2_MinGW_64_bit-Debug";
+                            ruta += arbolB->verArbol();
+                            if (ruta != "") {
+                                QPixmap pixmap(QString::fromStdString(ruta));
+                                img->setPixmap(pixmap.scaled(img->width(), img->height(), Qt::KeepAspectRatio));
+                            }else{
+                                QMessageBox::warning(ventana,"Advertencia","No hay comentarios aun!");
+                                std::cout << "ruta: "<<ruta << std::endl;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: recorrerArbolB " << e.what() << std::endl;
+    }
+}
+
+
+
+
+void gestionarSoli::agregarComentarioAdmin(listaEnlazadaArb &usuarios, string correoU,string fechaU ,int id,string fecha, string hora, string contenido, string correoComento,QWidget *ventana){
+
+    try{
+        nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+        listaAmistad *misamigos = minodo->getListaAmigos();
+        if(minodo != nullptr){
+            if(misamigos->verificarAmistad(correoComento)){
+                ArbolBST *miarbolBst = minodo->getArbolPublicacionesBST();
+                if(miarbolBst != nullptr){
+                    nodoBST* nodo = miarbolBst->buscarNodoporFecha(fechaU);
+                    if(nodo != nullptr){
+                        listaNodoPub* lista = nodo->getPublicacionesBST();
+                        if(lista != nullptr){
+                            nodoSimplePub* nodoS = lista->buscarNodoporCorreoId(correoU,id);
+                            if(nodoS != nullptr){
+                                ArbolB* arbolB = nodoS->getArbolComentarios();
+                                if(arbolB != nullptr){
+                                    arbolB->insert(fecha,hora,correoComento,contenido);
+                                    QMessageBox::information(ventana,"Comentario","Se ha comentado la publicacion con exito!");
+                                    arbolB->verArbol();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }catch (runtime_error& e) {
+        std::cerr << "Se ha producido una excepción: mostrarARBOL " << e.what() << std::endl;
+        QMessageBox::information(ventana,"Advertencia","Error al agregar comentario!");
+    }
+}

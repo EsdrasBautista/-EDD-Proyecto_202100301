@@ -13,10 +13,12 @@
 #include <QDebug>
 #include "./GestionarSoli.h"
 
-CargarAdmin::CargarAdmin(QWidget *parent,listaEnlazadaArb* lista)
+CargarAdmin::CargarAdmin(QWidget *parent,listaEnlazadaArb* lista,listaPublicaciones* listaP)
     : QMainWindow(parent)
     , ui(new Ui::CargarAdmin),
-    listaArbol(lista)      // Inicializar listaArbol
+    listaArbol(lista),
+    listaPubs(listaP)
+
 {
     ui->setupUi(this);
     this->setWindowTitle("CargarArchivos");
@@ -174,12 +176,28 @@ void CargarAdmin::on_btnPub_clicked()
             continue;
         }
 
+        std::string correoStr = correo.toStdString();
+        std::string contenidoStr = contenido.toStdString();
+        std::string fechaStr = fecha.toStdString();
+        std::string horaStr = hora.toStdString();
+
         // Aquí agregaríamos la publicación a la estructura de datos correspondiente
-        // listaPublicaciones->agregarPublicacion(correo.toStdString(), contenido.toStdString(), fecha.toStdString(), hora.toStdString());
+        int id = gestionarSoli::agregarPubDesdeAdmin(*listaArbol, correoStr, contenidoStr, fechaStr, horaStr,this);
+        listaPubs->agregarPub(correoStr,contenidoStr,fechaStr,horaStr);
 
         // Procesar los comentarios de la publicación
+        if (id <= -1) {
+            std::cout << "Error al agregar la publicación: ID no valido." << std::endl;
+            continue;  // Saltamos al siguiente JSON si hay un problema con esta publicación
+        }
+
+        std::cout << "ID de la publicacion: " << id << std::endl;
+
+
         if (jsonObj.contains("comentarios")) {
             QJsonArray comentariosArray = jsonObj["comentarios"].toArray();
+
+
             for (const QJsonValue &comentarioValue : comentariosArray) {
                 QJsonObject comentarioObj = comentarioValue.toObject();
 
@@ -188,14 +206,26 @@ void CargarAdmin::on_btnPub_clicked()
                 QString fechaComentario = comentarioObj["fecha"].toString();
                 QString horaComentario = comentarioObj["hora"].toString();
 
+                // Verificamos si los campos están vacíos
                 if (correoComentario.isEmpty() || comentarioTexto.isEmpty() || fechaComentario.isEmpty() || horaComentario.isEmpty()) {
-                    QMessageBox::warning(this, tr("Error"), tr("Algunos datos del comentario están vacíos"));
-                    continue;
+                    std::cout << "Datos del comentario incompletos." << std::endl;
+                    QMessageBox::warning(this, tr("Error"), tr("Algunos datos del comentario estan vacíos"));
+                    continue;  // Saltar al siguiente comentario
                 }
 
-                // Aquí agregaríamos los comentarios a la estructura correspondiente
-                // listaPublicaciones->agregarComentario(correoComentario.toStdString(), comentarioTexto.toStdString(), fechaComentario.toStdString(), horaComentario.toStdString());
+                std::cout << "Procesando comentario de: " << correoComentario.toStdString() << std::endl;
+
+                std::string correoComentarioStr = correoComentario.toStdString();
+                std::string comentarioTextoStr = comentarioTexto.toStdString();
+                std::string fechaComentarioStr = fechaComentario.toStdString();
+                std::string horaComentarioStr = horaComentario.toStdString();
+
+                // Llamada a agregarComentario (agrega mensaje de depuración en esta función)
+                gestionarSoli::agregarComentarioAdmin(*listaArbol, correoStr, fechaStr, id, fechaComentarioStr, horaComentarioStr, comentarioTextoStr, correoComentarioStr, this);
+
+                std::cout << "Numero de comentarios: " << comentariosArray.size() << std::endl;
             }
+
         }
     }
 
@@ -203,7 +233,7 @@ void CargarAdmin::on_btnPub_clicked()
     QString fileNameOnly = fileInfo.fileName();
     ui->txtPub->setText(fileNameOnly);
 
-    QMessageBox::information(this, tr("Carga Exitosa"), tr("Publicaciones agregadas con éxito"));
+    QMessageBox::information(this, tr("Carga Exitosa"), tr("Publicaciones agregadas con exito"));
 }
 
 

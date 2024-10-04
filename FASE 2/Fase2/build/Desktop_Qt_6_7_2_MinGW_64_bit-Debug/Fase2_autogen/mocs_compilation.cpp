@@ -11,5 +11,8 @@
 #include "EWIEGA46WW/moc_perfil.cpp"
 #include "EWIEGA46WW/moc_publicaciones.cpp"
 #include "EWIEGA46WW/moc_reportesadmin.cpp"
+#include "EWIEGA46WW/moc_reportesuser.cpp"
 #include "EWIEGA46WW/moc_solicitudes.cpp"
 #include "EWIEGA46WW/moc_userint.cpp"
+#include "EWIEGA46WW/moc_verarbolcomentarios.cpp"
+#include "EWIEGA46WW/moc_vercomentarios.cpp"

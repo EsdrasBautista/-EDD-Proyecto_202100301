@@ -13,7 +13,7 @@ class BuscarAdmin : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit BuscarAdmin(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr);
+    explicit BuscarAdmin(QWidget *parent = nullptr, listaEnlazadaArb* lista = nullptr, listaPublicaciones *listap = nullptr);
     ~BuscarAdmin();
     void llenarTabla(nodoArbol* raiz,int &fila);
     void ActualizarTabla();
@@ -35,6 +35,7 @@ private:
     void llenarTablaPost(nodoArbol* raiz, int &fila);
     Ui::BuscarAdmin *ui;
     listaEnlazadaArb* listaArbol;
+    listaPublicaciones* listaPub;
 
 };
 

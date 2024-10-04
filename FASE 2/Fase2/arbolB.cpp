@@ -36,6 +36,7 @@ void Nodo::insertarLlave(Llave *llave){
         while(puntero != nullptr){
             if(compararFechas(llave->getFecha(),puntero->getFecha()) == 0 && compararHoras(llave->getHora(),puntero->getHora()) == 0){ //caso igual
                 std::cout << "El valor " << llave->getFecha() << " y " << llave->getFecha() << "ya se encuentra en el arbol. " << std::endl;
+                std::cout << llave->getHora() <<" "<< puntero->getHora() << std::endl;
                 break;
 
             }else if(compararFechas(llave->getFecha(),puntero->getFecha()) == 1 && compararHoras(llave->getHora(),puntero->getHora()) == 1){ //caso menor llave < puntero
@@ -289,4 +290,157 @@ Llave* ArbolB::dividir(Nodo *nodo){
     llaveRaiz->setDrcha(derecha);
     llaveRaiz->setIzq(izquierda);
     return llaveRaiz;
+}
+
+
+
+void ArbolB::eliminarComentarios(string fecha, string correo){
+    eliminarComentarios(fecha,correo,this->raiz);
+}
+
+void ArbolB::eliminarComentarios(string fecha, string correo, Nodo *nodo){
+    if(raiz == nullptr){return;}
+
+
+    Llave *llave = nodo->getPrimero();
+    Llave *anterior = nullptr;
+
+
+    //iteramos las llaves
+    while(llave != nullptr){
+        if(compararFechas(fecha, llave->getFecha()) == 0 && llave->getCorreo() == correo){
+            if (anterior == nullptr) {
+                nodo->setPrimero(llave->getSig());
+                if (llave->getSig() != nullptr) {
+                    llave->getSig()->setPrev(nullptr);
+                }
+            } else {
+                anterior->setSig(llave->getSig());
+                if (llave->getSig() != nullptr) {
+                    llave->getSig()->setPrev(anterior);
+                }
+            }
+            Llave *temp = llave;
+            llave = llave->getSig(); // Mover al siguiente antes de eliminar
+            delete temp;
+            nodo->setNumeroLlaves(nodo->getNumeroLlaves() - 1);
+        } else {
+            anterior = llave;
+            llave = llave->getSig();
+        }
+    }
+
+
+    //verificar si no es una hoja
+    if (!nodo->esHoja()) {
+        llave = nodo->getPrimero();
+        while (llave != nullptr) {
+            eliminarComentarios(fecha, correo, llave->getIzq());
+            llave = llave->getSig();
+        }
+        //ultimo hijo derecho
+        eliminarComentarios(fecha, correo, nodo->getPrimero()->getDrcha());
+    }
+}
+
+void ArbolB::recorrer(QPlainTextEdit *txtarea){
+
+    recorrer(this->raiz, txtarea);
+}
+
+void ArbolB::recorrer(Nodo* nodo, QPlainTextEdit *textEdit){
+    if(nodo == nullptr){return;}
+
+    Llave* llave = nodo->getPrimero();
+
+    while(llave != nullptr){
+        if(!nodo->esHoja()){
+            recorrer(llave->getIzq(),textEdit);
+        }
+
+        std::cout << llave->getContenido() << std::endl;
+
+        QString infoLlave = QString("Fecha: %1\nHora: %2\nCorreo: %3\nContenido: %4\n")
+                                .arg(QString::fromStdString(llave->getFecha()))
+                                .arg(QString::fromStdString(llave->getHora()))
+                                .arg(QString::fromStdString(llave->getCorreo()))
+                                .arg(QString::fromStdString(llave->getContenido()));
+
+        textEdit->insertPlainText(infoLlave);
+        textEdit->insertPlainText("--------------------------------------------\n");
+
+        llave = llave->getSig();
+    }
+
+    if(!nodo->esHoja() && nodo->getPrimero() != nullptr){
+        recorrer(nodo->getPrimero()->getDrcha(),textEdit);
+    }
+
+}
+
+string ArbolB::verArbol(){
+    std::ofstream outfile ("arbolB.dot");
+    outfile << "digraph G {" << std::endl;
+    if(raiz != nullptr){
+        verArbol(this->raiz,outfile);
+    }else{
+        return "";
+    }
+    outfile << "}" << std::endl;
+    outfile.close();
+
+    int returnCode = system("dot -Tpng ./arbolB.dot -o ./arbolB.png");
+
+    if (returnCode == 0) {
+        std::cout << "Command executed successfully." << std::endl;
+
+        return "\\arbolB.png";
+    } else {
+        std::cout << "Command execution failed or returned non-zero: " << returnCode << std::endl;
+        return "";
+    }
+
+}
+
+void ArbolB::verArbol(Nodo *nodo, ofstream &archivoDot) {
+    if (nodo == nullptr) { return; }
+
+    // Crear el nodo principal (el contenedor de las llaves)
+    std::ostringstream nodoStream;
+    nodoStream << "nodo" << nodo;
+
+
+    Llave *llave = nodo->getPrimero();
+    int contador = 0;
+
+
+    while (llave != nullptr) {
+        std::ostringstream llaveStream;
+        llaveStream << "llave" << llave;
+        archivoDot << llaveStream.str() << " [label=\""
+                   << llave->getFecha() << "\\n"
+                   << llave->getHora() << "\\n"
+                   << llave->getContenido() << "\"];\n";
+
+        if (contador == 0) {
+            archivoDot << nodoStream.str() << " -> " << llaveStream.str() << ";\n";
+        } else {
+            std::ostringstream prevLlaveStream;
+            prevLlaveStream << "llave" << llave->getPrev();  // Nodo anterior
+            archivoDot << prevLlaveStream.str() << " -> " << llaveStream.str() << ";\n";
+        }
+
+        if (llave->getIzq() != nullptr) {
+            archivoDot << llaveStream.str() << " -> nodo" << llave->getIzq() << ";\n";
+            verArbol(llave->getIzq(), archivoDot);  // Llamada recursiva para el subárbol izquierdo
+        }
+
+        llave = llave->getSig();
+        contador++;
+    }
+
+    if (nodo->getPrimero() != nullptr && nodo->getPrimero()->getDrcha() != nullptr) {
+        archivoDot << nodoStream.str() << " -> nodo" << nodo->getPrimero()->getDrcha() << ";\n";
+        verArbol(nodo->getPrimero()->getDrcha(), archivoDot);  // Llamada recursiva para subárbol derecho
+    }
 }

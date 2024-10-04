@@ -4,17 +4,26 @@
 #include "./GestionarSoli.h"
 
 
-ComentarU::ComentarU(QWidget *parent,nodoSimplePub *nodoPubs,const std::string& correo )
+ComentarU::ComentarU(QWidget *parent,listaEnlazadaArb* lista,const std::string& correo,const std::string& fecha,int id,nodoSimplePub *nodoPubs,const std::string& correoC )
     : QMainWindow(parent)
     , ui(new Ui::ComentarU),
-    nodoActualPubs(nodoPubs),
-    correoUsuario(correo)
+    listaArbol(lista),
+    correoUsuario(correo),
+    fechaU(fecha),
+    idU(id),
+    correoUsuarioC(correoC),
+    nodoActualPubs(nodoPubs)
 {
     ui->setupUi(this);
     this->setWindowTitle("ComentarPublicacion");
     llenarCampos();
+    ui->txtFechaa->setDisplayFormat("dd/MM/yyyy");
     ui->txtFechaa->setDate(QDate::currentDate());
     ui->txtHora->setTime(QTime::currentTime());
+
+    std::cout << fechaU << std::endl;
+    std::cout << idU << std::endl;
+    std::cout << correoUsuario << std::endl;
 }
 
 ComentarU::~ComentarU()
@@ -54,9 +63,10 @@ void ComentarU::on_btnComentar_clicked()
         string hora = horaString.toStdString();
 
 
-        gestionarSoli::agregarComentario(*nodoActualPubs,fecha,hora,contenido,correoUsuario,this);
+        gestionarSoli::agregarComentario(*listaArbol,correoUsuario,fechaU,idU,fecha,hora,contenido,correoUsuarioC,this);
 
         ui->txtComentario->clear();
+        ui->txtFechaa->setDisplayFormat("dd/MM/yyyy");
         ui->txtFechaa->setDate(QDate::currentDate());
         ui->txtHora->setTime(QTime::currentTime());
     }

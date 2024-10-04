@@ -111,7 +111,7 @@ public:
         actionBUSCAR->setText(QCoreApplication::translate("UserInt", "BUSCAR", nullptr));
         actionPUBLICACIONES->setText(QCoreApplication::translate("UserInt", "PUBLICACIONES", nullptr));
         actionSOLICITUDES->setText(QCoreApplication::translate("UserInt", "SOLICITUDES", nullptr));
-        actionGENERAR_REPORTES->setText(QCoreApplication::translate("UserInt", "GENERAR REPORTES", nullptr));
+        actionGENERAR_REPORTES->setText(QCoreApplication::translate("UserInt", "REPORTES", nullptr));
         label->setText(QCoreApplication::translate("UserInt", "BIENVENIDO", nullptr));
         lblNombreU->setText(QCoreApplication::translate("UserInt", ".", nullptr));
         pushButton->setText(QCoreApplication::translate("UserInt", "CERRAR SESION", nullptr));

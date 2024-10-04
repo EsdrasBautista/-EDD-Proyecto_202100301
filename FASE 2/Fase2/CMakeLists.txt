@@ -61,6 +61,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         arbolB.h
         arbolB.cpp
         comentaru.h comentaru.cpp comentaru.ui
+        vercomentarios.h vercomentarios.cpp vercomentarios.ui
+        verarbolcomentarios.h verarbolcomentarios.cpp verarbolcomentarios.ui
+        reportesuser.h reportesuser.cpp reportesuser.ui
+
 
 
 

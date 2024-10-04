@@ -25,7 +25,7 @@ void ReportesAdmin::on_btnUsers_clicked()
     listaPub->graficarListaP(); //publicacionesGeneral_
 
     QString ruta1 = QString::fromStdString("C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/AVL.png");
-    QString ruta2 = QString::fromStdString("C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/publicacionesGeneral.png");
+    QString ruta2 = QString::fromStdString("C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/build/Desktop_Qt_6_7_2_MinGW_64_bit-Debug/listaPublicacionesGeneral.png");
 
     QPixmap pixmapUser(ruta1);
     QPixmap pixmapPub(ruta2);

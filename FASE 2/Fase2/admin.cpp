@@ -21,7 +21,7 @@ Admin::~Admin()
 
 void Admin::on_actionBUSCAR_triggered()
 {
-    BuscarAdmin *buscar = new BuscarAdmin(this,listaArbol);
+    BuscarAdmin *buscar = new BuscarAdmin(this,listaArbol,listaPub);
     this->hide();
     buscar->show();
 }
@@ -39,7 +39,7 @@ void Admin::on_pushButton_clicked()
 
 void Admin::on_actionCARGA_MASIVA_triggered()
 {
-    CargarAdmin *cargar = new CargarAdmin(this,listaArbol);
+    CargarAdmin *cargar = new CargarAdmin(this,listaArbol,listaPub);
     this->hide();
     cargar->show();
 }

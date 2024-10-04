@@ -133,7 +133,7 @@ border-radius: 10px;</string>
   </action>
   <action name="actionGENERAR_REPORTES">
    <property name="text">
-    <string>GENERAR REPORTES</string>
+    <string>REPORTES</string>
    </property>
   </action>
  </widget>

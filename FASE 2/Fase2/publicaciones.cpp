@@ -7,6 +7,8 @@
 #include "./crearpublicacion.h"
 #include "./SimplePublicacion.h"
 #include "./comentaru.h"
+#include "./vercomentarios.h"
+#include "./verarbolcomentarios.h"
 #include <QIntValidator>
 
 #include <QMessageBox>
@@ -168,7 +170,7 @@ void Publicaciones::limpiarInfo(){
 void Publicaciones::on_btnComentar_clicked()
 {
     if(nodoActualPubs != nullptr){
-        ComentarU *coment = new ComentarU(this,nodoActualPubs,correoUsuario);
+        ComentarU *coment = new ComentarU(this,listaArbol,nodoActualPubs->getCorreoL(),nodoActualPubs->getFechaL(),nodoActualPubs->getIdL(),nodoActualPubs,correoUsuario);
         this->hide();
         coment->show();
     }else{
@@ -199,6 +201,34 @@ void Publicaciones::on_btnAnterior_clicked()
         }
     }else{
         QMessageBox::information(this, "Publicacoines", "No hay más publicaciones.");
+    }
+}
+
+
+void Publicaciones::on_btnVercoment_clicked()
+{
+    if(nodoActualPubs != nullptr){
+        verComentarios *coments = new verComentarios(this,listaArbol,nodoActualPubs->getCorreoL(),nodoActualPubs->getFechaL(),nodoActualPubs->getIdL());
+        this->hide();
+        coments->llenarComentarios();
+        coments->show();
+
+    }else{
+        QMessageBox::warning(this,"Advertencia","No se puede ver los comentarios");
+    }
+
+}
+
+
+void Publicaciones::on_btnVerArbol_clicked()
+{
+    if(nodoActualPubs != nullptr){
+        verArbolComentarios *coments = new verArbolComentarios(this,listaArbol,nodoActualPubs->getCorreoL(),nodoActualPubs->getFechaL(),nodoActualPubs->getIdL());
+        this->hide();
+        coments->show();
+
+    }else{
+        QMessageBox::warning(this,"Advertencia","No se puede ver los comentarios");
     }
 }
 

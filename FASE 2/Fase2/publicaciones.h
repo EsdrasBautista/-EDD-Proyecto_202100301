@@ -37,6 +37,10 @@ private slots:
 
     void on_btnAnterior_clicked();
 
+    void on_btnVercoment_clicked();
+
+    void on_btnVerArbol_clicked();
+
 private:
     Ui::Publicaciones *ui;
     listaEnlazadaArb* listaArbol;

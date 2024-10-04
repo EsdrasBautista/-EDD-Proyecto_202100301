@@ -406,6 +406,12 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportesuser.h",
+			"MU",
+			"EWIEGA46WW/moc_reportesuser.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/solicitudes.h",
 			"MU",
 			"EWIEGA46WW/moc_solicitudes.cpp",
@@ -415,6 +421,18 @@
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/userint.h",
 			"MU",
 			"EWIEGA46WW/moc_userint.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/verarbolcomentarios.h",
+			"MU",
+			"EWIEGA46WW/moc_verarbolcomentarios.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/vercomentarios.h",
+			"MU",
+			"EWIEGA46WW/moc_vercomentarios.cpp",
 			null
 		]
 	],
@@ -610,12 +628,27 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportesuser.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/solicitudes.cpp",
 			"MU",
 			null
 		],
 		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/userint.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/verarbolcomentarios.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/vercomentarios.cpp",
 			"MU",
 			null
 		]

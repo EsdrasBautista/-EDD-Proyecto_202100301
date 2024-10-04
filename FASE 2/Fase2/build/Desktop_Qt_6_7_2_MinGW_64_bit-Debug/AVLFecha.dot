@@ -1,0 +1,17 @@
+digraph G {
+Nodo0x200f1027a10[label = "15/08/2024"]
+Nodo0x200f1027a10->Nodo0x200f1027890
+subgraph cluster_0x200f1027a10 {
+label = "Publicaciones";
+Pub0x200ef9545d0[label = "ID: 2\nCorreo: mr@example.com\nContenido: El camino hacia el éxito está lleno de retos, pero vale la pena."];
+}
+Nodo0x200f1027a10->Pub0x200ef9545d0
+Nodo0x200f1027890[label = "18/08/2024"]
+subgraph cluster_0x200f1027890 {
+label = "Publicaciones";
+Pub0x200ef952960[label = "ID: 1\nCorreo: sg@example.com\nContenido: La música siempre encuentra la manera de alegrar mi día."];
+Pub0x200ef9530b0[label = "ID: 2\nCorreo: sg@example.com\nContenido: Las sonrisas sinceras son el mejor regalo que puedes dar."];
+Pub0x200ef952960->Pub0x200ef9530b0 [dir=both];
+}
+Nodo0x200f1027890->Pub0x200ef952960
+}

@@ -22,6 +22,10 @@ nodoSimplePub::nodoSimplePub(){
     anterior = nullptr;
 }
 
+nodoSimplePub::~nodoSimplePub(){
+    delete ArbolComentarios;
+}
+
 void nodoSimplePub::setAnterior(nodoSimplePub* ant) {
     this->anterior = ant;
 }
@@ -152,3 +156,66 @@ void listaNodoPub::eliminarPub(string correo) {
     }
 
 }
+
+
+nodoSimplePub* listaNodoPub::buscarNodoporCorreoId(string correo, int id){
+    nodoSimplePub* actual = cabeza;
+    if(actual == nullptr){return nullptr;}
+
+    while(actual != nullptr){
+        if(actual->getCorreoL() == correo && actual->getIdL() == id){
+            return actual;
+        }
+        actual = actual->getSiguiente();
+
+    }
+
+    return nullptr;
+}
+
+void listaNodoPub::graph(){
+    if (cabeza == nullptr) {
+        std::cout << "La lista está vacía, no hay nada que graficar." << std::endl;
+        return;
+    }
+    std::ofstream archivo("lista_publicaciones.dot");
+    if (!archivo.is_open()) {
+        std::cerr << "Error al abrir el archivo para escribir el gráfico." << std::endl;
+        return;
+    }
+    // Escribir la cabecera del archivo DOT
+    archivo << "digraph G {\n";
+    archivo << "    rankdir=LR;\n";  // Orientación izquierda a derecha
+    archivo << "    node [shape=record];\n";  // Usar nodos con forma de registro para mostrar los datos
+
+    // Recorrer la lista y crear los nodos
+    nodoSimplePub* actual = cabeza;
+    int nodoID = 0;  // Un ID único para cada nodo
+    while (actual != nullptr) {
+        // Crear el nodo con sus atributos (correo, contenido, etc.)
+        archivo << "    nodo" << nodoID << " [label=\"{ID: " << actual->getIdL()
+                << " | Correo: " << actual->getCorreoL()
+                << " | Contenido: " << actual->getContenidoL()
+                << " | Fecha: " << actual->getFechaL()
+                << " | Hora: " << actual->getHoraL() << "}\"];\n";
+
+        // Si hay un nodo siguiente, crear la conexión bidireccional
+        if (actual->getSiguiente() != nullptr) {
+            archivo << "    nodo" << nodoID << " -> nodo" << nodoID + 1 << " [dir=both];\n";
+        }
+
+        // Pasar al siguiente nodo
+        actual = actual->getSiguiente();
+        nodoID++;
+    }
+
+    // Cerrar el archivo DOT
+    archivo << "}\n";
+    archivo.close();
+
+    // Generar el gráfico usando el archivo .dot
+    system("dot -Tpng lista_publicaciones.dot -o lista_publicaciones.png");
+
+    std::cout << "Gráfico generado como 'lista_publicaciones.png'." << std::endl;
+}
+

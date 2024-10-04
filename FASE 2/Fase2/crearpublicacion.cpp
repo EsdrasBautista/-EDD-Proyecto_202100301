@@ -16,6 +16,7 @@ CrearPublicacion::CrearPublicacion(QWidget *parent,listaEnlazadaArb* lista, cons
 {
     ui->setupUi(this);
     this->setWindowTitle("CrearPublicacion");
+    ui->txtFecha->setDisplayFormat("dd/MM/yyyy");
     ui->txtFecha->setDate(QDate::currentDate());
     ui->txtHora->setTime(QTime::currentTime());
 }
@@ -95,6 +96,7 @@ void CrearPublicacion::on_btnCrear_clicked(){
             todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,"",milistapub->getContPublica());
             QMessageBox::information(this,"Creada","Publicacion creada con Exito!");
             ui->txtContenido->clear();
+            ui->txtFecha->setDisplayFormat("dd/MM/yyyy");
             ui->txtFecha->setDate(QDate::currentDate());
             ui->txtHora->setTime(QTime::currentTime());
             ui->txtImagen->clear();
@@ -106,8 +108,8 @@ void CrearPublicacion::on_btnCrear_clicked(){
             todosPubs->agregarPublicacionL(fecha,correo,contenido,hora,imagen,milistapub->getContPublica());
             QMessageBox::information(this,"Creada","Publicacion creada con Exito!!");
             ui->txtContenido->clear();
-            ui->txtFecha->setDate(QDate::currentDate());
-            ui->txtHora->setTime(QTime::currentTime());
+            ui->txtFecha->setDisplayFormat("dd/MM/yyyy");  // Establecer el formato de la fecha
+            ui->txtFecha->setDate(QDate::currentDate());               ui->txtHora->setTime(QTime::currentTime());
             ui->txtImagen->clear();
             ui->lblImg->clear();
         }

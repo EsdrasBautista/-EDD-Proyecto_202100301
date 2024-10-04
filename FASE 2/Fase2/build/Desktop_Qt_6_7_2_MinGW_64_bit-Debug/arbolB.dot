@@ -1,0 +1,8 @@
+digraph G {
+llave0x200e7e85df0 [label="10/08/2024\n08:00\nTotalmente de acuerdo, el café siempre ayuda a empezar bien el día."];
+nodo0x200e69a4c00 -> llave0x200e7e85df0;
+llave0x200e7da0e20 [label="10/08/2024\n09:10\nCada mañana, el café es un ritual que no puedo saltar."];
+llave0x200e7e85df0 -> llave0x200e7da0e20;
+llave0x200f11fad90 [label="02/10/2024\n11:36\nsi es cierto :)"];
+llave0x200e7da0e20 -> llave0x200f11fad90;
+}

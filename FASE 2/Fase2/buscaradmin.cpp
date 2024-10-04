@@ -6,10 +6,11 @@
 
 
 
-BuscarAdmin::BuscarAdmin(QWidget *parent,listaEnlazadaArb* lista)
+BuscarAdmin::BuscarAdmin(QWidget *parent,listaEnlazadaArb* lista,listaPublicaciones* listap)
     : QMainWindow(parent)
     , ui(new Ui::BuscarAdmin),
-    listaArbol(lista)
+    listaArbol(lista),
+    listaPub(listap)
 {
     ui->setupUi(this);
     this->setWindowTitle("BuscarAdmin");
@@ -91,6 +92,7 @@ void BuscarAdmin::llenarTabla(nodoArbol *node, int &fila) {
 
     connect(elimButton, &QPushButton::clicked, this, [this, node]() {
         gestionarSoli::EliminarCuenta(*listaArbol, node->getCorreo());
+        listaPub->eliminarP_porCorreo(node->getCorreo());
         ActualizarTabla();
     });
 
@@ -189,6 +191,7 @@ void BuscarAdmin::buscar(){
 
     connect(elimButton, &QPushButton::clicked, this, [this, node]() {
         gestionarSoli::EliminarCuenta(*listaArbol, node->getCorreo());
+        listaPub->eliminarP_porCorreo(node->getCorreo());
         ActualizarTabla();
     });
 }
@@ -303,6 +306,7 @@ void BuscarAdmin::llenarTablaPost(nodoArbol *node, int &fila){
 
         connect(elimButton, &QPushButton::clicked, this, [this, node]() {
             gestionarSoli::EliminarCuenta(*listaArbol, node->getCorreo());
+            listaPub->eliminarP_porCorreo(node->getCorreo());
             ActualizarTabla();
         });
 
@@ -374,6 +378,7 @@ void BuscarAdmin::llenarTablaPre(nodoArbol *node, int &fila){
 
         connect(elimButton, &QPushButton::clicked, this, [this, node]() {
             gestionarSoli::EliminarCuenta(*listaArbol, node->getCorreo());
+            listaPub->eliminarP_porCorreo(node->getCorreo());
             ActualizarTabla();
         });
 

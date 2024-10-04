@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "listaPublicaciones.h"
+#include "listaEnlazadaArbol.h"
 
 namespace Ui {
 class ComentarU;
@@ -14,7 +15,7 @@ class ComentarU : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit ComentarU(QWidget *parent = nullptr, nodoSimplePub *nodoPubs = nullptr,const std::string& correo = "");
+    explicit ComentarU(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,const std::string& correo = "",const std::string& fecha = "", int id = 0, nodoSimplePub *nodoPubs = nullptr,const std::string& correoC="");
     ~ComentarU();
     void llenarCampos();
 
@@ -25,8 +26,12 @@ private slots:
 
 private:
     Ui::ComentarU *ui;
-    nodoSimplePub* nodoActualPubs;
+    listaEnlazadaArb* listaArbol;
     string correoUsuario;
+    string correoUsuarioC;
+    string fechaU;
+    int idU;
+    nodoSimplePub* nodoActualPubs;
 };
 
 #endif // COMENTARU_H

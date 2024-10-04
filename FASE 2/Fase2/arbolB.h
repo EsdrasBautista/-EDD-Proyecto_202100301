@@ -3,10 +3,14 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <cstdlib>
 #include <string>
 #include <ctime>
 #include <iomanip>
+#include <QTextEdit>
+#include <QPlainTextEdit>
+#include <fstream>
+#include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -33,7 +37,7 @@ private:
     std::tm convertirHora(const std::string& hora) {
         std::tm tm = {};
         std::istringstream ss(hora);
-        ss >> std::get_time(&tm, "%H:%M"); // Formato H:M:S
+        ss >> std::get_time(&tm, "%H:%M"); // Formato H:M
         if (ss.fail()) {
             throw std::runtime_error("Error al convertir la hora");
         }
@@ -77,19 +81,24 @@ public:
         std::tm tm1 = convertirHora(h1);
         std::tm tm2 = convertirHora(h2);
 
-        // Convertir las horas a tiempo en segundos desde medianoche
-        time_t time1 = std::mktime(&tm1);
-        time_t time2 = std::mktime(&tm2);
-
-        double diff = std::difftime(time1, time2);
-        if (diff < 0) {
+        // Comparar las horas directamente
+        if (tm1.tm_hour < tm2.tm_hour) {
             return 1;  // h1 es menor que h2
-        } else if (diff > 0) {
-            return -1;   // h1 es mayor que h2
-        } else {
-            return 0;   // h1 es igual a h2
+        } else if (tm1.tm_hour > tm2.tm_hour) {
+            return -1; // h1 es mayor que h2
         }
+
+        // Si las horas son iguales, comparar los minutos
+        if (tm1.tm_min < tm2.tm_min) {
+            return 1;  // h1 es menor que h2
+        } else if (tm1.tm_min > tm2.tm_min) {
+            return -1; // h1 es mayor que h2
+        }
+
+        // Si las horas y los minutos son iguales
+        return 0;  // h1 es igual a h2
     }
+
 
 
 };
@@ -144,6 +153,7 @@ private:
 
     Llave* insertarEnHoja(string fecha,string hora,string correo,string contenido,Nodo *raiz);
     Llave* dividir(Nodo *nodo);
+    void eliminarComentarios(string fecha,string correo,Nodo *raiz);
 
 
     std::tm convertirFecha(string fecha) {
@@ -166,11 +176,15 @@ private:
         return tm;
     }
 
+    void recorrer(Nodo* nodo,QPlainTextEdit *textEdit);
+    void verArbol(Nodo* raiz, std::ofstream &archivoDot);
+
 public:
     ArbolB();
     ~ArbolB();
 
     void insert(string fecha,string hora,string correo,string contenido);
+    void eliminarComentarios(string fecha,string correo);
 
     int compararFechas(const std::string& f1, const std::string& f2) {
         std::tm tm1 = convertirFecha(f1);
@@ -195,19 +209,27 @@ public:
         std::tm tm1 = convertirHora(h1);
         std::tm tm2 = convertirHora(h2);
 
-        // Convertir las horas a tiempo en segundos desde medianoche
-        time_t time1 = std::mktime(&tm1);
-        time_t time2 = std::mktime(&tm2);
-
-        double diff = std::difftime(time1, time2);
-        if (diff < 0) {
+        // Comparar las horas directamente
+        if (tm1.tm_hour < tm2.tm_hour) {
             return 1;  // h1 es menor que h2
-        } else if (diff > 0) {
-            return -1;   // h1 es mayor que h2
-        } else {
-            return 0;   // h1 es igual a h2
+        } else if (tm1.tm_hour > tm2.tm_hour) {
+            return -1; // h1 es mayor que h2
         }
+
+        // Si las horas son iguales, comparar los minutos
+        if (tm1.tm_min < tm2.tm_min) {
+            return 1;  // h1 es menor que h2
+        } else if (tm1.tm_min > tm2.tm_min) {
+            return -1; // h1 es mayor que h2
+        }
+
+        // Si las horas y los minutos son iguales
+        return 0;  // h1 es igual a h2
     }
+
+
+    void recorrer(QPlainTextEdit* txtarea);
+    string verArbol();
 };
 
 

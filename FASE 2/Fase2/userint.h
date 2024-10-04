@@ -39,6 +39,8 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_actionGENERAR_REPORTES_triggered();
+
 private:
     Ui::UserInt *ui;
     listaEnlazadaArb* listaArbol;

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "listaEnlazadaArbol.h"
+#include "listaPublicaciones.h"
 
 namespace Ui {
 class CargarAdmin;
@@ -13,7 +14,7 @@ class CargarAdmin : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit CargarAdmin(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr);
+    explicit CargarAdmin(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,listaPublicaciones* listapubs = nullptr);
     ~CargarAdmin();
 
 private slots:
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::CargarAdmin *ui;
     listaEnlazadaArb* listaArbol;
+    listaPublicaciones* listaPubs;
     string rutaUser;
     string rutaPub;
     string rutaSoli;

@@ -8,6 +8,9 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QTableWidget>
+#include <QScrollArea>
+#include <QFileDialog>
+#include <QPixmap>
 
 class gestionarSoli{
 public:
@@ -25,10 +28,16 @@ public:
     static nodoSimplePub* mostrarPublicacionesArbol(listaEnlazadaArb &usuarios, string correo, QLineEdit* txtUsuario, QLineEdit* txtFecha, QPlainTextEdit* textoPub, QLabel* lblImagen,string fecha);
     static nodoSimplePub* OrdenarPublicacionespor(listaEnlazadaArb &usuarios, string correo, QLineEdit* txtUsuario, QLineEdit* txtFecha, QPlainTextEdit* textoPub, QLabel* lblImagen,int cantidad,string tipoOrden);
 
-    static void agregarComentario(nodoSimplePub &publicaciones,string fecha,string hora,string contenido,string correoComento,QWidget *ventana);
+    static void agregarComentario(listaEnlazadaArb &usuarios, string correoU,string fechaU,int id,string fecha,string hora,string contenido,string correoComento,QWidget *ventana);
 
-    static void agregarPubDesdeAdmin(listaEnlazadaArb &usuarios,string correo,listaPublicaciones &listaPubs,string contenido,string fecha,string hora);
+    static int agregarPubDesdeAdmin(listaEnlazadaArb &usuarios, string correo, string contenido, string fecha, string hora, QWidget *ventana);
+    static void agregarComentarioAdmin(listaEnlazadaArb &usuarios, string correoU,string fechaU,int id,string fecha,string hora,string contenido,string correoComento,QWidget *ventana);
 
+
+    static void verComentarios(listaEnlazadaArb &usuarios, string correoU, string fechaU, int id, QPlainTextEdit* txtarea);
+    static void mostrarArbolB(listaEnlazadaArb &usuarios, string correoU, string fechaU, int id,QLabel* img,QWidget *ventana);
+
+    static void agregarComentarioDesdeAdmin(listaEnlazadaArb &usuarios, string correoU, string fechaU,string contenido);
 };
 
 

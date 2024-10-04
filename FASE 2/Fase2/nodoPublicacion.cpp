@@ -361,7 +361,7 @@ void listaPublicaciones::graficarListaP(){
         archivo.close();
 
         stringstream nombreArchivo;
-        nombreArchivo << "publicacionesGeneral" << ".png";
+        nombreArchivo << "listaPublicacionesGeneral" << ".png";
 
         // Construir el comando Graphviz
         stringstream comando;
@@ -534,10 +534,7 @@ void listaPublicaciones::eliminarP_porCorreo(string correo){
     while(actual != nullptr){
         if(actual->getCorreo() == correo){
             NodoPub* nodoAEliminar = actual;
-
-
             actual = actual->getSigPub();
-
 
             if(nodoAEliminar == primero && nodoAEliminar == ultimo){
 

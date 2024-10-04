@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>verComentarios</class>
+ <widget class="QMainWindow" name="verComentarios">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>964</width>
+    <height>588</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(216, 229, 158);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>530</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 900 10pt &quot;Segoe UI Black&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+</string>
+    </property>
+    <property name="text">
+     <string>REGRESAR</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="txtArea">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>921</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 600 11pt &quot;Segoe UI Variable Display Semib&quot;;
+border: 5px solid white;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

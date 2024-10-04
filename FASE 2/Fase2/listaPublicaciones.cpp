@@ -287,3 +287,106 @@ void ArbolBST::OrdenPostorden(nodoBST *raiz, nodoSimplePub* &cabeza, nodoSimpleP
     }
 }
 
+nodoBST* ArbolBST::graficarNodoporFecha(string fecha){
+    std::ofstream outfile("AVLFecha.dot");
+    outfile << "digraph G {" << std::endl;
+
+    // Buscar el nodo con la fecha proporcionada
+    nodoBST* nodoInicio = buscarNodoporFecha(fecha);
+    if (nodoInicio != nullptr) {
+        graficarNodoporFecha(nodoInicio, outfile);
+    } else {
+        std::cout << "No se encontró un nodo con la fecha especificada." << std::endl;
+    }
+
+    outfile << "}" << std::endl;
+    outfile.close();
+
+    int returnCode = system("dot -Tpng ./AVLFecha.dot -o ./AVLFecha.png");
+    if (returnCode == 0) {
+        std::cout << "Comando ejecutado con éxito." << std::endl;
+    } else {
+        std::cout << "Error al ejecutar el comando: " << returnCode << std::endl;
+    }
+
+    return nodoInicio;
+}
+
+void ArbolBST::graficarNodoporFecha(nodoBST *raiz, ofstream &f){
+    if(raiz != nullptr){
+        std::stringstream oss;
+        oss << raiz;
+        std::string nombre = oss.str();
+
+        // Graficar el nodo del árbol BST (fecha)
+        f << "Nodo" + nombre + "[label = \"" + raiz->getfecha() + "\"]" << std::endl;
+
+
+        // Graficar el hijo izquierdo si existe
+        if(raiz->getIzq() != nullptr){
+            oss.str("");
+            oss << raiz->getIzq();
+            std::string izquierda = oss.str();
+            f << "Nodo" << nombre + "->Nodo" + izquierda << std::endl;
+        }
+
+        // Graficar el hijo derecho si existe
+        if(raiz->getDrcha() != nullptr){
+            oss.str("");
+            oss << raiz->getDrcha();
+            std::string derecha = oss.str();
+            f << "Nodo" << nombre + "->Nodo" + derecha << std::endl;
+        }
+
+        // Graficar la lista doblemente enlazada de publicaciones asociada al nodo
+        if(raiz->getPublicacionesBST() != nullptr){
+            graficarListaPublicaciones(raiz->getPublicacionesBST(), f, nombre);
+        }
+
+        // Recursión para graficar subárbol izquierdo y derecho
+        this->graficarNodoporFecha(raiz->getIzq(), f);
+        this->graficarNodoporFecha(raiz->getDrcha(), f);
+    }
+}
+
+void ArbolBST::graficarListaPublicaciones(listaNodoPub* lista, ofstream &f, const std::string &nombreNodoBST) {
+    if (lista == nullptr || lista->getCabeza() == nullptr) {
+        return;
+    }
+
+    nodoSimplePub* actual = lista->getCabeza();
+    std::string nodoAnterior = "";
+    std::string nodoPublicacion;
+
+    // Subgrafo para la lista doblemente enlazada
+    f << "subgraph cluster_" << nombreNodoBST << " {" << std::endl;
+    f << "label = \"Publicaciones\";" << std::endl;
+
+    while (actual != nullptr) {
+        std::stringstream oss;
+        oss << actual;
+        nodoPublicacion = "Pub" + oss.str();
+
+        // Graficar el nodo de la publicación
+        f << nodoPublicacion + "[label = \"ID: " + std::to_string(actual->getIdL()) + "\\nCorreo: " + actual->getCorreoL() + "\\nContenido: " + actual->getContenidoL() + "\"];" << std::endl;
+
+        // Conectar con el nodo anterior (lista doblemente enlazada)
+        if (!nodoAnterior.empty()) {
+            f << nodoAnterior + "->" + nodoPublicacion << " [dir=both];" << std::endl;  // Doble enlace
+        }
+
+        nodoAnterior = nodoPublicacion;
+        actual = actual->getSiguiente();
+    }
+
+    f << "}" << std::endl;
+
+    // Conectar el nodo del árbol con la cabeza de la lista de publicaciones
+    nodoSimplePub* cabeza = lista->getCabeza();
+    if (cabeza != nullptr) {
+        std::stringstream oss;
+        oss << cabeza;
+        std::string nodoCabeza = "Pub" + oss.str();
+        f << "Nodo" << nombreNodoBST + "->" + nodoCabeza << std::endl;
+    }
+}

@@ -51,6 +51,8 @@ private:
     void preOrden(nodoBST *raiz);
     void inOrden(nodoBST *raiz);
     void graph(nodoBST *raiz, std::ofstream &f);
+    void graficarNodoporFecha(nodoBST *raiz, ofstream &f);
+    void graficarListaPublicaciones(listaNodoPub* lista, ofstream &f, const std::string &nombreNodoBST);
 
     std::tm convertirFecha(string fecha) {
         std::tm tm = {};
@@ -79,7 +81,7 @@ public:
     void graph();
     nodoBST* getRaiz();
     nodoBST* buscarNodoporFecha(string fecha);
-
+    nodoBST* graficarNodoporFecha(string fecha);
     nodoSimplePub* Ordeninorden(int cantidadMax);
     nodoSimplePub* OrdenPostorden(int cantidadMax);
     nodoSimplePub* OrdenPreorden(int cantidadMax);
