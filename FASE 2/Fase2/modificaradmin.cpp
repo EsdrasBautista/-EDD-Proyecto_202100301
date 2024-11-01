@@ -2,6 +2,7 @@
 #include "ui_modificaradmin.h"
 #include "./GestionarSoli.h"
 #include "./buscaradmin.h"
+#include "./sha256.h"
 #include <QMessageBox>
 
 ModificarAdmin::ModificarAdmin(QWidget *parent,listaEnlazadaArb *lista, const std::string &correo)
@@ -33,13 +34,15 @@ void ModificarAdmin::llenarCamposAdmin(){
     QString qNombre = QString::fromStdString(nombre);
     QString qApellido = QString::fromStdString(apellido);
     QString qCorreo = QString::fromStdString(correo);
-    QString qContra = QString::fromStdString(contra);
     QString qFecha = QString:: fromStdString(fechaN);
 
+    std::string contraF = sha256(contra);
+
+    QString qContraE = QString::fromStdString(contraF);
+    ui->txtEncrip->setText(qContraE);
     ui->txtNombres->setText(qNombre);
     ui->txtApellidos->setText(qApellido);
     ui->txtCorreoU->setText(qCorreo);
-    ui->txtContraU->setText(qContra);
     ui->txtFechaN->setText(qFecha);
 }
 
@@ -85,5 +88,16 @@ void ModificarAdmin::on_btnRegresar_clicked()
         parent->ActualizarTabla();
         parent->show();  // Mostrar la ventana principal si existe
     }
+}
+
+
+void ModificarAdmin::on_btnVer_clicked()
+{
+    nodoArbol* datos = nullptr;
+    datos = listaArbol->buscarNodoPorCorreoArb(correoUsuario);
+    string contra = datos->getContrasena();
+    QString qContra = QString::fromStdString(contra);
+    ui->txtContraU->setText(qContra);
+
 }
 

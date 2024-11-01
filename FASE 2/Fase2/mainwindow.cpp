@@ -18,13 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("SocialStructure");
     listaArbol = new listaEnlazadaArb();
     listaPub = new listaPublicaciones();
+    adyAmistad = new listaAdyacencia();
+    arbMerkle = new merkle();
+    grafoAdy = new listaAdyacencia();
 
-/*
-    listaArbol->agregarUsuario("esdras","eliab","ee","123","23/08/2000");
+
+    /*listaArbol->agregarUsuario("esdras","eliab","ee","123","23/08/2000");
     listaArbol->agregarUsuario("gabriel","garcia","aa","456","15/06/1995");
     listaArbol->agregarUsuario("juan","perez","bb","789","22/11/1988");
-    listaArbol->agregarUsuario("maria","gomez","cc","123","15/06/1995");
-*/
+    listaArbol->agregarUsuario("maria","gomez","cc","123","15/06/1995");*/
+
 
 
 
@@ -36,6 +39,9 @@ MainWindow::~MainWindow()
     delete ui;
     delete listaArbol;
     delete listaPub;
+    delete adyAmistad;
+    delete arbMerkle;
+    delete grafoAdy;
 }
 
 void MainWindow::on_btnIngresar_clicked()
@@ -54,13 +60,13 @@ void MainWindow::on_btnIngresar_clicked()
     }else{
 
         if(resultado == 1){
-            Admin *ventAdmin = new Admin(this,listaArbol,listaPub);
+            Admin *ventAdmin = new Admin(this,listaArbol,listaPub,grafoAdy);
             this->hide();
             ventAdmin->show();
             ui->txtContra->clear();
             ui->txtCorreo->clear();
         }else if(resultado == 2){
-            UserInt *user = new UserInt(this,listaArbol,correo,listaPub);
+            UserInt *user = new UserInt(this,listaArbol,correo,listaPub,grafoAdy);
             user->setNombreUsuario(listaArbol->buscarNombreArb(correo));
             this->hide();
             user->show();
@@ -88,9 +94,7 @@ void MainWindow::on_btnCrear_clicked()
 
 void MainWindow::on_btnVerU_clicked()
 {
-    //listaArbol->postOrden();
-    listaArbol->graph();
-    listaPub->graficarListaP();
+
 }
 
 

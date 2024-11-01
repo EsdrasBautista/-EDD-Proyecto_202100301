@@ -102,6 +102,9 @@ border-radius: 10px;</string>
      <string>REPORTES</string>
     </property>
     <addaction name="actionREPORTES"/>
+    <addaction name="actionAMISTAD"/>
+    <addaction name="actionADYACENCIA_AMISTAD"/>
+    <addaction name="actionMERKLE_POR_USUARIO"/>
    </widget>
    <addaction name="menuOPCIONES"/>
    <addaction name="menuREPORTES"/>
@@ -120,6 +123,21 @@ border-radius: 10px;</string>
   <action name="actionREPORTES">
    <property name="text">
     <string>REPORTES</string>
+   </property>
+  </action>
+  <action name="actionAMISTAD">
+   <property name="text">
+    <string>GRAFO AMISTAD</string>
+   </property>
+  </action>
+  <action name="actionADYACENCIA_AMISTAD">
+   <property name="text">
+    <string>ADYACENCIA AMISTAD</string>
+   </property>
+  </action>
+  <action name="actionMERKLE_POR_USUARIO">
+   <property name="text">
+    <string>MERKLE POR USUARIO</string>
    </property>
   </action>
  </widget>

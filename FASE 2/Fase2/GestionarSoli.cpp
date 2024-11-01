@@ -10,9 +10,10 @@ void gestionarSoli::enviarSolicitud(listaEnlazadaArb &usuarios, string correoEmi
 
         nodoArbol* receptor = usuarios.buscarNodoPorCorreoArb(correoReceptor);
         nodoArbol* emisor = usuarios.buscarNodoPorCorreoArb(correoEmisor);
-        listaAmistad* miamigo = emisor->getListaAmigos();
+        //listaAmistad* miamigo = emisor->getListaAmigos();
+        listaAdyacencia* miamigoGrafo = emisor->getListaAmistadGrafo();
 
-        if(miamigo->verificarAmistad(correoReceptor)){
+        if(miamigoGrafo->verificarAmistadGrafo(correoReceptor)){
             QString msg = QString::fromStdString("El usuario " + correoReceptor + " ya es tu amigo.");
             QMessageBox::warning(ventSolicitudes, "Error al enviar solicitud", msg);
         }else{
@@ -54,7 +55,7 @@ void gestionarSoli::enviarSolicitud(listaEnlazadaArb &usuarios, string correoEmi
 
 }
 
-void gestionarSoli::aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmisor,string correoReceptor,QWidget *ventSolicitudes){
+void gestionarSoli::aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmisor,string correoReceptor,QWidget *ventSolicitudes,listaAdyacencia &grafoAmistad){
     try{
 
         nodoArbol* receptor = usuarios.buscarNodoPorCorreoArb(correoReceptor); //yo
@@ -67,8 +68,12 @@ void gestionarSoli::aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmi
         PilaSolicitudesRecibidas* pilaReceptor = receptor->getPilaSolicitudesRecibidas();
         ListaSolicitudesEnviadas* listaEmisor = emisor->getListaDeSolicitudesEnviadas();
 
-        listaAmistad* listaAmigosEmisor = emisor->getListaAmigos();
-        listaAmistad* listaAmigosReceptor = receptor->getListaAmigos();
+        //listaAmistad* listaAmigosEmisor = emisor->getListaAmigos();
+        //listaAmistad* listaAmigosReceptor = receptor->getListaAmigos();
+
+        listaAdyacencia* listaAmigosEmisorGrafo = emisor->getListaAmistadGrafo();
+        listaAdyacencia* listaAmigosReceptorGrafo = receptor->getListaAmistadGrafo();
+
 
         if (!pilaReceptor->estaVacia()) {
             pilaReceptor->eliminarElemento(correoEmisor);
@@ -78,10 +83,20 @@ void gestionarSoli::aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmi
 
             //pilaReceptor->verPila();
 
-            listaAmigosEmisor->agregarAmigo(correoReceptor);
-            listaAmigosReceptor->agregarAmigo(correoEmisor);
+            //listaAmigosEmisor->agregarAmigo(correoReceptor);
+            //listaAmigosReceptor->agregarAmigo(correoEmisor);
 
+            listaAmigosEmisorGrafo->insert(correoReceptor);
+            listaAmigosEmisorGrafo->crearConexion(correoReceptor,correoEmisor);
+            listaAmigosEmisorGrafo->crearConexion(correoEmisor,correoReceptor);
 
+            listaAmigosReceptorGrafo->insert(correoEmisor);
+            listaAmigosReceptorGrafo->crearConexion(correoReceptor,correoEmisor);
+            listaAmigosReceptorGrafo->crearConexion(correoEmisor,correoReceptor);
+
+            grafoAmistad.insert(correoReceptor);
+            grafoAmistad.crearConexion(correoReceptor,correoEmisor);
+            grafoAmistad.crearConexion(correoEmisor,correoReceptor);
 
         }
     }catch(runtime_error& e){
@@ -91,21 +106,37 @@ void gestionarSoli::aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmi
 }
 
 
-void gestionarSoli::aceptarSolicitudD(listaEnlazadaArb &usuarios, string correoEmisor,string correoReceptor,QWidget *ventAdmin){
+void gestionarSoli::aceptarSolicitudD(listaEnlazadaArb &usuarios, string correoEmisor, string correoReceptor, QWidget *ventAdmin, listaAdyacencia &grafoAmistad){
     nodoArbol* receptor = usuarios.buscarNodoPorCorreoArb(correoReceptor); //yo
     nodoArbol* emisor = usuarios.buscarNodoPorCorreoArb(correoEmisor); //el que me envio la sol
     if(receptor == nullptr){
         QMessageBox::warning(ventAdmin, "Error", "Uusario no encontrado!!");
         return;
     }
-    listaAmistad* listaAmigosEmisor = emisor->getListaAmigos();
-    listaAmistad* listaAmigosReceptor = receptor->getListaAmigos();
+    //listaAmistad* listaAmigosEmisor = emisor->getListaAmigos();
+    //listaAmistad* listaAmigosReceptor = receptor->getListaAmigos();
+
+    listaAdyacencia* listaAmigosEmisorGrafo = emisor->getListaAmistadGrafo();
+    listaAdyacencia* listaAmigosReceptorGrafo = receptor->getListaAmistadGrafo();
     //QString msg = QString::fromStdString( "Solicitud de: " +correoEmisor+ " Aceptada!");
 
     //QMessageBox::information(ventAdmin, "Estado Solicitud",msg);
 
-    listaAmigosEmisor->agregarAmigo(correoReceptor);
-    listaAmigosReceptor->agregarAmigo(correoEmisor);
+    //listaAmigosEmisor->agregarAmigo(correoReceptor);
+    //listaAmigosReceptor->agregarAmigo(correoEmisor);
+    listaAmigosEmisorGrafo->insert(correoReceptor);
+    listaAmigosEmisorGrafo->crearConexion(correoReceptor,correoEmisor);
+    listaAmigosEmisorGrafo->crearConexion(correoEmisor,correoReceptor);
+
+
+    listaAmigosReceptorGrafo->insert(correoEmisor);
+    listaAmigosReceptorGrafo->crearConexion(correoReceptor,correoEmisor);
+    listaAmigosReceptorGrafo->crearConexion(correoEmisor,correoReceptor);
+
+    grafoAmistad.insert(correoReceptor);
+    grafoAmistad.crearConexion(correoEmisor,correoReceptor);
+    grafoAmistad.crearConexion(correoReceptor,correoEmisor);
+
 
 }
 
@@ -180,21 +211,23 @@ void gestionarSoli::EliminarCuenta(listaEnlazadaArb &usuario, string correo){
         return;
     }
 
-    listaAmistad *misAmigos = minodo->getListaAmigos();
-    nodoAmistad *amigos = misAmigos ? misAmigos->getprimero() : nullptr;
+    //listaAmistad *misAmigos = minodo->getListaAmigos();
+    listaAdyacencia *misAmigos = minodo->getListaAmistadGrafo();
+    vnodo *amigos = misAmigos ? misAmigos->getprimero() : nullptr;
 
     if(amigos != nullptr){
         while(amigos != nullptr){
 
-            nodoArbol *nodoamigos = usuario.buscarNodoPorCorreoArb(amigos->getCorreoA());
+            nodoArbol *nodoamigos = usuario.buscarNodoPorCorreoArb(amigos->getCorreoE());
             //falta eliminar las publicacaiones mias en listas de mis amigos
             if(nodoamigos != nullptr){
-                listaAmistad *amigosnodo = nodoamigos->getListaAmigos();
+                //listaAmistad *amigosnodo = nodoamigos->getListaAmigos();
+                listaAdyacencia *amigosnodo = nodoamigos->getListaAmistadGrafo();
                 ArbolBST *BSTamigo = nodoamigos->getArbolPublicacionesBST();
                 listaNodoPub *todasPubs = nodoamigos->getListaTodasPubs();
 
                 if(amigosnodo != nullptr){
-                    amigosnodo->eliminarAmigo(correo);
+                    amigosnodo->eliminarAmigoGrafo(correo);
                 }
 
                 if(todasPubs != nullptr){
@@ -244,7 +277,7 @@ void gestionarSoli::EliminarCuenta(listaEnlazadaArb &usuario, string correo){
                 }
 
             }
-            amigos = amigos->getsiguiente();
+            amigos = amigos->getSiguiente();
 
         }
     }
@@ -259,8 +292,11 @@ void gestionarSoli::verAmigos(listaEnlazadaArb &usuario, string correo){
         return;
     }
 
-    listaAmistad *misamigos = minodo->getListaAmigos();
-    misamigos->verLista();
+    //listaAmistad *misamigos = minodo->getListaAmigos();
+    //misamigos->verLista();
+    listaAdyacencia* amigoGrafo = minodo->getListaAmistadGrafo();
+    amigoGrafo->crearGrafo();
+    amigoGrafo->crearGrafoLista();
 
 }
 
@@ -282,11 +318,12 @@ void gestionarSoli::agregarPublicacionesArbol(listaEnlazadaArb &usuarios, string
 
 
         //llenar el arbolBST con publicaciones de mis amigos
-        listaAmistad *misamigos = minodo->getListaAmigos();
-        nodoAmistad* amigoActual = misamigos->getprimero();
+        //listaAmistad *misamigos = minodo->getListaAmigos();
+        listaAdyacencia *misamigos = minodo->getListaAmistadGrafo();
+        vnodo* amigoActual = misamigos->getprimero();
 
         while(amigoActual != nullptr){
-            nodoArbol *nodoAmigo = usuarios.buscarNodoPorCorreoArb(amigoActual->getCorreoA());
+            nodoArbol *nodoAmigo = usuarios.buscarNodoPorCorreoArb(amigoActual->getCorreoE());
             if(nodoAmigo != nullptr){
                 listaPublicaciones *publicacionesAmigo = nodoAmigo->getListapublicaionesU();
                 NodoPub* pubAmigoActual = publicacionesAmigo->getPrimero();
@@ -297,7 +334,7 @@ void gestionarSoli::agregarPublicacionesArbol(listaEnlazadaArb &usuarios, string
                     pubAmigoActual = pubAmigoActual->getSigPub();
                 }
             }
-            amigoActual = amigoActual->getsiguiente();
+            amigoActual = amigoActual->getSiguiente();
         }
 
 
@@ -311,11 +348,13 @@ void gestionarSoli::agregarPublicacionesAmigos(listaEnlazadaArb &usuarios, strin
     try{
         nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correo);
         listaNodoPub *milista = minodo->getListaTodasPubs();
-        listaAmistad *misamigos = minodo->getListaAmigos();
+        //listaAmistad *misamigos = minodo->getListaAmigos();
+        listaAdyacencia *misamigos = minodo->getListaAmistadGrafo();
+
         if(misamigos != nullptr){
-            nodoAmistad *amigos = misamigos->getprimero();
+            vnodo *amigos = misamigos->getprimero();
             while(amigos != nullptr){
-                nodoArbol *nodoAmigo = usuarios.buscarNodoPorCorreoArb(amigos->getCorreoA());
+                nodoArbol *nodoAmigo = usuarios.buscarNodoPorCorreoArb(amigos->getCorreoE());
                 if(nodoAmigo != nullptr){
                     listaNodoPub *pubAmigos = nodoAmigo->getListaTodasPubs();
                     if(pubAmigos != nullptr){
@@ -329,7 +368,7 @@ void gestionarSoli::agregarPublicacionesAmigos(listaEnlazadaArb &usuarios, strin
 
                     }
                 }
-                amigos = amigos->getsiguiente();
+                amigos = amigos->getSiguiente();
             }
         }
 
@@ -607,9 +646,11 @@ void gestionarSoli::agregarComentarioAdmin(listaEnlazadaArb &usuarios, string co
 
     try{
         nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
-        listaAmistad *misamigos = minodo->getListaAmigos();
+        //listaAmistad *misamigos = minodo->getListaAmigos();
+        listaAdyacencia *misamigos = minodo->getListaAmistadGrafo();
+
         if(minodo != nullptr){
-            if(misamigos->verificarAmistad(correoComento)){
+            if(misamigos->verificarAmistadGrafo(correoComento)){
                 ArbolBST *miarbolBst = minodo->getArbolPublicacionesBST();
                 if(miarbolBst != nullptr){
                     nodoBST* nodo = miarbolBst->buscarNodoporFecha(fechaU);
@@ -635,3 +676,60 @@ void gestionarSoli::agregarComentarioAdmin(listaEnlazadaArb &usuarios, string co
         QMessageBox::information(ventana,"Advertencia","Error al agregar comentario!");
     }
 }
+
+
+
+void gestionarSoli::generarGradoAmistad(listaAdyacencia &grafo){
+    grafo.crearGrafo();
+}
+
+void gestionarSoli::generarAdyacenciaAmistad(listaAdyacencia &adyacencia){
+    adyacencia.crearGrafoLista();
+}
+
+bool gestionarSoli::generarMerkleUsuario(listaEnlazadaArb &usuarios, string correoU){
+    nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+    merkle *merk = minodo->getArbolMerkle();
+    if(merk != nullptr){
+        merk->generar();
+        bool estado = merk->generarDot();
+        if(estado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+}
+
+bool gestionarSoli::generarGradoAmistadUser(listaEnlazadaArb &usuarios, string correoU){
+    nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+    listaAdyacencia* migrafo = minodo->getListaAmistadGrafo();
+    if(migrafo != nullptr){
+        bool estado = migrafo->crearGrafo();
+        if(estado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+}
+
+
+bool gestionarSoli::generarGrafoListaAmistadUser(listaEnlazadaArb &usuarios, string correoU){
+    nodoArbol *minodo = usuarios.buscarNodoPorCorreoArb(correoU);
+    listaAdyacencia* migrafo = minodo->getListaAmistadGrafo();
+    if(migrafo != nullptr){
+        bool estado = migrafo->crearGrafoLista();
+        if(estado){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    return false;
+}
+
+
+

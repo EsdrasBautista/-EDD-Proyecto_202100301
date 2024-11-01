@@ -431,5 +431,8 @@ C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/buil
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaPublicaciones.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaSoli_E.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listasoli_R.h \
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/merkle.h \
   C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoMatriz.h \
-  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoPublicacion.h
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoPublicacion.h \
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodosMerk.h \
+  C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/relacionAmistad.h

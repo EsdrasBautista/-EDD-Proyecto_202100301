@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "listaEnlazadaArbol.h"
+#include "relacionAmistad.h"
 namespace Ui {
 class Solicitudes;
 }
@@ -12,7 +13,7 @@ class Solicitudes : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Solicitudes(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,const std::string& correo = "");
+    explicit Solicitudes(QWidget *parent = nullptr, listaEnlazadaArb* lista = nullptr, const std::string& correo = "", listaAdyacencia *grafo = nullptr);
     ~Solicitudes();
     void tablaUser();
     void tablaEnv();
@@ -31,6 +32,7 @@ private:
     Ui::Solicitudes *ui;
     listaEnlazadaArb* listaArbol;
     string correoUsuario;
+    listaAdyacencia *grafoAdy;
 };
 
 #endif // SOLICITUDES_H

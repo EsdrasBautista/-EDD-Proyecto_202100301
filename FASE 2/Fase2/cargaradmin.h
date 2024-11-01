@@ -14,7 +14,7 @@ class CargarAdmin : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit CargarAdmin(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,listaPublicaciones* listapubs = nullptr);
+    explicit CargarAdmin(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,listaPublicaciones* listapubs = nullptr,listaAdyacencia* grafo = nullptr);
     ~CargarAdmin();
 
 private slots:
@@ -33,6 +33,7 @@ private:
     string rutaUser;
     string rutaPub;
     string rutaSoli;
+    listaAdyacencia* grafoAdy;
 };
 
 #endif // CARGARADMIN_H

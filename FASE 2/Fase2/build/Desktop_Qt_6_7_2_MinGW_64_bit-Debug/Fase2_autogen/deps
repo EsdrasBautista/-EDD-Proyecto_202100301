@@ -602,6 +602,8 @@ Fase2_autogen/timestamp: \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/CMakeLists.txt \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/GestionarSoli.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/GestionarSoli.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/Huffman.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/Huffman.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/PilaSoli_R.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/PilaSoli_R.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/SimplePublicacion.cpp \
@@ -627,6 +629,7 @@ Fase2_autogen/timestamp: \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/crearpublicacion.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/crearuser.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/crearuser.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/globalesV.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaAmistades.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaAmistades.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/listaEnlazadaArbol.cpp \
@@ -640,20 +643,40 @@ Fase2_autogen/timestamp: \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/main.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/mainwindow.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/mainwindow.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/merkle.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/merkle.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/modificaradmin.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/modificaradmin.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoHuffmann.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoHuffmann.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoMatriz.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoMatriz.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoPublicacion.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodoPublicacion.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodosMerk.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/nodosMerk.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/perfil.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/perfil.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/publicaciones.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/publicaciones.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/relacionAmistad.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/relacionAmistad.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteady.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteady.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteadyuser.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteadyuser.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteamistaduser.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteamistaduser.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportegrafo.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportegrafo.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportemerkle.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportemerkle.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportesadmin.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportesadmin.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportesuser.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportesuser.h \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/sha256.cpp \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/sha256.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/solicitudes.cpp \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/solicitudes.h \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/userint.cpp \
@@ -673,6 +696,11 @@ Fase2_autogen/timestamp: \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/modificaradmin.ui \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/perfil.ui \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/publicaciones.ui \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteady.ui \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteadyuser.ui \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reporteamistaduser.ui \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportegrafo.ui \
+	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportemerkle.ui \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportesadmin.ui \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/reportesuser.ui \
 	C:/Users/bauti/Desktop/USAC/2024/SEMESTRE\ 2/EDD/LAB/PROYECTO/FASE\ 2/Fase2/solicitudes.ui \

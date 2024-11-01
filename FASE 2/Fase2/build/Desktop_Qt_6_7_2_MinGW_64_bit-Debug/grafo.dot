@@ -1,0 +1,8 @@
+digraph G {
+"ah@example.com" [label = "ah@example.com"];
+"ah@example.com"->"cg@example.com" [dir = both];
+"lr@example.com" [label = "lr@example.com"];
+"md@example.com" [label = "md@example.com"];
+"ml@example.com" [label = "ml@example.com"];
+"pg@example.com" [label = "pg@example.com"];
+}

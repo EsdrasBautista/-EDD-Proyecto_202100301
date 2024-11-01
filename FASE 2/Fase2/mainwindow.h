@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include "listaEnlazadaArbol.h"
 #include "nodoPublicacion.h"
+#include "relacionAmistad.h"
+#include "merkle.h"
+#include "relacionAmistad.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,5 +36,8 @@ private:
     Ui::MainWindow *ui;
     listaEnlazadaArb *listaArbol;
     listaPublicaciones *listaPub;
+    listaAdyacencia *adyAmistad;
+    merkle *arbMerkle;
+    listaAdyacencia *grafoAdy;
 };
 #endif // MAINWINDOW_H

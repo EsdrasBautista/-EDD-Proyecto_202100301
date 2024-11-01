@@ -30,6 +30,8 @@ public:
     QAction *actionPUBLICACIONES;
     QAction *actionSOLICITUDES;
     QAction *actionGENERAR_REPORTES;
+    QAction *actionGRAFO_AMISTAD;
+    QAction *actionADYACENCIA_AMISTAD;
     QWidget *centralwidget;
     QLabel *label;
     QLabel *lblNombreU;
@@ -55,6 +57,10 @@ public:
         actionSOLICITUDES->setObjectName("actionSOLICITUDES");
         actionGENERAR_REPORTES = new QAction(UserInt);
         actionGENERAR_REPORTES->setObjectName("actionGENERAR_REPORTES");
+        actionGRAFO_AMISTAD = new QAction(UserInt);
+        actionGRAFO_AMISTAD->setObjectName("actionGRAFO_AMISTAD");
+        actionADYACENCIA_AMISTAD = new QAction(UserInt);
+        actionADYACENCIA_AMISTAD->setObjectName("actionADYACENCIA_AMISTAD");
         centralwidget = new QWidget(UserInt);
         centralwidget->setObjectName("centralwidget");
         label = new QLabel(centralwidget);
@@ -98,6 +104,8 @@ public:
         menuPERFIL->addSeparator();
         menuREPORTES->addAction(actionGENERAR_REPORTES);
         menuREPORTES->addSeparator();
+        menuREPORTES->addAction(actionGRAFO_AMISTAD);
+        menuREPORTES->addAction(actionADYACENCIA_AMISTAD);
 
         retranslateUi(UserInt);
 
@@ -112,6 +120,8 @@ public:
         actionPUBLICACIONES->setText(QCoreApplication::translate("UserInt", "PUBLICACIONES", nullptr));
         actionSOLICITUDES->setText(QCoreApplication::translate("UserInt", "SOLICITUDES", nullptr));
         actionGENERAR_REPORTES->setText(QCoreApplication::translate("UserInt", "REPORTES", nullptr));
+        actionGRAFO_AMISTAD->setText(QCoreApplication::translate("UserInt", "GRAFO AMISTAD", nullptr));
+        actionADYACENCIA_AMISTAD->setText(QCoreApplication::translate("UserInt", "ADYACENCIA AMISTAD", nullptr));
         label->setText(QCoreApplication::translate("UserInt", "BIENVENIDO", nullptr));
         lblNombreU->setText(QCoreApplication::translate("UserInt", ".", nullptr));
         pushButton->setText(QCoreApplication::translate("UserInt", "CERRAR SESION", nullptr));

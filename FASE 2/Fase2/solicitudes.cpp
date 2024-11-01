@@ -3,11 +3,12 @@
 #include "./GestionarSoli.h"
 #include "./listaEnlazadaArbol.h"
 
-Solicitudes::Solicitudes(QWidget *parent,listaEnlazadaArb* lista, const std::string& correo)
+Solicitudes::Solicitudes(QWidget *parent,listaEnlazadaArb* lista, const std::string& correo,listaAdyacencia* grafo)
     : QMainWindow(parent)
     , ui(new Ui::Solicitudes),
     listaArbol(lista),      // Inicializar listaArbol
-    correoUsuario(correo)   // Inicializar correoUsuario
+    correoUsuario(correo),   // Inicializar correoUsuario
+    grafoAdy(grafo)
 {
     ui->setupUi(this);
     this->setWindowTitle("Solicitudes");
@@ -44,7 +45,8 @@ void Solicitudes::llenarTblUser(nodoArbol *node, int &fila){
     nodoArbol *usuario = listaArbol->buscarNodoPorCorreoArb(correoUsuario);
     PilaSolicitudesRecibidas *mipila = usuario->getPilaSolicitudesRecibidas();
     ListaSolicitudesEnviadas *milista = usuario->getListaDeSolicitudesEnviadas();
-    listaAmistad *mimatriz = usuario->getListaAmigos();
+    //listaAmistad *mimatriz = usuario->getListaAmigos();
+    listaAdyacencia *mimatriz = usuario->getListaAmistadGrafo();
 
     if(node == nullptr) return;
 
@@ -53,7 +55,7 @@ void Solicitudes::llenarTblUser(nodoArbol *node, int &fila){
     bool existeP = mipila->existe(node->getCorreo());
     bool existeL = milista->existe(node->getCorreo());
 
-    if(node->getCorreo() != correoUsuario && !existeL && !existeP && !mimatriz->verificarAmistad(node->getCorreo())){
+    if(node->getCorreo() != correoUsuario && !existeL && !existeP && !mimatriz->verificarAmistadGrafo(node->getCorreo())){
         ui->tlbUs->insertRow(fila);
 
         QTableWidgetItem* nombreItem = new QTableWidgetItem(QString::fromStdString(node->getNombres()));
@@ -204,7 +206,7 @@ void Solicitudes::llenarTblRec(NodoPila *pila, int &fila){
         QObject::disconnect(rechazarButton, &QPushButton::clicked, this, nullptr);
 
         connect(aceptarButton, &QPushButton::clicked, this, [this, pila]() {
-            gestionarSoli::aceptarSolicitud(*listaArbol, pila->getCorreoUsuario(), correoUsuario, this);
+            gestionarSoli::aceptarSolicitud(*listaArbol, pila->getCorreoUsuario(), correoUsuario, this,*grafoAdy);
             refrescarTablaRec();
         });
         connect(rechazarButton, &QPushButton::clicked, this, [this, pila]() {

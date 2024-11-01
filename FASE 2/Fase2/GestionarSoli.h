@@ -15,9 +15,9 @@
 class gestionarSoli{
 public:
     static void enviarSolicitud(listaEnlazadaArb &usuarios,string correoEmisor, string correoReceptor,QWidget *ventSolicitudes);
-    static void aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmisor,string correoReceptor,QWidget *ventSolicitudes);
+    static void aceptarSolicitud(listaEnlazadaArb &usuarios,string correoEmisor,string correoReceptor,QWidget *ventSolicitudes, listaAdyacencia &grafoAmistad);
     static void rechazarSolicitud(listaEnlazadaArb &usuarios,string correoEmisor,string correoReceptor,QWidget *ventSolicitudes);
-    static void aceptarSolicitudD(listaEnlazadaArb &usuario, string correoE, string correoR,QWidget *ventAdmin); // cuando es carga desde admin
+    static void aceptarSolicitudD(listaEnlazadaArb &usuario, string correoE, string correoR,QWidget *ventAdmin, listaAdyacencia &grafoAmistad); // cuando es carga desde admin
     static void cancelarSolicitud(listaEnlazadaArb &usuario, string micorreo, string elotrocorreo,QWidget *ventSolicitudes);
 
     static void EliminarCuenta(listaEnlazadaArb &usuario, string correo);
@@ -38,6 +38,17 @@ public:
     static void mostrarArbolB(listaEnlazadaArb &usuarios, string correoU, string fechaU, int id,QLabel* img,QWidget *ventana);
 
     static void agregarComentarioDesdeAdmin(listaEnlazadaArb &usuarios, string correoU, string fechaU,string contenido);
+
+
+
+    static void generarGradoAmistad(listaAdyacencia &grafo);
+    static void generarAdyacenciaAmistad(listaAdyacencia &adyacencia);
+    static bool generarMerkleUsuario(listaEnlazadaArb &usuarios, string correoU);
+    static bool generarGradoAmistadUser(listaEnlazadaArb &usuarios, string correoU);
+
+    static bool generarGrafoListaAmistadUser(listaEnlazadaArb &usuarios, string correoU);
+
+
 };
 
 

@@ -22,6 +22,8 @@ private slots:
 
     void on_btnRegresar_clicked();
 
+    void on_btnVer_clicked();
+
 private:
     Ui::ModificarAdmin *ui;
     listaEnlazadaArb* listaArbol;

@@ -28,6 +28,9 @@ public:
     QAction *actionBUSCAR;
     QAction *actionCARGA_MASIVA;
     QAction *actionREPORTES;
+    QAction *actionAMISTAD;
+    QAction *actionADYACENCIA_AMISTAD;
+    QAction *actionMERKLE_POR_USUARIO;
     QWidget *centralwidget;
     QLabel *label;
     QLabel *lblNombreU;
@@ -49,6 +52,12 @@ public:
         actionCARGA_MASIVA->setObjectName("actionCARGA_MASIVA");
         actionREPORTES = new QAction(Admin);
         actionREPORTES->setObjectName("actionREPORTES");
+        actionAMISTAD = new QAction(Admin);
+        actionAMISTAD->setObjectName("actionAMISTAD");
+        actionADYACENCIA_AMISTAD = new QAction(Admin);
+        actionADYACENCIA_AMISTAD->setObjectName("actionADYACENCIA_AMISTAD");
+        actionMERKLE_POR_USUARIO = new QAction(Admin);
+        actionMERKLE_POR_USUARIO->setObjectName("actionMERKLE_POR_USUARIO");
         centralwidget = new QWidget(Admin);
         centralwidget->setObjectName("centralwidget");
         label = new QLabel(centralwidget);
@@ -88,6 +97,9 @@ public:
         menuOPCIONES->addAction(actionBUSCAR);
         menuOPCIONES->addAction(actionCARGA_MASIVA);
         menuREPORTES->addAction(actionREPORTES);
+        menuREPORTES->addAction(actionAMISTAD);
+        menuREPORTES->addAction(actionADYACENCIA_AMISTAD);
+        menuREPORTES->addAction(actionMERKLE_POR_USUARIO);
 
         retranslateUi(Admin);
 
@@ -100,6 +112,9 @@ public:
         actionBUSCAR->setText(QCoreApplication::translate("Admin", "BUSCAR", nullptr));
         actionCARGA_MASIVA->setText(QCoreApplication::translate("Admin", "CARGA MASIVA", nullptr));
         actionREPORTES->setText(QCoreApplication::translate("Admin", "REPORTES", nullptr));
+        actionAMISTAD->setText(QCoreApplication::translate("Admin", "GRAFO AMISTAD", nullptr));
+        actionADYACENCIA_AMISTAD->setText(QCoreApplication::translate("Admin", "ADYACENCIA AMISTAD", nullptr));
+        actionMERKLE_POR_USUARIO->setText(QCoreApplication::translate("Admin", "MERKLE POR USUARIO", nullptr));
         label->setText(QCoreApplication::translate("Admin", "BIENVENIDO", nullptr));
         lblNombreU->setText(QCoreApplication::translate("Admin", "ADMIN", nullptr));
         pushButton->setText(QCoreApplication::translate("Admin", "CERRAR SESION", nullptr));

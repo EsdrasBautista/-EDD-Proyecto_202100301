@@ -18,8 +18,12 @@ nodoArbol::nodoArbol(string nom,string ape,string corr,string contr,string fecha
     this->listaPublicacionesU = new listaPublicaciones();
     this->listaAmigos = new listaAmistad();
     this->ArbolPublicacionesBST = new ArbolBST();
-
     this->listaTodasPubs = new listaNodoPub();
+
+
+    this->listaAmistadGrafo = new listaAdyacencia();
+    this->arbolMerkle = new merkle();
+
 }
 
 
@@ -93,6 +97,14 @@ listaPublicaciones* nodoArbol::getListapublicaionesU(){
     return this->listaPublicacionesU;
 }
 
+listaAdyacencia* nodoArbol::getListaAmistadGrafo(){
+    return this->listaAmistadGrafo;
+}
+
+merkle* nodoArbol::getArbolMerkle(){
+    return this->arbolMerkle;
+}
+
 
 void nodoArbol::setNombres(string nombres) {
     this->nombres = nombres;
@@ -115,6 +127,7 @@ void nodoArbol::setFechaNacimiento(string fechaNacimiento) {
 }
 
 
+
 nodoArbol::~nodoArbol() {
     delete pilaSolicitudesRecibidas;  // Libera la pila de solicitudes recibidas
     delete listadeSolicitudesEnviadasUsuario;  // Libera la lista de solicitudes enviadas
@@ -122,6 +135,8 @@ nodoArbol::~nodoArbol() {
     delete listaAmigos;  // Libera la lista de amigos
     delete ArbolPublicacionesBST;
     delete listaTodasPubs;
+    delete listaAmistadGrafo;
+    delete arbolMerkle;
 }
 
 

@@ -13,6 +13,8 @@
 #include "listaAmistades.h"
 #include "listaPublicaciones.h"
 #include "SimplePublicacion.h"
+#include "relacionAmistad.h"
+#include "merkle.h"
 
 
 using namespace std;
@@ -27,16 +29,20 @@ private:
     string correo;
     string contrasena;
     string fechaNacimiento;
+    int altura;
+
     nodoArbol *derecha, *izquierda;
     PilaSolicitudesRecibidas* pilaSolicitudesRecibidas; // Pila de solicitudes recibidas
     ListaSolicitudesEnviadas* listadeSolicitudesEnviadasUsuario; //lista de solicitudes enviadas
     listaPublicaciones* listaPublicacionesU;
     listaAmistad* listaAmigos;
     ArbolBST* ArbolPublicacionesBST;
-
     listaNodoPub* listaTodasPubs;
-    int altura;
 
+
+
+    listaAdyacencia* listaAmistadGrafo;
+    merkle* arbolMerkle;
 
 
 public:
@@ -68,6 +74,8 @@ public:
     ArbolBST* getArbolPublicacionesBST();
 
     listaNodoPub* getListaTodasPubs();
+    listaAdyacencia* getListaAmistadGrafo();
+    merkle* getArbolMerkle();
 };
 
 

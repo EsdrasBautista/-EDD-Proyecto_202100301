@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "listaEnlazadaArbol.h"
 #include "nodoPublicacion.h"
+#include "relacionAmistad.h"
+
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -20,7 +22,7 @@ class UserInt : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit UserInt(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,const std::string& correo = "", listaPublicaciones* listap = nullptr );
+    explicit UserInt(QWidget *parent = nullptr,listaEnlazadaArb* lista = nullptr,const std::string& correo = "", listaPublicaciones* listap = nullptr,listaAdyacencia* grafoAdy = nullptr );
     ~UserInt();
     void setNombreUsuario(string nombre);
     void actualizarNombreUsuario();
@@ -41,11 +43,17 @@ private slots:
 
     void on_actionGENERAR_REPORTES_triggered();
 
+    void on_actionGRAFO_AMISTAD_triggered();
+
+    void on_actionADYACENCIA_AMISTAD_triggered();
+
 private:
     Ui::UserInt *ui;
     listaEnlazadaArb* listaArbol;
     listaPublicaciones* listaPub;
     string correoUsuario;
+    listaAdyacencia* grafoAdy;
+
 };
 
 #endif // USERINT_H

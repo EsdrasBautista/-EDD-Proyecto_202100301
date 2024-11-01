@@ -64,6 +64,25 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         vercomentarios.h vercomentarios.cpp vercomentarios.ui
         verarbolcomentarios.h verarbolcomentarios.cpp verarbolcomentarios.ui
         reportesuser.h reportesuser.cpp reportesuser.ui
+        relacionAmistad.h
+        relacionAmistad.cpp
+        sha256.h
+        sha256.cpp
+        nodosMerk.h
+        nodosMerk.cpp
+        globalesV.h
+        merkle.h
+        merkle.cpp
+        reportegrafo.h reportegrafo.cpp reportegrafo.ui
+        reporteady.h reporteady.cpp reporteady.ui
+        reportemerkle.h reportemerkle.cpp reportemerkle.ui
+        nodoHuffmann.h
+        nodoHuffmann.cpp
+        Huffman.h
+        Huffman.cpp
+        reporteamistaduser.h reporteamistaduser.cpp reporteamistaduser.ui
+        reporteadyuser.h reporteadyuser.cpp reporteadyuser.ui
+
 
 
 

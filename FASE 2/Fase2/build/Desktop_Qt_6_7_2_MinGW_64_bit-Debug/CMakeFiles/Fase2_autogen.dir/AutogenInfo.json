@@ -274,6 +274,12 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/Huffman.h",
+			"MU",
+			"EWIEGA46WW/moc_Huffman.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/PilaSoli_R.h",
 			"MU",
 			"EWIEGA46WW/moc_PilaSoli_R.cpp",
@@ -334,6 +340,12 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/globalesV.h",
+			"MU",
+			"EWIEGA46WW/moc_globalesV.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/listaAmistades.h",
 			"MU",
 			"EWIEGA46WW/moc_listaAmistades.cpp",
@@ -370,9 +382,21 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/merkle.h",
+			"MU",
+			"EWIEGA46WW/moc_merkle.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/modificaradmin.h",
 			"MU",
 			"EWIEGA46WW/moc_modificaradmin.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/nodoHuffmann.h",
+			"MU",
+			"EWIEGA46WW/moc_nodoHuffmann.cpp",
 			null
 		],
 		[
@@ -388,6 +412,12 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/nodosMerk.h",
+			"MU",
+			"EWIEGA46WW/moc_nodosMerk.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/perfil.h",
 			"MU",
 			"EWIEGA46WW/moc_perfil.cpp",
@@ -400,6 +430,42 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/relacionAmistad.h",
+			"MU",
+			"EWIEGA46WW/moc_relacionAmistad.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reporteady.h",
+			"MU",
+			"EWIEGA46WW/moc_reporteady.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reporteadyuser.h",
+			"MU",
+			"EWIEGA46WW/moc_reporteadyuser.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reporteamistaduser.h",
+			"MU",
+			"EWIEGA46WW/moc_reporteamistaduser.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportegrafo.h",
+			"MU",
+			"EWIEGA46WW/moc_reportegrafo.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportemerkle.h",
+			"MU",
+			"EWIEGA46WW/moc_reportemerkle.cpp",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportesadmin.h",
 			"MU",
 			"EWIEGA46WW/moc_reportesadmin.cpp",
@@ -409,6 +475,12 @@
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportesuser.h",
 			"MU",
 			"EWIEGA46WW/moc_reportesuser.cpp",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/sha256.h",
+			"MU",
+			"EWIEGA46WW/moc_sha256.cpp",
 			null
 		],
 		[
@@ -513,6 +585,11 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/Huffman.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/PilaSoli_R.cpp",
 			"MU",
 			null
@@ -598,7 +675,17 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/merkle.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/modificaradmin.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/nodoHuffmann.cpp",
 			"MU",
 			null
 		],
@@ -613,6 +700,11 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/nodosMerk.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/perfil.cpp",
 			"MU",
 			null
@@ -623,12 +715,47 @@
 			null
 		],
 		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/relacionAmistad.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reporteady.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reporteadyuser.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reporteamistaduser.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportegrafo.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportemerkle.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportesadmin.cpp",
 			"MU",
 			null
 		],
 		[
 			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/reportesuser.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/bauti/Desktop/USAC/2024/SEMESTRE 2/EDD/LAB/PROYECTO/FASE 2/Fase2/sha256.cpp",
 			"MU",
 			null
 		],

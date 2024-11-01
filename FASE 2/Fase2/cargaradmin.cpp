@@ -13,11 +13,12 @@
 #include <QDebug>
 #include "./GestionarSoli.h"
 
-CargarAdmin::CargarAdmin(QWidget *parent,listaEnlazadaArb* lista,listaPublicaciones* listaP)
+CargarAdmin::CargarAdmin(QWidget *parent,listaEnlazadaArb* lista,listaPublicaciones* listaP,listaAdyacencia* grafo)
     : QMainWindow(parent)
     , ui(new Ui::CargarAdmin),
     listaArbol(lista),
-    listaPubs(listaP)
+    listaPubs(listaP),
+    grafoAdy(grafo)
 
 {
     ui->setupUi(this);
@@ -125,7 +126,7 @@ void CargarAdmin::on_btnSoli_clicked()
             std::string estado = userObject.value("estado").toString().toStdString();
 
             if(estado == "ACEPTADA"){
-                gestionarSoli::aceptarSolicitudD(*listaArbol,receptor,emisor,this);
+                gestionarSoli::aceptarSolicitudD(*listaArbol,receptor,emisor,this,*grafoAdy);
             }else if(estado == "PENDIENTE"){
                 gestionarSoli::enviarSolicitud(*listaArbol,emisor,receptor,this);
             }

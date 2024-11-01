@@ -35,6 +35,8 @@ public:
     QLineEdit *txtContraU;
     QLineEdit *txtFechaN;
     QLineEdit *txtCorreoU;
+    QLineEdit *txtEncrip;
+    QPushButton *btnVer;
     QPushButton *btnModificar;
     QPushButton *btnRegresar;
 
@@ -42,14 +44,14 @@ public:
     {
         if (ModificarAdmin->objectName().isEmpty())
             ModificarAdmin->setObjectName("ModificarAdmin");
-        ModificarAdmin->resize(868, 548);
+        ModificarAdmin->resize(796, 658);
         ModificarAdmin->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 241, 172)\n"
 ""));
         centralwidget = new QWidget(ModificarAdmin);
         centralwidget->setObjectName("centralwidget");
         groupBox = new QGroupBox(centralwidget);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(10, 40, 751, 371));
+        groupBox->setGeometry(QRect(10, 40, 751, 471));
         groupBox->setStyleSheet(QString::fromUtf8("font: 12pt \"Sitka\";"));
         label_3 = new QLabel(groupBox);
         label_3->setObjectName("label_3");
@@ -80,7 +82,7 @@ public:
 "border-radius: 10px;"));
         label_5 = new QLabel(groupBox);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(30, 300, 231, 20));
+        label_5->setGeometry(QRect(30, 390, 231, 20));
         label_5->setStyleSheet(QString::fromUtf8("font: 600 14pt \"Segoe UI Semibold\";"));
         lblCorreo = new QLabel(groupBox);
         lblCorreo->setObjectName("lblCorreo");
@@ -88,7 +90,7 @@ public:
         lblCorreo->setStyleSheet(QString::fromUtf8("font: 600 14pt \"Segoe UI Semibold\";"));
         txtContraU = new QLineEdit(groupBox);
         txtContraU->setObjectName("txtContraU");
-        txtContraU->setGeometry(QRect(290, 240, 341, 31));
+        txtContraU->setGeometry(QRect(290, 310, 341, 31));
         txtContraU->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -96,7 +98,7 @@ public:
         txtContraU->setEchoMode(QLineEdit::EchoMode::Normal);
         txtFechaN = new QLineEdit(groupBox);
         txtFechaN->setObjectName("txtFechaN");
-        txtFechaN->setGeometry(QRect(290, 300, 341, 31));
+        txtFechaN->setGeometry(QRect(290, 390, 341, 31));
         txtFechaN->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
@@ -109,9 +111,27 @@ public:
 "border: 5px solid white;\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-radius: 10px;"));
+        txtEncrip = new QLineEdit(groupBox);
+        txtEncrip->setObjectName("txtEncrip");
+        txtEncrip->setEnabled(false);
+        txtEncrip->setGeometry(QRect(290, 240, 341, 31));
+        txtEncrip->setStyleSheet(QString::fromUtf8("font: 600 11pt \"Segoe UI Variable Display Semib\";\n"
+"border: 5px solid white;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;"));
+        txtEncrip->setEchoMode(QLineEdit::EchoMode::Normal);
+        btnVer = new QPushButton(groupBox);
+        btnVer->setObjectName("btnVer");
+        btnVer->setGeometry(QRect(650, 230, 81, 41));
+        btnVer->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        btnVer->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
+"border: 5px solid white;\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius: 10px;\n"
+""));
         btnModificar = new QPushButton(centralwidget);
         btnModificar->setObjectName("btnModificar");
-        btnModificar->setGeometry(QRect(350, 430, 161, 51));
+        btnModificar->setGeometry(QRect(340, 550, 161, 51));
         btnModificar->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnModificar->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
 "border: 5px solid white;\n"
@@ -119,7 +139,7 @@ public:
 "border-radius: 10px;"));
         btnRegresar = new QPushButton(centralwidget);
         btnRegresar->setObjectName("btnRegresar");
-        btnRegresar->setGeometry(QRect(700, 480, 121, 41));
+        btnRegresar->setGeometry(QRect(630, 600, 121, 41));
         btnRegresar->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         btnRegresar->setStyleSheet(QString::fromUtf8("font: 900 10pt \"Segoe UI Black\";\n"
 "border: 5px solid white;\n"
@@ -142,6 +162,7 @@ public:
         label_4->setText(QCoreApplication::translate("ModificarAdmin", "APELLIDOS:", nullptr));
         label_5->setText(QCoreApplication::translate("ModificarAdmin", "FECHA NACIMIENTO:", nullptr));
         lblCorreo->setText(QCoreApplication::translate("ModificarAdmin", "CORREO:", nullptr));
+        btnVer->setText(QCoreApplication::translate("ModificarAdmin", "VER", nullptr));
         btnModificar->setText(QCoreApplication::translate("ModificarAdmin", "MODIFICAR", nullptr));
         btnRegresar->setText(QCoreApplication::translate("ModificarAdmin", "REGRESAR", nullptr));
     } // retranslateUi

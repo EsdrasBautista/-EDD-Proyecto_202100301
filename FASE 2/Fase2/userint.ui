@@ -106,6 +106,8 @@ border-radius: 10px;</string>
     </property>
     <addaction name="actionGENERAR_REPORTES"/>
     <addaction name="separator"/>
+    <addaction name="actionGRAFO_AMISTAD"/>
+    <addaction name="actionADYACENCIA_AMISTAD"/>
    </widget>
    <addaction name="menuPERFIL"/>
    <addaction name="menuREPORTES"/>
@@ -134,6 +136,16 @@ border-radius: 10px;</string>
   <action name="actionGENERAR_REPORTES">
    <property name="text">
     <string>REPORTES</string>
+   </property>
+  </action>
+  <action name="actionGRAFO_AMISTAD">
+   <property name="text">
+    <string>GRAFO AMISTAD</string>
+   </property>
+  </action>
+  <action name="actionADYACENCIA_AMISTAD">
+   <property name="text">
+    <string>ADYACENCIA AMISTAD</string>
    </property>
   </action>
  </widget>

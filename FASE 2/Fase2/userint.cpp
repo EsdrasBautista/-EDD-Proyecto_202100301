@@ -7,14 +7,17 @@
 #include "./publicaciones.h"
 #include "./GestionarSoli.h"
 #include "./reportesuser.h"
+#include "./reporteamistaduser.h"
+#include "./reporteadyuser.h"
 
 
-UserInt::UserInt(QWidget *parent,listaEnlazadaArb* lista, const std::string& correo,listaPublicaciones* listap)
+UserInt::UserInt(QWidget *parent,listaEnlazadaArb* lista, const std::string& correo,listaPublicaciones* listap,listaAdyacencia* grafo)
     : QMainWindow(parent)
     , ui(new Ui::UserInt),
     listaArbol(lista),
     correoUsuario(correo),
-    listaPub(listap)
+    listaPub(listap),
+    grafoAdy(grafo)
 {
     ui->setupUi(this);
     this->setWindowTitle("MiUsuario");
@@ -72,7 +75,7 @@ void UserInt::on_actionBUSCAR_triggered()
 
 void UserInt::on_actionSOLICITUDES_triggered()
 {
-    Solicitudes *sol = new Solicitudes(this,listaArbol,correoUsuario);
+    Solicitudes *sol = new Solicitudes(this,listaArbol,correoUsuario,grafoAdy);
     this->hide();
     sol->show();
 }
@@ -103,5 +106,21 @@ void UserInt::on_actionGENERAR_REPORTES_triggered()
     repo->show();
     repo->llenarComboFecha();
 
+}
+
+
+void UserInt::on_actionGRAFO_AMISTAD_triggered()
+{
+    reporteAmistadUser *repo = new reporteAmistadUser(this,listaArbol,correoUsuario);
+    this->hide();
+    repo->show();
+}
+
+
+void UserInt::on_actionADYACENCIA_AMISTAD_triggered()
+{
+    reporteAdyUser *repo = new reporteAdyUser(this,listaArbol,correoUsuario);
+    this->hide();
+    repo->show();
 }
 
